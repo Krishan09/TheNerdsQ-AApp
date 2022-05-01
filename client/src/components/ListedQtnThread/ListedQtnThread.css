@@ -1,0 +1,71 @@
+.listedQtnThreadFormat button, 
+.listedQtnThreadFormat button:hover, 
+.listedQtnThreatFormat button:focus {
+  outline: none;
+}
+
+.listedQtnThreadFormat button {
+  border: none; 
+  padding: 0;
+
+}
+
+
+.questionStyle:hover{
+	background-color: rgb(0, 0, 0,0.1);
+
+}
+
+.listedQtnThreadFormat {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+
+}
+.listedQtnThreadFormat::-webkit-scrollbar {
+ background-color: AliceBlue;;
+
+}
+
+.listedQtnThreadFormat::-webkit-scrollbar-button {
+ background-color: rgb(101, 197, 230);
+
+}
+
+.listedQtnThreadFormat::-webkit-scrollbar-thumb {
+ background-color: rgb(101, 197, 230);
+
+}
+
+.tentative {
+  background-color: lightblue;
+}
+
+
+.tent {
+  display: flex;
+  flex-direction: column;
+  background-color: lightblue;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  min-height: auto;
+}
+.edit-btn {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  padding: 8rem;
+}
+
+.delete-btn {
+  padding: 1rem;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+}
+
+
+

@@ -1,0 +1,63 @@
+.replyFormStyle {
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	position: -webkit-sticky; /* Safari */
+ 	position: sticky;
+ 	/* bottom: 1.5rem; */
+}
+
+.reply-btn {
+	width: 20%;
+	border: none;
+	margin: 1.2rem 0;
+	background-color: chocolate;
+	color: white;
+	
+}
+
+.replyFormStyle input {
+	margin: 1rem 0;	
+	max-width: 100%;
+}
+
+.replyFormStyle p {
+	text-align: justify;
+}
+
+.wrapper {
+  padding: 1rem;
+  background-color: Cornsilk;
+  border: 1px solid Cornsilk;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+} 
+.editor {
+  background-color: Cornsilk;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.rdw-editor-toolbar {
+  background-color: cornsilk;
+}
+
+.toolbar button{
+  background-color: chocolate;
+  color: white;
+  padding: 1rem;
+}
+
+.toolbar span{
+  color: darkslategray;
+  background-color: cornsilk;
+}
+
+.rdw-link-modal-label {
+	color: darkslategray;
+}
+
+.rdw-link-modal-btn {
+	color: darkslategray;
+	background-color: deeppink;
+}

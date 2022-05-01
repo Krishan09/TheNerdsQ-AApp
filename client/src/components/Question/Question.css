@@ -1,0 +1,86 @@
+/* .questionStyle p{
+	text-align: justify;
+	color: black;
+} */
+
+
+.questionStyle h4{
+	text-align: left;
+	font-size: large;
+	font-weight: bold;
+	color: rgb(218, 74, 22);
+}
+
+.questionStyle h5{
+	font-weight: bolder;
+	color: #CD5C5C;
+  margin-right: 0.5rem;
+}
+
+.subQtnStyle {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.subQtnStyle h6{
+  color: darkslategray;
+}
+
+.questionStyle span{
+	/* margin-right: 0.7rem;
+	font-weight: bold; */
+  color: DarkSlateGrey;
+
+}
+
+.questionStyle{
+	padding: 1rem;
+  background-color: Cornsilk;
+
+}
+
+/* .questionStyle button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  border-radius: 4px;
+  background-color: brown;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 1rem;
+  width: 20%;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.questionStyle button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.questionStyle button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.questionStyle button:hover span {
+  padding-right: 25px;
+}
+
+.questionStyle button:hover span:after {
+  opacity: 1;
+  right: 0;
+} */
+
+.questionStyle:hover{
+	background-color: rgb(0, 0, 0,0.1);
+
+}
+

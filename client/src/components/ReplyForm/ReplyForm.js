@@ -17,7 +17,7 @@ import DOMPurify from "dompurify";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "./RichText.css";
 
-const api = process.env.API_URL || "/api";
+const api = "/api";
 const ReplyForm = ({ questionId }) => {
 	// const [editorState, setEditorState] = useState(() =>
 	// 	EditorState.createEmpty()

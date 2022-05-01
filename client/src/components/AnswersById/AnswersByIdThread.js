@@ -4,7 +4,7 @@ import Answer from "../Answer/Answer";
 import "./AnswersByIdThread.css";
 //import { questionsData } from "../../mock/data";
 
-const api = process.env.API_URL || "/api";
+const api = "/api";
 const AnswersByIdThreads = ({ questionId }) => {
 	const [answers, setAnswers] = useState([]);
 	const [display, setDisplay] = useState(true);

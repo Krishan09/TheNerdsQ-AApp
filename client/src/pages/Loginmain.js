@@ -21,7 +21,7 @@ const Loginmain = ({ setToken }) => {
 
     //const navigate = useNavigate();
 
-    const api = process.env.API_URL || "/api";
+    const api = "/api";
 
     async function loginUser(credentials) {
       //return fetch("http://localhost:3100/api/login", {

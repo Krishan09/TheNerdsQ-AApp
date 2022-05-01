@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./QuestionById.css";
 
-const api = process.env.API_URL || "/api";
+const api = "/api";
 const QuestionById = ({ questionId }) => {
 	const [question, setQuestion] = useState(null);
 	useEffect(() => {

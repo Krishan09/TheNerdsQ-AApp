@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //import Tags from "../../components/Tags/Tags";
 import "./AskQuestionForm.css";
 
-const api = process.env.API_URL || "/api";
+const api = "/api";
 const AskQuestionForm = ({ show }) => {
 
 	const [title, setTitle] = useState("");

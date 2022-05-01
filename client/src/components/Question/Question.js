@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Question.css";
 
-const api = process.env.API_URL || "/api";
+const api = "/api";
 function Question({ data }) {
 	console.log(data.id);
 

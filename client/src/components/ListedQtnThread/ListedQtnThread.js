@@ -3,7 +3,7 @@ import Question from "../Question/Question.js";
 //import { questionsData } from "../../mock/data.js";
 import "./ListedQtnThread.css";
 
-const api = process.env.API_URL || "/api";
+const api = "/api";
 const ListedQtnThread = ({ onPressQuestion, questionId }) => {
 	const[questionsData, setQuestionData] = useState(null);
 

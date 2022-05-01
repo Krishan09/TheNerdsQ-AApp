@@ -1,0 +1,36 @@
+.answersFormat {
+	border-left: 3px solid chocolate;
+	scrollbar-color: lightblue;
+    scrollbar-width: thin;
+	scrollbar-color: lightblue;
+}
+
+.answersFormat::-webkit-scrollbar {
+	background-color: AliceBlue;
+}
+.answersFormat::-webkit-scrollbar-button {
+	background-color: rgb(101, 197, 230);
+}
+
+.answersFormat::-webkit-scrollbar-thumb {
+	background-color:rgb(101, 197, 230);
+}
+
+.answer-link {
+	text-align: left;
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: rgb(218, 74, 22);
+}
+
+.answer-link:hover {
+	text-align: left;
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: rgb(233, 177, 73);
+}
+
+.display {
+	display: none;
+}
+

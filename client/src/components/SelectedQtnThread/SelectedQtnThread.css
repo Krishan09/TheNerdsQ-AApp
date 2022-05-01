@@ -1,0 +1,33 @@
+.selectedQtnContain {
+	margin: 0.7rem auto;
+	width: 50%;
+	min-height: 80vh;
+	background-color: lightblue;
+	position: relative;
+}
+
+.selectedQtnContain li{
+	list-style: none;	
+}
+
+.close {
+	position: absolute;	
+	right: 0.5rem;
+	border: none;
+}
+
+.close span{	
+	font-weight: bolder;
+	font-size: x-large;
+	color: rgb(218, 74, 22);
+}
+
+.close:hover {
+	border: 1px solid brown;
+	padding: 0;
+	background-color: transparent;
+}
+
+.hide {
+	display: none;
+}

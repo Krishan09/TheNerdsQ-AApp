@@ -1,5 +1,6 @@
 import { Pool } from "pg";
 import dotenv from "dotenv";
+//const parse = require('html-react-parser');
 
 dotenv.config();
 
@@ -10,6 +11,8 @@ const pool = new Pool({
 	connectionTimeoutMillis: 5000,
 	ssl: dbUrl.includes("localhost") ? false : { rejectUnauthorized: false },
 });
+
+
 
 export const connectDb = async () => {
 	let client;
@@ -22,6 +25,7 @@ export const connectDb = async () => {
 	console.log("Postgres connected to", client.database);
 	client.release();
 };
+
 
 export const disconnectDb = () => pool.close();
 

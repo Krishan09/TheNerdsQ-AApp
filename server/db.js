@@ -1,4 +1,7 @@
 import { Pool } from "pg";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const dbUrl = process.env.DATABASE_URL || "postgres://localhost:5432/cyf";
 

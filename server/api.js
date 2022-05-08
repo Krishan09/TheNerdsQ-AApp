@@ -347,6 +347,7 @@ router.get("/answers/:id", async (req, res) => {
 	}
 });
 
+
 //Api endpoint for updating questions
 
 router.patch("/questions", async (req, res) => {
@@ -414,13 +415,13 @@ router.patch("/answers", async (req, res) => {
 // endpoint for post questions
 
 router.post("/question", async (req, res) => {
-	// const category = req.body.category;
+	const category = req.body.category;
 	const title = req.body.title;
 	const content = req.body.content;
 	const query =
-		"INSERT INTO questions (title, content) VALUES ($1,$2)";
+		"INSERT INTO questions (category, title, content) VALUES ($1,$2, $3)";
 	try {
-		await db.query(query, [title, content]);
+		await db.query(query, [category, title, content]);
 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
 	} catch (error) {
 		res.status(500).send(error);

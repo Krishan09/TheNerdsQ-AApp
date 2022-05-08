@@ -84,24 +84,42 @@ const Loginmain = ({ setToken }) => {
     };*/
 
     return (
-      <main className="upmain">
-        <Navigation />
-      <div className="root-container">
-        <div className="box-controller">
-          <div aria-hidden="true" className={"controller " + (loginOpen ? "selected-controller" : "")} role="menuitem" onClick={ showLoginBox }  >
-            Login
-          </div>
-          <div aria-hidden="true" className={"controller " + (registerOpen ? "selected-controller" : "")} role="menuitem" onClick={ showRegisterBox } >
-            Register
-            </div>
-        </div>
-        <div className="box-container">
-          { loginOpen ? <Login setToken={ setToken } loginUser={ loginUser } /> : registerOpen ? <Signup onAdd={ signup } /> : null }
-      </div>
-      </div>
-        <Footer  />
-      </main>
-    );
+			<main className="upmain">
+				<Navigation />
+				<div className="root-container">
+					<div className="box-controller">
+						<div
+							aria-hidden="true"
+							className={
+								"controller " + (loginOpen ? "selected-controller" : "")
+							}
+							role="menuitem"
+							onClick={showLoginBox}
+						>
+							Login
+						</div>
+						<div
+							aria-hidden="true"
+							className={
+								"controller " + (registerOpen ? "selected-controller" : "")
+							}
+							role="menuitem"
+							onClick={showRegisterBox}
+						>
+							Register
+						</div>
+					</div>
+					<div className="box-container">
+						{loginOpen ? (
+							<Login setToken={setToken} loginUser={loginUser} />
+						) : registerOpen ? (
+							<Signup onAdd={signup} />
+						) : null}
+					</div>
+				</div>
+				<Footer />
+			</main>
+		);
 };
 
     /*return (

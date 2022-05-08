@@ -24,12 +24,17 @@
 
 .subQtnStyle h6{
   color: darkslategray;
+  margin-right: 0.5rem;
 }
 
-.questionStyle span{
+.categoryStyle{
 	/* margin-right: 0.7rem;
 	font-weight: bold; */
   color: DarkSlateGrey;
+  border: 0.5px solid #ccc;
+  border-radius: 4px;
+  padding: 0.2rem;
+  margin-right: 0.5rem;
 
 }
 

@@ -1,8 +1,8 @@
 //import { useEffect, useState } from "react";
 //import { render } from "react-dom";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
-import "./Home.css";
+//import "./Home.css";
 //import logo from "./logo.svg";
 
 
@@ -11,7 +11,7 @@ import "./Home.css";
 
 
 
-export function Home() {
+// export function Home() {
 	/*const [message, setMessage] = useState("Loading...");
     const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState([]);
@@ -48,25 +48,25 @@ export function Home() {
 	  console.log(answers);*/
 
 
-	return (
-		<main className="main" role="main">
-			<div>
-				<h1>TheNerds Q&A APP</h1>
-				<form>
-					<div>
-						<label htmlFor='username' className="formLabel">Username</label>
-						<input type="text" id='username' placeholder='Username' className="formInput" />
-					</div>
-					<div>
-						<label htmlFor='password' className="formLabel">Password</label>
-						<input type="password" id='password' placeholder='Password' className="formInput" />
-					</div>
-					</form>
-				<Link to="/Main"><button>Login</button></Link><Link to="/Signup"><button>Sign Up</button></Link>
-			</div>
-		</main>
-	);
-}
+	// return (
+	// 	<main className="main" role="main">
+	// 		<div>
+	// 			{/* <h1>TheNerds Q&A APP</h1> */}
+	// 			<form>
+	// 				<div>
+	// 					<label htmlFor='username' className="formLabel">Username</label>
+	// 					<input type="text" id='username' placeholder='Username' className="formInput" />
+	// 				</div>
+	// 				<div>
+	// 					<label htmlFor='password' className="formLabel">Password</label>
+	// 					<input type="password" id='password' placeholder='Password' className="formInput" />
+	// 				</div>
+	// 				</form>
+	// 			<Link to="/Main"><button>Login</button></Link><Link to="/Signup"><button>Sign Up</button></Link>
+	// 		</div>
+	// 	</main>
+	// );
+//}
 
 /*<img
 					className="logo"
@@ -79,4 +79,4 @@ export function Home() {
 				</h1>
 				<Link to="/about/this/site">About</Link>*/
 
-export default Home;
+//export default Home;

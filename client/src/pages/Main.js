@@ -47,10 +47,10 @@ const Main = () => {
 				</button>
 				<div className="top">
 					<h1>TheNerds Q & A APP</h1>
-					<p className="main-p">
+					{/* <p className="main-p">
 						ask technical related question about JS, HTML, CSS
 					</p>
-					<h1>Main</h1>
+					<h1>Main</h1> */}
 				</div>
 				<div className="questionsDiv">
 					{/* ADD question module in this div */}

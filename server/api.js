@@ -1,6 +1,7 @@
 //import { RestartProcess } from "concurrently";
 import { Router } from "express";
-
+import { registerUsers } from "./data";
+import { loginUser } from "./data";
 import jwt from "jsonwebtoken";
 import { /*bcrypt,*/ hash, compare } from "bcryptjs";
 //import asyncHandler from "express-async-handler";
@@ -48,7 +49,7 @@ const users = [
 
 router.get("/", verifyToken, (req, res) => {
 	jwt.verify(req.token, "secretkey", (err, authData) => {
-		if(err) {
+		if (err) {
 			res.sendStatus(403); //or can be used res.status(403).json({ msg: "Invalid token" });
 		} else {
 			res.json({
@@ -62,13 +63,13 @@ router.get("/", verifyToken, (req, res) => {
 //const queryUsers = "SELECT * FROM users";
 
 router.get("/users1", (req, res) => {
-    db.query("SELECT * FROM users", (error, result) => {
-        if(error) {
-            res.status(500).send(error);
-        } else {
-            res.send(result.rows);
-        }
-    });
+	db.query("SELECT * FROM users", (error, result) => {
+		if (error) {
+			res.status(500).send(error);
+		} else {
+			res.send(result.rows);
+		}
+	});
 });
 
 router.get("/users", (req, res) => {
@@ -88,37 +89,30 @@ router.post("/register", async (req, res) => {
 	const { username, email, password } = req.body;
 	const user = users.find((user) => user.email === email);
 	try {
-
-		if(!username || !email || !password){
+		if (!username || !email || !password) {
 			res.status(400).json({ msg: "Please fill all fields" });
 		} else {
+			//const user = users.find((user) => user.email === email);
+			if (user) {
+				res.status(400).json({ msg: "email already registered" });
+				//throw new Error("email already registered");
+			} else {
+				const hashedPassword = await hash(password, 10);
 
-		//const user = users.find((user) => user.email === email);
-		if(user){
-			res.status(400).json({ msg: "email already registered" });
-			//throw new Error("email already registered");
-		} else {
-			const hashedPassword = await hash(password, 10);
+				//const hashedPassword = await hash(password, 10);
 
-
-		//const hashedPassword = await hash(password, 10);
-
-		users.push({
-			username,
-			email,
-			password: hashedPassword,
-		});
-		res.status(200).json({ msg: "User created" });
-		console.log(users);
+				await registerUsers(email, username, hashedPassword);
+				res.status(200).json({ msg: "User created" });
+			}
 		}
-	}
-	/*}
+		/*}
 	catch (err) {
 		res.json({ error: `${err.message}` });
 	}*/
 	} catch (err) {
 		//res.json({ msg: "Please fill all fields!" });
-		throw new Error({ error: `${ err }` });
+		console.log(err);
+		throw new Error({ error: `${err}` });
 	}
 });
 
@@ -155,51 +149,40 @@ router.post("/register", async (req, res) => {
 });*/
 
 router.post("/login", async (req, res) => {
-
 	const { email, password } = req.body;
 	try {
-	let data = users.find((user) => user.email === email);
-	if(data) {
-		const valid = await compare(password, data.password);
-		if(valid) {
-			/*res.status(200).json( {
-				msg: "Login successful!",
-			});*/
-			//JWT using timer
-			/*jwt.sign({ data }, "secretkey", { expiresIn: "30s" }, (err, token) => {
-				res.json({ msg: "Login successful", token });
-			});*/
-			//all data format
-			/*jwt.sign({ data }, "secretkey", (err, token) => {
-				res.json({ msg: "Login successful", token });
-				console.log(token);
-			});*/
-			//grab part of the jwt data
-			/*jwt.sign({ data: { username: data.username, email: data.email } }, "secretkey", { expiresIn: "15s" }, (err, token) => {
-				res.json({ msg: "Login succesful", token });
-			});*/
 
-			//creating accesToken with refresh token
-			const token = await jwt.sign({ data: { username: data.username, email: data.email } }, "secretkey", { expiresIn: "15s" },
-			);
-			const refreshToken = await jwt.sign({ data: { username: data.username, email: data.email } }, "refreshsecretkey", { expiresIn: "1m" }, );
+		if (data) {
+			const valid = await compare(password, data.password);
+			if (valid) {
+
+				//creating accesToken with refresh token
+				const token = await jwt.sign(
+					{ data: { username: data.username, email: data.email } },
+					"secretkey",
+					{ expiresIn: "15s" }
+				);
+				const refreshToken = await jwt.sign(
+					{ data: { username: data.username, email: data.email } },
+					"refreshsecretkey",
+					{ expiresIn: "1m" }
+				);
 				refreshTokens.push(refreshToken);
 				res.json({ token, refreshToken, data: { username: data.username } });
+			} else {
+				res.status(400).json({
+					msg: "Wrong password!",
+				});
+			}
 		} else {
-			res.status(400).json( {
-				msg: "Wrong password!",
+			res.status(400).json({
+				msg: "User not found!",
 			});
 		}
-	} else {
-		res.status(400).json( {
-			msg: "User not found!",
-		});
+	} catch (err) {
+		res.json({ msg: `${err}` });
 	}
-} catch (err) {
-    res.json({ msg: `${err}` });
-}
 });
-
 
 // only for use with the acces and refresh token version
 let refreshTokens = [];
@@ -207,19 +190,21 @@ let refreshTokens = [];
 router.post("/token", async (req, res) => {
 	const refreshToken = req.header("x-auth-token");
 
-	if(!refreshToken) {
-		res.status(401).json({ msg: "Token not found" } );
+	if (!refreshToken) {
+		res.status(401).json({ msg: "Token not found" });
 	}
-	if(!refreshToken.includes(refreshToken)) {
+	if (!refreshToken.includes(refreshToken)) {
 		res.status(403).json({ msg: "Invalid refresh Token" });
 	}
 
 	try {
-		const user = await jwt.verify(
-			refreshToken, "refreshsecretkey"
-		);
+		const user = await jwt.verify(refreshToken, "refreshsecretkey");
 		const { data } = user;
-		const token = await jwt.sign({ data: { username: data.username, email: data.email } }, "secretkey", { expiresIn: "20s" });
+		const token = await jwt.sign(
+			{ data: { username: data.username, email: data.email } },
+			"secretkey",
+			{ expiresIn: "20s" }
+		);
 		res.json({ token });
 	} catch (error) {
 		res.status(403).json({ msg: "Invalid token" });
@@ -232,7 +217,6 @@ router.post("/logout", (req, res) => {
 	refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
 	res.sendStatus(204);
 });
-
 
 // Token format
 // Authorization: Bearer <access_token>
@@ -258,7 +242,6 @@ function verifyToken(req, res, next) {
 	}
 }
 
-
 //Second way to authenticate the token
 
 /*const authToken = async (req, res, next) => {
@@ -282,8 +265,6 @@ function verifyToken(req, res, next) {
 
 //const questionsQuery = "SELECT * FROM questions";
 //const answersQuery = "SELECT * FROM answers";
-
-
 
 router.get("/questions", async (req, res) => {
 	const questionsQuery = "SELECT * FROM questions";
@@ -417,8 +398,7 @@ router.post("/question", async (req, res) => {
 	// const category = req.body.category;
 	const title = req.body.title;
 	const content = req.body.content;
-	const query =
-		"INSERT INTO questions (title, content) VALUES ($1,$2)";
+	const query = "INSERT INTO questions (title, content) VALUES ($1,$2)";
 	try {
 		await db.query(query, [title, content]);
 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
@@ -432,8 +412,7 @@ router.post("/question", async (req, res) => {
 router.post("/answer", async (req, res) => {
 	const questionId = req.body.question_id;
 	const content = req.body.answer_content;
-	const query =
-		"INSERT INTO answers (content, question_id) VALUES ($1,$2)";
+	const query = "INSERT INTO answers (content, question_id) VALUES ($1,$2)";
 	try {
 		await db.query(query, [content, questionId]);
 		res.status(201).send({ Success: "Your Answer is Successfully Posted!" });
@@ -442,7 +421,6 @@ router.post("/answer", async (req, res) => {
 	}
 });
 
-
 // endpoint delete questions
 router.delete("/questions/:id", async (req, res) => {
 	const questionId = req.params.id;
@@ -456,10 +434,15 @@ router.delete("/questions/:id", async (req, res) => {
 			let doesExist = exists.pop();
 			if (!doesExist) {
 				res.status(404).json({
-					message: `A question by the id ${questionId} does not exist!` });
+					message: `A question by the id ${questionId} does not exist!`,
+				});
 			} else {
 				db.query(deleteById)
-					.then(() => res.json({ message: `A question by the id ${questionId} is Successfully deleted!` }))
+					.then(() =>
+						res.json({
+							message: `A question by the id ${questionId} is Successfully deleted!`,
+						})
+					)
 					.catch((e) => console.error(e));
 			}
 		});
@@ -479,10 +462,15 @@ router.delete("/answers/:id", async (req, res) => {
 			let doesExist = exists.pop();
 			if (!doesExist) {
 				res.status(404).json({
-					message: `A answer by the id ${answerId} does not exist!` });
+					message: `A answer by the id ${answerId} does not exist!`,
+				});
 			} else {
 				db.query(deleteById)
-					.then(() => res.json({ message: `An answer by the id ${answerId} is Successfully deleted!` }))
+					.then(() =>
+						res.json({
+							message: `An answer by the id ${answerId} is Successfully deleted!`,
+						})
+					)
 					.catch((e) => console.error(e));
 			}
 		});
@@ -597,7 +585,5 @@ router.delete("/answers/:id", async (req, res) => {
 		});
 	}
 });
-
-
 
 export default router;

@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import React /*{ useState }*/ from "react";
-import {Provider} from "react-redux"
-import store from "./store"
+
 //import Login from "./pages/Login";
 import About from "./pages/About";
 //import Home from "./pages/Home";
@@ -39,7 +38,6 @@ const App = () => {
 
 	return (
 		<React.StrictMode>
-			<Provider store = {store}>
 			<Routes>
 				<Route path="/" element={<Main />} />
 				{/*<Route path="/Login" element={<Login />} />
@@ -48,7 +46,6 @@ const App = () => {
 				<Route path="/Loginmain" element={<Loginmain setToken={setToken} />} />
 				<Route path="/about/this/site" element={<About />} />
 			</Routes>
-			</Provider>
 		</React.StrictMode>
 	);
 };

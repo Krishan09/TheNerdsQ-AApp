@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import store from "../store";
-import { useSelector, useDispatch } from "react-redux";
 //import { useEffect, useState } from "react";
 //import { render } from "react-dom";
 //import { Link } from "react-router-dom";
@@ -29,9 +27,7 @@ import "./Loginmaintest.css";
 export function Login({ loginUser, setToken }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [passwordShown, setPasswordShown] = useState(false);
-	const dispatch = useDispatch();
-	const user = useSelector((state) => state.userName);
+	const [ passwordShown, setPasswordShown ] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -39,17 +35,12 @@ export function Login({ loginUser, setToken }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// const token = await loginUser({
-		// 	email,
-		// 	password,
-		// });
-		// console.log(token);
-		// setToken(token);
-		dispatch({
-			type: "login",
-			payload: { email: email, userName: "123@gmail.com", userId: 2 },
+		const token = await loginUser({
+			email,
+			password,
 		});
-		console.log(user);
+		console.log(token);
+		setToken(token);
 		setEmail("");
 		setPassword("");
 		navigate("/");
@@ -59,6 +50,7 @@ export function Login({ loginUser, setToken }) {
 	const togglePassword = () => {
 		setPasswordShown(!passwordShown);
 	};
+
 
 	//console.log(token);
 
@@ -80,47 +72,27 @@ export function Login({ loginUser, setToken }) {
 			});
 	}, []);*/
 	return (
-		<main className="inner-container">
+		<main className="inner-container" >
 			{/*<div><Navigation /></div>
 			<div>
 	<h1>TheNerds Q&A APP Login page</h1>*/}
-			<div className="header">Login</div>
-			<form className="box" onSubmit={handleSubmit}>
-				<div className="input-group">
-					<label htmlFor="email" className="login-label">
-						username
-					</label>
-					<input
-						value={email}
-						type="email"
-						id="email"
-						placeholder="Email"
-						className="login-input"
-						onChange={(e) => setEmail(e.target.value)}
-					/>
-				</div>
-				<div className="input-group">
-					<label htmlFor="password" className="login-label">
-						Password
-					</label>
-					<input
-						value={password}
-						type={passwordShown ? "text" : "password"}
-						id="password"
-						placeholder="Password"
-						className="login-input"
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-					<p aria-hidden="true" onClick={togglePassword} className="showpass">
-						Show Password
-					</p>
-				</div>
-				<div>
-					<button className="login-btn" type="submit">
-						Submit
-					</button>
-				</div>
-			</form>
+					<div className="header" >
+						Login
+					</div>
+				<form className="box" onSubmit={handleSubmit}>
+					<div className="input-group">
+						<label htmlFor='email' className="login-label" >Username</label>
+						<input value={email} type="email" id='email' placeholder='Email' className="login-input" onChange={(e) => setEmail(e.target.value)} />
+					</div>
+					<div className="input-group">
+						<label htmlFor='password' className="login-label">Password</label>
+						<input value={password} type={ passwordShown ? "text" : "password" } id='password' placeholder='Password' className="login-input" onChange={(e) => setPassword(e.target.value)} />
+						<p aria-hidden="true" onClick={ togglePassword } className="showpass">Show Password</p>
+					</div>
+                    <div>
+                        <button className="login-btn" type="submit">Submit</button>
+                    </div>
+					</form>
 			{/*</div>*/}
 		</main>
 	);
@@ -132,7 +104,7 @@ export function Login({ loginUser, setToken }) {
 	<main className="main" role="main">
 		{/*<div><Navigation /></div>
 		<div>
-<h1>TheNerds Q&A APP Login page</h1>*/ /*}
+<h1>TheNerds Q&A APP Login page</h1>*//*}
 			<form onSubmit={handleSubmit}>
 				<div>
 					<label htmlFor='email' className="formLabel">Username</label>
@@ -147,10 +119,11 @@ export function Login({ loginUser, setToken }) {
 				</div>
 				</form>
 
-		{/*</div>*/ /*}
+		{/*</div>*//*}
 	</main>
 );
 }*/
+
 
 //<Link to="/Signup"><button>Sign Up</button></Link>
 /*Login.propTypes = {

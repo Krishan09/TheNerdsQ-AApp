@@ -50,7 +50,6 @@ const Signup = ({ onAdd }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		onAdd({ username, email, password });
-		console.log(username, email, password);
 
 		setUsername("");
 		setEmail("");

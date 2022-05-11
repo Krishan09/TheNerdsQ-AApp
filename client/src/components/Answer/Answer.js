@@ -1,11 +1,6 @@
 //import React, { useState } from "react";
 import "./Answer.css";
-import DOMPurify from "dompurify";
-const createMarkup  = (html) => {
-	return {
-		__html: DOMPurify.sanitize(html),
-	};
-}
+
 function Answer({ data, key }) {
 	console.log(data);
 	// const [answersData, setAnswersData] = useState([data]);
@@ -18,9 +13,9 @@ function Answer({ data, key }) {
 			</p> */}
 			{data.map((answer) => {
 				return (
-					<div key={answer.id} className="card mb-3 p-3 answer-wrapper">
-						<div dangerouslySetInnerHTML={createMarkup(answer.content)}>
-							
+					<div key={key} className="card mb-3 p-3 answer-wrapper">
+						<div>
+							<p>{answer.content}</p>
 						</div>
 						<div className="btn-wrapper">
 							<button className="btn btn-link">Edit</button>

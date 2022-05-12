@@ -1,13 +1,10 @@
 import React, { useState }from "react";
 import ReplyForm from "../../components/ReplyForm/ReplyForm";
 import QuestionById from "../../components/QuestionById/QuestionById";
-//import { questionsData } from "../../mock/data";
-
 import "./SelectedQtnThread.css";
 
 
 const SelectedQtnThread = ({ id }) => {
-	// const answers = questionsData.map((el) => el.answers);
 	const [hide, setHide] = useState(false);
 
 	const handleHide = (e) => {

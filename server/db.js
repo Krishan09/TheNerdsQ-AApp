@@ -1,6 +1,5 @@
 import { Pool } from "pg";
 import dotenv from "dotenv";
-//const parse = require('html-react-parser');
 
 dotenv.config();
 

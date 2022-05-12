@@ -1,52 +1,11 @@
-//import { RestartProcess } from "concurrently";
 import { Router } from "express";
 import { registerUsers } from "./data";
 import { loginUser } from "./data";
 import jwt from "jsonwebtoken";
-import { /*bcrypt,*/ hash, compare } from "bcryptjs";
-//import asyncHandler from "express-async-handler";
-//import cors from "cors";
-//import app from "./app";
-//import { questionsData } from "./Mock/Data";
-
+import { hash, compare } from "bcryptjs";
 import db from "./db";
 
 const router = Router();
-
-const users = [
-	{
-		username: "Huhu",
-		email: "test@123.test",
-		password: "$2a$10$t/9aytkxdQz8j27dDttVnek/fRqSiJnco9BgxwAmldZYj3WsW8UXK", //pass "test123"
-	},
-];
-
-/*router.get("/", verifyToken, (_, res) => {
-	res.json({ message: "Hello, world!" });
-});*/
-
-/*router.get("/", verifyToken, (req, res) => {
-	jwt.verify(req.token, "secretkey", (err, authData) => {
-		if (err) {
-			res.sendStatus(403);
-		} else {
-			res.json({
-				msg: "Hello, world!",
-				authData,
-			});
-		}
-	});
-});*/
-
-/*router.get("/me", verifyToken, async (req, res) => {
-	jwt.verify(req.token, "secretkey", (err, authData) => {
-		const { username, email } = await user.find(req.token.email)
-
-	});
-});*/
-
-//testing
-
 router.get("/", verifyToken, (req, res) => {
 	jwt.verify(req.token, "secretkey", (err, authData) => {
 		if (err) {
@@ -76,77 +35,26 @@ router.get("/users", (req, res) => {
 	res.status(200).json(users);
 });
 
-/*router.post("/register", asyncHandler (async (req, res) => {
-	const { username, email, password } = req.body;
-
-	if(!username || !email || !password) {
-		res.status(400);
-		throw new Error("Please add all fields");
-	}
-	res.json({ msg: "User registered!" });
-}));*/
 router.post("/register", async (req, res) => {
 	const { username, email, password } = req.body;
-	const user = users.find((user) => user.email === email);
 	try {
 		if (!username || !email || !password) {
 			res.status(400).json({ msg: "Please fill all fields" });
 		} else {
-			//const user = users.find((user) => user.email === email);
 			if (user) {
 				res.status(400).json({ msg: "email already registered" });
 				//throw new Error("email already registered");
 			} else {
 				const hashedPassword = await hash(password, 10);
-
-				//const hashedPassword = await hash(password, 10);
-
 				await registerUsers(email, username, hashedPassword);
 				res.status(200).json({ msg: "User created" });
 			}
 		}
-		/*}
-	catch (err) {
-		res.json({ error: `${err.message}` });
-	}*/
 	} catch (err) {
-		//res.json({ msg: "Please fill all fields!" });
 		console.log(err);
 		throw new Error({ error: `${err}` });
 	}
 });
-
-/*router.get("/login", (req, res) => {
-	res.json({
-		token: "test123",
-	});
-});*/
-
-/*router.post("/login", (req, res) => {
-	let data = users.find((user) => user.email === req.body.email);
-	if(data) {
-		if(data.password === req.body.password) {
-			/*res.status(200).json( {
-				msg: "Login successful!",
-			});*/
-//JWT using timer
-/*jwt.sign({ data }, "secretkey", { expiresIn: "30s" }, (err, token) => {
-				res.json({ msg: "Login successful", token });
-			});*/
-/*jwt.sign({ data }, "secretkey", (err, token) => {
-				res.json({ msg: "Login successful", token });
-			});
-		} else {
-			res.status(200).json( {
-				msg: "Wrong password!",
-			});
-		}
-	} else {
-		res.status(200).json( {
-			msg: "User not found!",
-		});
-	}
-});*/
 
 router.post("/login", async (req, res) => {
 	const { email, password } = req.body;
@@ -241,30 +149,6 @@ function verifyToken(req, res, next) {
 		res.status(403).json({ msg: "not authorized!" });
 	}
 }
-
-//Second way to authenticate the token
-
-/*const authToken = async (req, res, next) => {
-	const token = req.header["x-auth-token"];
-
-		//not token error message
-		if(!token) {
-			res.status(401).json({ error: { msg: "no token found" } } );
-		}
-
-		//token validation
-		try {
-			const user = await jwt.verify(token, "secretkey");
-			req.user = user.email;//, user.name;
-			next();
-		} catch (error) {
-			res.status(403).json({ error, msg: "Invalid token" } );
-		}
-
-	};*/
-
-//const questionsQuery = "SELECT * FROM questions";
-//const answersQuery = "SELECT * FROM answers";
 
 router.get("/questions", async (req, res) => {
 	const questionsQuery = "SELECT * FROM questions";

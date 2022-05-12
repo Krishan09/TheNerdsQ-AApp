@@ -107,7 +107,7 @@ label {
   color:rgba(var(white),.5);
   transition:all 0.25s ease;
   -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;/*added from me*/
+  backface-visibility: hidden;
   pointer-events: none;
   font-size:22px;
 }

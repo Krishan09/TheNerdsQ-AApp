@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import Tags from "../../components/Tags/Tags";
 import "./AskQuestionForm.css";
 
 const api = "/api";

@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from "@reduxjs/toolkit";
 
 const person = {
 	email: "",
@@ -18,13 +18,6 @@ function LoginReducer(state = person, action) {
 	}
 }
 
-
-
-
-const store = configureStore({ reducer: LoginReducer, preloadedState: person })
+const store = configureStore({ reducer: LoginReducer, preloadedState: person });
 // The store now has redux-thunk added and the Redux DevTools Extension is turned on
-
-
-
-
 export default store;

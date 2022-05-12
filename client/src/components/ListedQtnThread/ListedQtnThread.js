@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Question from "../Question/Question.js";
-//import { questionsData } from "../../mock/data.js";
 import "./ListedQtnThread.css";
 
 const api = "/api";

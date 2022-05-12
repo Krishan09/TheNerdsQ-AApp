@@ -1,30 +1,8 @@
 import React, { useState } from "react";
 import store from "../store";
 import { useSelector, useDispatch } from "react-redux";
-//import { useEffect, useState } from "react";
-//import { render } from "react-dom";
-//import { Link } from "react-router-dom";
-//import PropTypes from "prop-types";
-//import Navigation from "./Navigation";
 import { useNavigate } from "react-router-dom";
-
-//import "./Home.css";
 import "./Loginmaintest.css";
-//import logo from "./logo.svg";
-
-/*async function loginUser(credentials) {
-	return fetch("http://localhost:3100/api/login", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(credentials),
-	})
-	.then((data)=> data.json());
-}*/
-
-/*console.log(loginUser);*/
-//"access-control-allow-origin": "*",
 
 export function Login({ loginUser, setToken }) {
 	const [email, setEmail] = useState("");
@@ -39,12 +17,6 @@ export function Login({ loginUser, setToken }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// const token = await loginUser({
-		// 	email,
-		// 	password,
-		// });
-		// console.log(token);
-		// setToken(token);
 		dispatch({
 			type: "login",
 			payload: { email: email, userName: "123@gmail.com", userId: 2 },
@@ -53,37 +25,14 @@ export function Login({ loginUser, setToken }) {
 		setEmail("");
 		setPassword("");
 		navigate("/");
-		//window.location.reload();
 	};
 
 	const togglePassword = () => {
 		setPasswordShown(!passwordShown);
 	};
 
-	//console.log(token);
-
-	/*const [message, setMessage] = useState("Loading...");
-
-	useEffect(() => {
-		fetch("/api")
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error(res.statusText);
-				}
-				return res.json();
-			})
-			.then((body) => {
-				setMessage(body.message);
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-	}, []);*/
 	return (
 		<main className="inner-container">
-			{/*<div><Navigation /></div>
-			<div>
-	<h1>TheNerds Q&A APP Login page</h1>*/}
 			<div className="header">Login</div>
 			<form className="box" onSubmit={handleSubmit}>
 				<div className="input-group">
@@ -121,53 +70,7 @@ export function Login({ loginUser, setToken }) {
 					</button>
 				</div>
 			</form>
-			{/*</div>*/}
 		</main>
 	);
 }
-
-// ### copy of the main file to be able to change it back ###
-
-/*return (
-	<main className="main" role="main">
-		{/*<div><Navigation /></div>
-		<div>
-<h1>TheNerds Q&A APP Login page</h1>*/ /*}
-			<form onSubmit={handleSubmit}>
-				<div>
-					<label htmlFor='email' className="formLabel">Username</label>
-					<input type="email" id='email' placeholder='Email' className="formInput" onChange={(e) => setEmail(e.target.value)} />
-				</div>
-				<div>
-					<label htmlFor='password' className="formLabel">Password</label>
-					<input type="password" id='password' placeholder='Password' className="formInput" onChange={(e) => setPassword(e.target.value)} />
-				</div>
-				<div>
-					<button type="submit">Submit</button>
-				</div>
-				</form>
-
-		{/*</div>*/ /*}
-	</main>
-);
-}*/
-
-//<Link to="/Signup"><button>Sign Up</button></Link>
-/*Login.propTypes = {
-	setToken: PropTypes.func.isRequired,
-};*/
-
-//<Link to="/Main"><button>Login</button></Link>
-
-/*<img
-					className="logo"
-					data-qa="logo"
-					src={logo}
-					alt="Just the React logo"
-				/>
-				<h1 className="message" data-qa="message">
-					{message}
-				</h1>
-				<Link to="/about/this/site">About</Link>*/
-
 export default Login;

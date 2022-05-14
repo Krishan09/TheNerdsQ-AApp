@@ -308,7 +308,7 @@ router.post("/answer", async (req, res) => {
 });
 
 // endpoint delete questions
-router.delete("/questions/:id", async (req, res) => {
+router.delete("/question/:id", async (req, res) => {
 	const questionId = req.params.id;
 	const deleteById = `DELETE FROM questions WHERE id=${questionId}`;
 	const checkIfExists = `select exists(select 1 from questions where id=${questionId})`;
@@ -336,116 +336,7 @@ router.delete("/questions/:id", async (req, res) => {
 });
 
 //endpoint for delete answers
-router.delete("/answers/:id", async (req, res) => {
-	const answerId = req.params.id;
-	const deleteById = `DELETE FROM answers WHERE id=${answerId}`;
-	const checkIfExists = `select exists(select 1 from answers where id=${answerId})`;
-	if (!isValid(answerId)) {
-		res.status(400).json({ "Server message": "Invalid id!" });
-	} else {
-		db.query(checkIfExists).then((result) => {
-			const exists = result.rows.map((el) => el.exists);
-			let doesExist = exists.pop();
-			if (!doesExist) {
-				res.status(404).json({
-					message: `A answer by the id ${answerId} does not exist!`,
-				});
-			} else {
-				db.query(deleteById)
-					.then(() =>
-						res.json({
-							message: `An answer by the id ${answerId} is Successfully deleted!`,
-						})
-					)
-					.catch((e) => console.error(e));
-			}
-		});
-	}
-});
-
-// endpoint delete questions
-router.delete("/questions/:id", async (req, res) => {
-	const questionId = req.params.id;
-	const deleteById = `DELETE FROM questions WHERE id=${questionId}`;
-	const checkIfExists = `select exists(select 1 from questions where id=${questionId})`;
-	if (!isValid(questionId)) {
-		res.status(400).json({ "Server message": "Invalid id!" });
-	} else {
-		db.query(checkIfExists).then((result) => {
-			const exists = result.rows.map((el) => el.exists);
-			let doesExist = exists.pop();
-			if (!doesExist) {
-				res.status(404).json({
-					message: `A question by the id ${questionId} does not exist!`,
-				});
-			} else {
-				db.query(deleteById)
-					.then(() =>
-						res.json({
-							message: `A question by the id ${questionId} is Successfully deleted!`,
-						})
-					)
-					.catch((e) => console.error(e));
-			}
-		});
-	}
-});
-//endpoint for delete answers
-router.delete("/answers/:id", async (req, res) => {
-	const answerId = req.params.id;
-	const deleteById = `DELETE FROM answers WHERE id=${answerId}`;
-	const checkIfExists = `select exists(select 1 from answers where id=${answerId})`;
-	if (!isValid(answerId)) {
-		res.status(400).json({ "Server message": "Invalid id!" });
-	} else {
-		db.query(checkIfExists).then((result) => {
-			const exists = result.rows.map((el) => el.exists);
-			let doesExist = exists.pop();
-			if (!doesExist) {
-				res.status(404).json({
-					message: `A answer by the id ${answerId} does not exist!`,
-				});
-			} else {
-				db.query(deleteById)
-					.then(() =>
-						res.json({
-							message: `An answer by the id ${answerId} is Successfully deleted!`,
-						})
-					)
-					.catch((e) => console.error(e));
-			}
-		});
-	}
-});
-// endpoint delete questions
-router.delete("/questions/:id", async (req, res) => {
-	const questionId = req.params.id;
-	const deleteById = `DELETE FROM questions WHERE id=${questionId}`;
-	const checkIfExists = `select exists(select 1 from questions where id=${questionId})`;
-	if (!isValid(questionId)) {
-		res.status(400).json({ "Server message": "Invalid id!" });
-	} else {
-		db.query(checkIfExists).then((result) => {
-			const exists = result.rows.map((el) => el.exists);
-			let doesExist = exists.pop();
-			if (!doesExist) {
-				res.status(404).json({
-					message: `A question by the id ${questionId} does not exist!`,
-				});
-			} else {
-				db.query(deleteById)
-					.then(() =>
-						res.json({
-							message: `A question by the id ${questionId} is Successfully deleted!`,
-						})
-					)
-					.catch((e) => console.error(e));
-			}
-		});
-	}
-});
-//endpoint for delete answers
-router.delete("/answers/:id", async (req, res) => {
+router.delete("/answer/:id", async (req, res) => {
 	const answerId = req.params.id;
 	const deleteById = `DELETE FROM answers WHERE id=${answerId}`;
 	const checkIfExists = `select exists(select 1 from answers where id=${answerId})`;

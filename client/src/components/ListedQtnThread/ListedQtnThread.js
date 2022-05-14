@@ -3,9 +3,8 @@ import Question from "../Question/Question.js";
 import "./ListedQtnThread.css";
 
 const api = "/api";
-const ListedQtnThread = ({ onPressQuestion, questionId }) => {
+const ListedQtnThread = ({ onPressQuestion }) => {
 	const[questionsData, setQuestionData] = useState(null);
-
 	useEffect(() => {
 		fetch(`${api}/questions`)
 			.then((res) => {
@@ -16,17 +15,29 @@ const ListedQtnThread = ({ onPressQuestion, questionId }) => {
 			.then((data) => setQuestionData(data));
 	}, []);
 
-	const handleDelete = (e) => {
-		e.preventDefault;
-		fetch(`${api}/questions/${questionId}`, { method: "DELETE" })
-			.then((res) => res.json())
-			.catch((err) => console.error(err));
+	const handleDelete = async (id) => {
+		try {
+			await fetch(`${api}/question/${id}`, { method: "DELETE" });
+			window.location.reload(true);
+		} catch (err) {
+			console.error(err.message);
+		}
 	};
-	// const handleDelete = () => {
-	// 	fetch(`${api}/questions/${questionId}`)
-	// 	.then((res) => res.json())
-	// 	.catch((err) => console.error(err));
-	// };
+	// const handleEdit = async (id) => {
+	// 	try {
+	// 		const body = { content };
+	// 		await fetch(`${api}/question/${id}`, {
+	// 			method: "put",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 			},
+	// 			body: JSON.stringify(body),
+	// 		});
+	// 		window.location = "/";
+	// 	} catch (err) {
+	// 		console.error(err.message);
+	// 	}
+	//};
 
     return questionsData?(
 			<div className="listedQtnThreadFormat">
@@ -41,11 +52,19 @@ const ListedQtnThread = ({ onPressQuestion, questionId }) => {
 									<Question data={question} />
 								</span>
 							</button>
-							<div className="btn-wrapper">
-								<button className="edit-btn btn btn-outline-dark">Edit</button>
+							<div id={question.id} className="btn-wrapper">
 								<button
-									id={question.id}
-									onClick={handleDelete}
+									className="edit-btn btn btn-outline-dark"
+									// onClick={() => {
+									// 	handleEdit(question.id);
+									// }}
+								>
+									Edit
+								</button>
+								<button
+									onClick={() => {
+										handleDelete(question.id);
+									}}
 									className="delete-btn btn btn-outline-danger"
 								>
 									Delete

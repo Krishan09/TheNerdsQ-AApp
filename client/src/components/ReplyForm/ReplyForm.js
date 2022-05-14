@@ -46,6 +46,7 @@ const ReplyForm = ({ questionId }) => {
 		} catch (err) {
 			console.error(err.message);
 		}
+		window.location = "/";
 	};
 
 	return (

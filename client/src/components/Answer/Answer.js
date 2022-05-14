@@ -27,7 +27,7 @@ function Answer({ data }) {
 					<div key={answer.id} className="card mb-3 p-3 answer-wrapper">
 						<div dangerouslySetInnerHTML={createMarkup(answer.content)}></div>
 						<div className="btn-wrapper">
-							<button className="btn btn-link">Edit</button>
+							<button className="btn btn-link .text-danger">Edit</button>
 							<button
 								className="btn btn-link"
 								onClick={() => {

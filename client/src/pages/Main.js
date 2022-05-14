@@ -22,14 +22,15 @@ const Main = () => {
 			<AskQuestionForm show={show} />
 		</>
 	) : (
-		<div className="containermain">
+		<div className="main-container">
 			<Navigation />
+			<button className="ask-btn btn" onClick={handleShow}>
+				Ask Question
+			</button>
 			<main className="main" role="main">
-				<button className="ask-btn btn" onClick={handleShow}>
-					Ask Question
-				</button>
 				<div className="top">
 					<h1>TheNerds Q & A APP</h1>
+					<p className="top-p">Ask a code-related question</p>
 				</div>
 				<div className="questionsDiv">
 					{typeof id === "number" && <SelectedQtnThread id={id} />}

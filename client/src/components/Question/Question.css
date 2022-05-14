@@ -13,26 +13,27 @@
 
 .subQtnStyle {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 
 .subQtnStyle h6{
   color: darkslategray;
   margin-right: 0.5rem;
+  justify-self: flex-start;
 }
 
 .categoryStyle{
-  color: DarkSlateGrey;
-  border: 0.5px solid #ccc;
+  color: black;
+  border: 0.5px solid #F8F8FF;
   border-radius: 4px;
   padding: 0.2rem;
   margin-right: 0.5rem;
-
+  background-color: BurlyWood;
 }
 
 .questionStyle{
 	padding: 1rem;
-  background-color: Cornsilk;
+  background-color: #F5F5DC;
 
 }
 

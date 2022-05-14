@@ -8,30 +8,37 @@
 
 
 html::-webkit-scrollbar {
- background-color: AliceBlue;
+ background-color: white;
 }
 
 html::-webkit-scrollbar-button {
- background-color: rgb(101, 197, 230);
+ background-color: cornsilk;
 
 }
 
 html::-webkit-scrollbar-thumb {
- background-color: rgb(101, 197, 230);
+ background-color: cornsilk;
 
 } 
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100vh;
+}
+
 .main {
-	background-color: lightblue;
-	min-height: 1000px;
-	padding-bottom:60px;
-	flex: 1;
+	background-color: white;
 }
  
 .ask-btn {
-	float: right;
-	margin-right: 3rem;
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
 	background-color: chocolate;
 	color: white;
+	z-index: 1;
 }
 
 .ask-btn:hover {
@@ -62,21 +69,15 @@ input {
 }
 
 h1, h2 {
-	color: chocolate;
-	padding-top: 30px;
-	text-align: center;
+	color: orange;
+	padding: 0.5rem;
 
 }
 
-
-h1 {
-	-webkit-text-stroke: 0.6px black;
-
-	font-size: 35px;
-}
-
-.main-p {
-	text-align: center;
+.top-p {
+	color: lightgray;
+	font-size: 1.2rem;
+	padding-top: 0;
 }
 
 .logout-button {
@@ -101,15 +102,14 @@ h1 {
 	margin: 10px;
 }
 
-.mainCatbtn {
+/* .mainCatbtn {
 	height: auto;
-}
+} */
 
 form {
 	max-width: 600px;
-	margin: auto;
+	margin: 20px auto auto 0;
 	padding: auto;
-	margin-top: 20px;
 }
 
 #categoryDiv {
@@ -123,45 +123,43 @@ form {
 	border: none;
 	width: 100%;
 	margin: 0 auto;
-	min-height: 100vh;
-	background-color: lightblue;
+	background-color: white;
 }
 .navigation {
 	overflow: hidden;
-	min-width: 80%;
-	height: 100px;	
-	background-color: lightblue;
+	height: 10vh;	
+	background-color: white;
+	position: fixed; 
+	top: 0; 
+	width: 100%;
+	z-index: 1;
+	line-height: 10vh;
 }
 
-.logomain {
-	height: 80px;
-	padding-top: 30px;
-	padding-left: 20px;
-	margin: auto;
+.loginWrapper {
+	list-style: none;
+	float: right;
+	margin-right: 10rem;
+}
+
+.loginStyle {
+	display: inline-block;	
+}
+
+
+.logo {
+	height: 50px;
+	margin-left: 10px;
 }
 
 .top {
-	min-width: 80%;
-}
-
-ul {
-	list-style-type: none;
-	margin: 40px;
-	width: 420px;
-	padding: 0;
-	float: right;
-}
-
-ul li {
-	display: inline-block;
-	margin: 10px;
-	padding-right: 30px;
-	padding-left: 30px;
-}
-
-a {
-	color: black;
-	text-decoration: none;
+	width: 40%;
+	margin: 10vh auto 3rem auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color:#282c34;
 }
 
 .show {
@@ -175,5 +173,3 @@ a {
     height: 100vh;
     overflow-y: hidden;
 }
-
-

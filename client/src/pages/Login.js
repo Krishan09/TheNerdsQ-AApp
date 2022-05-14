@@ -37,7 +37,7 @@ export function Login({ loginUser, setToken }) {
 			<form className="box" onSubmit={handleSubmit}>
 				<div className="input-group">
 					<label htmlFor="email" className="login-label">
-						username
+						Username
 					</label>
 					<input
 						value={email}
@@ -46,6 +46,7 @@ export function Login({ loginUser, setToken }) {
 						placeholder="Email"
 						className="login-input"
 						onChange={(e) => setEmail(e.target.value)}
+						autoComplete="off"
 					/>
 				</div>
 				<div className="input-group">
@@ -59,13 +60,14 @@ export function Login({ loginUser, setToken }) {
 						placeholder="Password"
 						className="login-input"
 						onChange={(e) => setPassword(e.target.value)}
+						autoComplete="off"
 					/>
-					<p aria-hidden="true" onClick={togglePassword} className="showpass">
-						Show Password
-					</p>
 				</div>
+				<p aria-hidden="true" onClick={togglePassword} className="showPass">
+					Show Password
+				</p>
 				<div>
-					<button className="login-btn" type="submit">
+					<button className="btn login-btn" type="submit">
 						Submit
 					</button>
 				</div>

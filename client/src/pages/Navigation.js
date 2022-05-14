@@ -19,21 +19,21 @@ const Navigation = () => {
 
 	return (
 		<div className="navigation">
-			<img className="logomain" src={LogoNerds} alt="Logo" />
-			<ul>
-				<li>{email}</li>
+			<img className="logo" src={LogoNerds} alt="Logo" />
+			<ul className="loginWrapper">
+				<li className="loginStyle">{email}</li>
 				{token ? (
 					<button className="logout-button" onClick={logout}>
 						Logout
 					</button>
 				) : logName ? (
-					<li>
+					<li className="loginStyle">
 						<Link onClick={() => setLogName(!logName)} to="/">
 							Home
 						</Link>
 					</li>
 				) : (
-					<li>
+					<li className="loginStyle">
 						<Link onClick={() => setLogName(!logName)} to="/Loginmain">
 							Login/Register
 						</Link>

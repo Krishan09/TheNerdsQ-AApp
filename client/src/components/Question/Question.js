@@ -21,12 +21,6 @@ function Question({ data }) {
 			.catch((err) => console.error(err));
 	}, [data.id]);
 
-	// const handleDelete = () => {
-	// 	fetch(`${api}/questions/${data.id}`)
-	// 	.then((res) => res.json())
-	// 	.catch((err) => console.error(err));
-	// };
-
     return (
 			<>
 				{data.title !== "Question title" && (
@@ -52,12 +46,6 @@ function Question({ data }) {
 											{x}
 										</span>
 								))}
-							{/* <button
-					className="btn btn-danger"
-					onClick={() => onPressQuestion(data.id)}
-				><span>Reply</span>
-				</button> */}
-							{/* <button id={data.id} onClick={handleDelete}>Delete</button> */}
 						</div>
 					</div>
 				)}

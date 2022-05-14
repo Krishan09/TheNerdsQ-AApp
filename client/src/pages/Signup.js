@@ -23,26 +23,57 @@ const Signup = ({ onAdd }) => {
 
 
   return (
-    <main className="inner-container" role="main">
-				<div className="header">Register</div>
-				<form className="box" onSubmit={ handleSubmit } >
-                    <div className="input-group">
-						<label htmlFor='username' className="login-label" >Username</label>
-						<input type="text" id='username' placeholder='Username' className="login-input" onChange={(e) => setUsername(e.target.value)} />
-					</div>
-                    <div className="input-group">
-						<label htmlFor='email' className="login-label" >E-mail</label>
-						<input type="email" id='email' placeholder='email' className="login-input" onChange={(e) => setEmail(e.target.value)} />
-					</div>
-					<div className="input-group">
-						<label htmlFor='password' className="login-label" >Password</label>
-						<input type={ passwordShown ? "text" : "password" } id='password' placeholder='Password' className="login-input" onChange={(e) => setPassword(e.target.value)} />
-						<p aria-hidden="true" onClick={ togglePassword } className="showpass">Show Password</p>
-					</div>
-						<button className="login-btn" type="submit">Sign Up</button>
-					</form>
+		<main className="inner-container" role="main">
+			<div className="header">Register</div>
+			<form className="box" onSubmit={handleSubmit}>
+				<div className="input-group">
+					<label htmlFor="username" className="login-label">
+						Username
+					</label>
+					<input
+						type="text"
+						id="username"
+						placeholder="Username"
+						className="login-input"
+						onChange={(e) => setUsername(e.target.value)}
+						autoComplete="off"
+					/>
+				</div>
+				<div className="input-group">
+					<label htmlFor="email" className="login-label">
+						E-mail
+					</label>
+					<input
+						type="email"
+						id="email"
+						placeholder="Email"
+						className="login-input"
+						onChange={(e) => setEmail(e.target.value)}
+						autoComplete="off"
+					/>
+				</div>
+				<div className="input-group">
+					<label htmlFor="password" className="login-label">
+						Password
+					</label>
+					<input
+						type={passwordShown ? "text" : "password"}
+						id="password"
+						placeholder="Password"
+						className="login-input"
+						onChange={(e) => setPassword(e.target.value)}
+						autoComplete="off"
+					/>
+				</div>
+				<p aria-hidden="true" onClick={togglePassword} className="showPass">
+					Show Password
+				</p>
+				<button className="btn login-btn" type="submit">
+					Sign Up
+				</button>
+			</form>
 		</main>
-  );
+	);
 };
 
 export default Signup;

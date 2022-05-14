@@ -1,4 +1,4 @@
-@import "compass/css3";
+/* @import "compass/css3";
 
 :root {
 --body-bg: #c1bdba;
@@ -43,7 +43,7 @@ a:hover {
   }
 
 .form {
-  background:rgba(var(form-bg),.9);
+  background: rgba(var(form-bg),.9);
   padding: 40px;
   max-width:600px;
   margin:40px auto;
@@ -206,4 +206,4 @@ button:hover, button:focus {
 .forgot {
   margin-top:-20px;
   text-align:right;
-}
+} */

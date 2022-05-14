@@ -1,8 +1,8 @@
 .answersFormat {
 	border-left: 3px solid chocolate;
-	scrollbar-color: lightblue;
+	scrollbar-color: white;
     scrollbar-width: thin;
-	scrollbar-color: lightblue;
+	scrollbar-color: white;
 }
 
 .answersFormat::-webkit-scrollbar {

@@ -35,7 +35,7 @@ const Navigation = () => {
 				) : (
 					<li>
 						<Link onClick={() => setLogName(!logName)} to="/Loginmain">
-							<button>Login/Register</button>
+							Login/Register
 						</Link>
 					</li>
 				)}

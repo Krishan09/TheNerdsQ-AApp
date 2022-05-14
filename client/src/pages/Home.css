@@ -8,75 +8,37 @@
 
 
 html::-webkit-scrollbar {
- background-color: AliceBlue;
+ background-color: white;
 }
 
 html::-webkit-scrollbar-button {
- background-color: rgb(101, 197, 230);
+ background-color: cornsilk;
 
 }
 
 html::-webkit-scrollbar-thumb {
- background-color: rgb(101, 197, 230);
+ background-color: cornsilk;
 
 } 
-/* .logo {
-	width: 100px;
-}
 
-.message {
-	color: blue;
-}
-
-.message:hover {
-	background-color: yellow;
-} */
-
-
- /* Home css */
-
-/*html, body, #root {
+.main-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	min-height: 100vh;
-}*/
-
-/*#root {
-	display: flex;
-	flex-direction: column;
-}*/
-
-.containermain {
-	display: flex;
-	flex-direction: column;
-	min-height: calc(100vh - 40px);
-	width: 100%;	
-}
-
-.show {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    position: absolute;
-    background-color: rgb(13, 13, 63);  
-    z-index: 10;
-    width: 100%;
-    min-height: 1100px;
 }
 
 .main {
-	background-color: lightblue;
-	min-height: 1000px;
-	/*text-align: center;*/
-	padding-bottom:60px;
-	flex: 1;
-	/*display: flex;
-	flex-direction: column;*/
+	background-color: white;
 }
  
 .ask-btn {
-	float: right;
-	margin-right: 3rem;
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
 	background-color: chocolate;
 	color: white;
+	z-index: 1;
 }
 
 .ask-btn:hover {
@@ -107,21 +69,15 @@ input {
 }
 
 h1, h2 {
-	color: chocolate;
-	padding-top: 30px;
-	text-align: center;
-	
+	color: orange;
+	padding: 0.5rem;
+
 }
 
-
-h1 {
-	-webkit-text-stroke: 0.6px black;
-
-	font-size: 35px;
-}
-
-.main-p {
-	text-align: center;
+.top-p {
+	color: lightgray;
+	font-size: 1.2rem;
+	padding-top: 0;
 }
 
 .logout-button {
@@ -146,16 +102,14 @@ h1 {
 	margin: 10px;
 }
 
-.mainCatbtn {
+/* .mainCatbtn {
 	height: auto;
-}
+} */
 
 form {
 	max-width: 600px;
-	/*position: relative;*/
-	margin: auto;
+	margin: 20px auto auto 0;
 	padding: auto;
-	margin-top: 20px;
 }
 
 #categoryDiv {
@@ -169,52 +123,53 @@ form {
 	border: none;
 	width: 100%;
 	margin: 0 auto;
-	min-height: 100vh;
-	background-color: lightblue;
+	background-color: white;
 }
-
-/* Navigation bar */
-
 .navigation {
-	/*display: flex;*/
-	/*flex-direction: space-between;*/
 	overflow: hidden;
-	min-width: 80%;
-	height: 100px;
-	/*border: 1px solid black;*/
-	background-color: lightblue;
-	/*background-color: lightgrey;*/
+	height: 10vh;	
+	background-color: white;
+	position: fixed; 
+	top: 0; 
+	width: 100%;
+	z-index: 1;
+	line-height: 10vh;
 }
 
-.logomain {
-	height: 80px;
-	padding-top: 30px;
-	padding-left: 20px;
-	margin: auto;
+.loginWrapper {
+	list-style: none;
+	float: right;
+	margin-right: 10rem;
+}
+
+.loginStyle {
+	display: inline-block;	
+}
+
+
+.logo {
+	height: 50px;
+	margin-left: 10px;
 }
 
 .top {
-	min-width: 80%;
+	width: 40%;
+	margin: 10vh auto 3rem auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color:#282c34;
 }
 
-ul {
-	list-style-type: none;
-	margin: 40px;
-	width: 420px;/*300px;*/
-	padding: 0;
-	float: right;
+.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: hsl(0, 0%, 0%, 0.9);  
+    z-index: 10;
+    width: 100%;
+    height: 100vh;
+    overflow-y: hidden;
 }
-
-ul li {
-	display: inline-block;
-	margin: 10px;
-	padding-right: 30px;
-	padding-left: 30px;
-}
-
-a {
-	color: black;
-	text-decoration: none;
-	/*float: right;*/
-}
-

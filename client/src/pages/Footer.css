@@ -1,17 +1,8 @@
 .footer {
-    background-color: lightgrey;
+    background-color: #282c34;
     height: 50px;
-    overflow: hidden;
     width: 100%;
-    position:absolute;
-    position: fixed;
-    left:0;
-    bottom:0;
-    right:0;
     text-align: center;
-    /*margin-top: auto;*/
-}
-
-p {
-    padding-top: 15px;
+    color: orange;
+    line-height: 50px;
 }

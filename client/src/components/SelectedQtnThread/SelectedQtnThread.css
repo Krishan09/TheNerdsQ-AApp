@@ -1,9 +1,10 @@
 .selectedQtnContain {
-	margin: 0.7rem auto;
-	width: 50%;
+	margin: 0.7rem 1.5rem;
+	width: 51%;
 	min-height: 80vh;
-	background-color: lightblue;
+	background-color: white;
 	position: relative;
+	float: right;
 }
 
 .selectedQtnContain li{

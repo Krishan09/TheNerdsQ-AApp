@@ -6,7 +6,7 @@
    align-items: center;
    justify-content: center;
    font-size: calc(10px + 2vmin);
-   color: white;
+   color: orange;
    margin-bottom: 5vh;
    text-align: center;
  }
@@ -21,10 +21,6 @@
 }
 .toolbar-class {
   border: 1px solid #ccc;
-}
-
-.preview {
-    display: none;
 }
 
 

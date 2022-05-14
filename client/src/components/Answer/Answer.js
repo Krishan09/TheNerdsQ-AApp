@@ -1,30 +1,39 @@
-//import React, { useState } from "react";
+import React from "react";
 import "./Answer.css";
 import DOMPurify from "dompurify";
+const api = "/api";
 const createMarkup  = (html) => {
 	return {
 		__html: DOMPurify.sanitize(html),
 	};
-}
-function Answer({ data, key }) {
-	console.log(data);
-	// const [answersData, setAnswersData] = useState([data]);
+};
+
+const handleDelete = async (id) => {
+	try {
+		await fetch(`${api}/answer/${id}`, { method: "DELETE" });
+		window.location.reload(true);
+	} catch (err) {
+		console.error(err.message);
+	}
+};
+
+function Answer({ data }) {
   return (
 		<div
 			className="subAnswersFormat overflow-auto"
 		>
-			{/* <p className="p1">
-				<strong>{data.owner}</strong>
-			</p> */}
 			{data.map((answer) => {
 				return (
 					<div key={answer.id} className="card mb-3 p-3 answer-wrapper">
-						<div dangerouslySetInnerHTML={createMarkup(answer.content)}>
-							
-						</div>
+						<div dangerouslySetInnerHTML={createMarkup(answer.content)}></div>
 						<div className="btn-wrapper">
-							<button className="btn btn-link">Edit</button>
-							<button className="btn btn-link">
+							<button className="btn btn-link .text-danger">Edit</button>
+							<button
+								className="btn btn-link"
+								onClick={() => {
+									handleDelete(answer.id);
+								}}
+							>
 								Delete
 							</button>
 						</div>

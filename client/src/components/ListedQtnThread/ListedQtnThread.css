@@ -40,14 +40,14 @@
 }
 
 .tentative {
-  background-color: lightblue;
+  background-color: white;
 }
 
 
 .tent {
   display: flex;
   flex-direction: column;
-  background-color: lightblue;
+  background-color: white;
 }
 
 .btn-wrapper {

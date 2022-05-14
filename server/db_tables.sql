@@ -15,7 +15,7 @@ CREATE TABLE answers (
   title VARCHAR(200),
   content TEXT NOT NULL,
   created_at TIMESTAMP,
-  question_id INT REFERENCES questions (id)
+  question_id INT REFERENCES questions (id) ON DELETE CASCADE
 );
 
 

@@ -43,20 +43,20 @@
     display: flex;
     align-items: center;
     padding: 5px;
-    border: 2px solid rgb(218, 74, 22);
+    border: 1px solid #ccc;
     border-radius: 5px;
     height: 25px;
     margin: 2px 5px 2px 0px;
-    background-color: cornsilk;
-    color:rgb(9, 9, 42);
+    background-color: beige;
+    color:#282c34;
     
 }
 
 .tag span {
     margin-left: 5px;
     cursor: pointer;
-    background-color: cornsilk;
-    color:rgb(9, 9, 42);
+    background-color: beige;
+    color:#282c34;
     font-size: 0.87rem;
 } 
 

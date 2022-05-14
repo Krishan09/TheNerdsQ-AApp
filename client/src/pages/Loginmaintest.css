@@ -1,62 +1,36 @@
 html, body, #root {
    width: 100%;
-   /*height: 100%;*/
    box-sizing: border-box;
-   display: flex;
-   flex-direction: column;
+   background-color: cornsilk;
+   padding: 0;
+   margin: 0;
 }
-
-
-/*Root Container*/
-
-
 .root-container {
-  --blue_theme: #70a1ff;
-   /*background-color: #70a1ff;*/
+  --blue_theme: chocolate;
    width: 100%;
-   height: 100%;
+   min-height: 100vh;
    display: flex;
    justify-content: center;
    align-items: center;
    flex-direction: column;
-   padding-top: 100px;
-   padding-bottom: 50px;
+   margin-top: 1rem;
 }
-
-
-/*.upmain {
-   background: lightblue;
-   z-index: 10;
-}*/
-
-/*.upmain {
-   min-height: 100vh;
-}*/
-
-/*.upmain {
-   display: flex;
-   flex-direction: column;
-   /*height: 100%;*/
-/*}*/
-
-
-
 
 .box-controller {
    visibility: visible;
    display: -webkit-box;
    display: -ms-flexbox;
    display: flex;
-   max-width: 26em;/*24em;*/
-   min-width: 24em;/*21em;*/
-   height: 40px;/*35px;*/
+   max-width: 26em;
+   min-width: 24em;
+   height: 40px;
    -webkit-box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
-   margin-bottom: 30px;
+   margin-bottom: 1.2rem;
    align-items: center;
    transition: visibility 0.5s ease-out;
-   /*border: 2px solid black;*/
    border-radius: 4px;
+   font-size: 1.1rem;
 }
 
 
@@ -66,33 +40,25 @@ html, body, #root {
    height: 100%;
    line-height: 2;
    cursor: pointer;
-   /*border-radius: 4px;*/
-   /*border-bottom: black 3px solid;*/
 }
-
-/*.controller:active {
-    background-color: lightblue;
-}*/
-
-/*Currently Selected Controller*/
 
 .selected-controller {
    transition: border 0.3s ease-out;
-   border-bottom: 4px solid #70a1ff; /*var(blue_theme);*/
-   /*transition: "all .5s ease";*/
+   border-bottom: 4px solid /*#70a1ff*/ chocolate; 
   -webkit-transition: "border .5s ease-out";
   -moz-transition: "border .5s ease-out";
 }
 
-
 .box-container {
    display: flex;
    flex-direction: column;
+   justify-content: center;
+   align-items: center;
    max-width: 26em;
    min-width: 24em;
    box-shadow: 0px 0px 20px 0px rgba(15, 15, 15, 0.2);
    border-radius: 6px;
-   padding: 24px;
+   padding: 1.4rem;
 }
 
 
@@ -104,28 +70,18 @@ html, body, #root {
 .inner-container.show {
    visibility: visible;
 }
-
-
-/*Header*/
-
 .header {
    text-align: center;
    padding: 5px;
-   margin-bottom: 17px;
-   /* margin-left: 35px; */
-   /* margin-right: 35px; */
-   font-family: Ozxgen, sans-serif;
-   font-size: 22px;
-   -webkit-text-stroke: 0.6px black;
-   border-bottom: 2px solid #70a1ff;
+   margin-bottom: 1rem;
+   font-weight: 500;
+   font-size: 1.2rem;
+   border-bottom: 0.2px solid rgb(210, 105, 30, 0.6);
 }
 
 
 .header:focus {
-
    transition: border 0.3s ease-out;
-   /*border-bottom: 4px solid #70a1ff;*/ /*var(blue_theme);*/
-   /*transition: "all .5s ease";*/
    -webkit-transition: "border .5s ease-out";
    -moz-transition: "border .5s ease-out";
 }
@@ -135,119 +91,76 @@ html, body, #root {
    display: flex;
    flex-direction: column;
    justify-content: center;
-}
+} 
 
 
 .input-group {
    display: flex;
    flex-direction: column;
-   margin-top: 5px;
-   margin-bottom: 5px;
-   padding: auto;/*changed by me*/
-   width: 100%; /*changed by me*/
+   margin-top: 0.3rem;
+   padding: auto;
+   width: 100%;
 }
-
-
-/*Label*/
 
 .login-label {
-   font-family: Oxygen, sans-serif;
-   font-size: 30px;
-   font-weight: 600;
-   padding-left: 5px;
-   margin-top: 10px;
-   margin-bottom: 10px;
-   color: rgb(42, 44, 43);
-   -webkit-text-stroke: 0.6px black;
-   /*width: 100%;
-   margin: 0;*/
+   font-size: 1.2rem;
+   font-weight: 700;
+   color: darkslategray;
+   
 }
 
-/*label {
-   font-family: Oxygen, sans-serif;
-   font-size: 20px;
-   font-weight: 600;
-   padding-left: 5px;
-   margin-top: 10px;
-   margin-bottom: 10px;
-   -webkit-text-stroke: 0.6px black;
-   margin-right: 0;
-   margin-left: 0;
-   color: blue;
-   /*width: 100%;
-   margin: 0;*/
-/*}*/
-
-/*Input*/
-
 .login-input {
-   height: 2.1em;
+   font-display: block;
    border-radius: 3px;
-   border: .5px solid #70a1ff;
+   border: 1px solid #ccc;
    transition: border 5px 0.3s ease-out;
-   -webkit-transition: "border 2px .3s ease-out";/*added*/
-   -moz-transition: "border 2px .3s ease-out";/*added*/
-   /*padding: 13px;*/
-   padding: auto;
-   font-family: Oxygen, sans-serif;
-   font-size: 19px;
-   color: #3e3e42;
-   background: rgba(15, 15, 15, 0.01);
-   width: 100%;
-   margin: 0;
+   -webkit-transition: "border 2px .3s ease-out";
+   -moz-transition: "border 2px .3s ease-out";
+   padding: 1rem;
+   font-size: 1.2rem;
+   color: darkslategray;
+   background: white;
+
 }
 
 
 .login-input:hover {
-   border: 2px solid #70a1ff;
+   border: 2px solid BurlyWood;
 }
 
 
 .login-input:focus {
-   border: 2px solid #6565e7;
-   box-shadow: 0px 0px 20px rgba(15, 15, 15, 0.2);
+   border: 2px solid chocolate;
+   box-shadow: 0px 0px 20px /*rgba(15, 15, 15, 0.2)*/ white;
+   outline: none;
 }
 
-/*Input Placeholder*/
-
-
 .login-input::placeholder {
-   font-family: Oxygen, sans-serif;
-   font-size: 16px; /*color: rgba(46, 213, 116, 0.839);*/
-   color: rgba(15, 15, 15, 0.4);
+   color: #ccc;
 }
 
 .login-btn {
-   /*padding: 2px 30px;*/
-   /* background-color: #417cef; */
-   border: 0;
-   font-size: 18px;
+   width: 100%;
+   font-size: 1.2rem;
    border-radius: 3px;
-   font-family: Oxygen, sans-serif;
-   background-color: rgba(15, 15, 15, 0.03);
-   margin-top: 20px;
-   border: 2px solid #417cef;
+   border: none;
    transition: background-color 0.3s ease-out;
    cursor: pointer;
-   width: 100%;
-   height: 50px;
-   color: black;
+   background-color: chocolate;
+	color: white;
 }
 
 
 .login-btn:hover, .login-btn:focus {
-   background-color: #417cef;
-   color: white;
+   background-color:rgb(218, 74, 22);
+	color:white;
+	border: 1px solid brown;
 }
 
 .danger-error {
    color: #e74c3c;
-   font-size: 16px;
+   font-size: 1rem;
 }
-
-
-
-/*Password*/
 
 .password-state {
    display: flex;
@@ -282,7 +195,8 @@ html, body, #root {
    visibility: visible;
 }
 
-.showpass {
+.showPass {
+   font-size: 0.9rem;
    width: 50%;
    cursor: pointer;
 }

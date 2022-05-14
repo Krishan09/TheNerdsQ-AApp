@@ -17,7 +17,6 @@ const QuestionById = ({ questionId }) => {
     return question ? (
 			<form className="questionByIdStyle">
 				<h3 className="hide-btn">
-					{/* <span className="questionByIdOwner">{question.asked_by}</span> */}
 					{ question[0].title }
 				</h3>
 				<p>{question[0].content}</p>

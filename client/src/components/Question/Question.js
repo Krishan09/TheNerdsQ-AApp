@@ -20,14 +20,11 @@ function Question({ data }) {
 			.then((data) => setAnswers(data))
 			.catch((err) => console.error(err));
 	}, [data.id]);
-	console.log(data);
-
     return (
 			<>
 				{data.title !== "Question title" && (
 					<div className="questionStyle card m-3">
 						<h4 className="card-title">{data.title}</h4>
-						{/* <div className="arrow.right"></div> */}
 						<div className="subQtnStyle card-text">
 							<h5>{data.created_at}</h5>
 							<h6>

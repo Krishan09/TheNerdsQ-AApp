@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Loginmaintest.css";
 
-export function Login({ loginUser, setToken }) {
+export function Login({ loginUser}) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordShown, setPasswordShown] = useState(false);
@@ -17,17 +17,10 @@ export function Login({ loginUser, setToken }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		loginUser(email,password)
-
-
-		// dispatch({
-		// 	type: "login",
-		// 	payload: { email: email, userName: "123@gmail.com", userId: 2 },
-		// });
+		loginUser(email,password);
 		console.log(user);
 		setEmail("");
 		setPassword("");
-		
 	};
 
 	const togglePassword = () => {

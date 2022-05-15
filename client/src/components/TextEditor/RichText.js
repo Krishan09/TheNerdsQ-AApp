@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import AnswersByIdThreads from "../AnswersById/AnswersByIdThread";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from "dompurify";
-const RichText = ({onChange}) => {
-	const createMarkup = (html) => {
-		return {
-			__html: DOMPurify.sanitize(html),
-		};
-	};
-	clear
+
+const RichText = ({ onChange }) => {
+	// const createMarkup = (html) => {
+	// 	return {
+	// 		__html: DOMPurify.sanitize(html),
+	// 	};
+	// };
+
 		const [content, setContent] = useState("");
 		const updateContent = (value) => {
 			setContent(value);
 			onChange(value);
 		};
 
-  const codeFormats = [
+		const codeFormats = [
 		"code-block",
 		"bold",
 		"italic",

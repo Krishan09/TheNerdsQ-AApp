@@ -26,7 +26,6 @@ const AskQuestionForm = ({ show }) => {
 			console.error(err.message);
 		}
 		setTitle("");
-		setContent("");
 	};
 
 //Add a category

@@ -17,14 +17,17 @@ export function Login({ loginUser, setToken }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		dispatch({
-			type: "login",
-			payload: { email: email, userName: "123@gmail.com", userId: 2 },
-		});
+		loginUser(email,password)
+
+
+		// dispatch({
+		// 	type: "login",
+		// 	payload: { email: email, userName: "123@gmail.com", userId: 2 },
+		// });
 		console.log(user);
 		setEmail("");
 		setPassword("");
-		navigate("/");
+		
 	};
 
 	const togglePassword = () => {

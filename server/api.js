@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { registerUsers } from "./data";
-import { loginUser } from "./data";
+import { getuserbyEmail } from "./data";
 import jwt from "jsonwebtoken";
 import { hash, compare } from "bcryptjs";
 import db from "./db";
+import { object } from "prop-types";
 
 const router = Router();
 router.get("/", verifyToken, (req, res) => {
@@ -41,6 +42,7 @@ router.post("/register", async (req, res) => {
 		if (!username || !email || !password) {
 			res.status(400).json({ msg: "Please fill all fields" });
 		} else {
+			const user = await getuserbyEmail(email);
 			if (user) {
 				res.status(400).json({ msg: "email already registered" });
 				//throw new Error("email already registered");
@@ -58,25 +60,22 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
 	const { email, password } = req.body;
+	const data = await getuserbyEmail(email);
+	console.log(email,password);
+	console.log(data);
+
 	try {
-
 		if (data) {
-			const valid = await compare(password, data.password);
+			const valid = await compare(password, data.passwd);
+		console.log(valid)
 			if (valid) {
-
-				//creating accesToken with refresh token
-				const token = await jwt.sign(
-					{ data: { username: data.username, email: data.email } },
-					"secretkey",
-					{ expiresIn: "15s" }
-				);
-				const refreshToken = await jwt.sign(
-					{ data: { username: data.username, email: data.email } },
-					"refreshsecretkey",
-					{ expiresIn: "1m" }
-				);
-				refreshTokens.push(refreshToken);
-				res.json({ token, refreshToken, data: { username: data.username } });
+				req.session.userId = 12;
+				res.json({
+					msg: "Successfully logged in",
+					userName: data.userName,
+					email: data.email,
+					userId: req.session.userId,
+				});
 			} else {
 				res.status(400).json({
 					msg: "Wrong password!",
@@ -88,36 +87,36 @@ router.post("/login", async (req, res) => {
 			});
 		}
 	} catch (err) {
-		res.json({ msg: `${err}` });
+		res.status(400).json({ msg: `${err}` });
 	}
 });
 
 // only for use with the acces and refresh token version
-let refreshTokens = [];
+// let refreshTokens = [];
 
-router.post("/token", async (req, res) => {
-	const refreshToken = req.header("x-auth-token");
+// router.post("/token", async (req, res) => {
+// 	const refreshToken = req.header("x-auth-token");
 
-	if (!refreshToken) {
-		res.status(401).json({ msg: "Token not found" });
-	}
-	if (!refreshToken.includes(refreshToken)) {
-		res.status(403).json({ msg: "Invalid refresh Token" });
-	}
+// 	if (!refreshToken) {
+// 		res.status(401).json({ msg: "Token not found" });
+// 	}
+// 	if (!refreshToken.includes(refreshToken)) {
+// 		res.status(403).json({ msg: "Invalid refresh Token" });
+// 	}
 
-	try {
-		const user = await jwt.verify(refreshToken, "refreshsecretkey");
-		const { data } = user;
-		const token = await jwt.sign(
-			{ data: { username: data.username, email: data.email } },
-			"secretkey",
-			{ expiresIn: "20s" }
-		);
-		res.json({ token });
-	} catch (error) {
-		res.status(403).json({ msg: "Invalid token" });
-	}
-});
+// 	try {
+// 		const user = await jwt.verify(refreshToken, "refreshsecretkey");
+// 		const { data } = user;
+// 		const token = await jwt.sign(
+// 			{ data: { username: data.username, email: data.email } },
+// 			"secretkey",
+// 			{ expiresIn: "20s" }
+// 		);
+// 		res.json({ token });
+// 	} catch (error) {
+// 		res.status(403).json({ msg: "Invalid token" });
+// 	}
+// });
 
 router.post("/logout", (req, res) => {
 	const refreshToken = req.header("x-auth-token");
@@ -211,7 +210,6 @@ router.get("/answers/:id", async (req, res) => {
 		});
 	}
 });
-
 
 //Api endpoint for updating questions
 

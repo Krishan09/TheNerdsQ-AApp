@@ -10,7 +10,7 @@ import db from "./db";
 
 }
 
-export async function loginUser (email, username, password){
+export async function getuserbyEmail (email){
  const query = "SELECT * FROM users WHERE email= $1";
     const result  = await db.query(query,[email]);
     if (result.rows.length==0){

@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import LogoNerds from "./LogoNerds.png";
-import useToken from "../components/useToken";
 import { useSelector } from "react-redux";
 
 const Navigation = () => {
 	const [logName, setLogName] = useState(false);
-	const { token } = useToken();
-	console.log(token);
+
   const { email,userName } = useSelector((state) => state);
 
 	const logout = () => {
@@ -21,17 +19,12 @@ const Navigation = () => {
 		<div className="navigation">
 			<img className="logo" src={LogoNerds} alt="Logo" />
 			<ul className="loginWrapper">
-				<li className="loginStyle">{email}</li>
-				{token ? (
+				<li className="loginStyle">Logged as:{email}</li>
+				{email ? (
 					<button className="logout-button" onClick={logout}>
 						Logout
 					</button>
-				) : logName ? (
-					<li className="loginStyle">
-						<Link onClick={() => setLogName(!logName)} to="/">
-							Home
-						</Link>
-					</li>
+				
 				) : (
 					<li className="loginStyle">
 						<Link onClick={() => setLogName(!logName)} to="/Loginmain">
@@ -39,6 +32,7 @@ const Navigation = () => {
 						</Link>
 					</li>
 				)}
+				
 			</ul>
 		</div>
 	);

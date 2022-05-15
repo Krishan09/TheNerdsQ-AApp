@@ -5,10 +5,10 @@ import store from "./store";
 import About from "./pages/About";
 import Main from "./pages/Main";
 import Loginmain from "./pages/Loginmain";
-import useToken from "./components/useToken";
+
 
 const App = () => {
-	const { token, setToken } = useToken();
+	
 
 	return (
 		<React.StrictMode>
@@ -17,7 +17,7 @@ const App = () => {
 					<Route path="/" element={<Main />} />
 					<Route
 						path="/Loginmain"
-						element={<Loginmain setToken={setToken} />}
+						element={<Loginmain />}
 					/>
 					<Route path="/about/this/site" element={<About />} />
 				</Routes>

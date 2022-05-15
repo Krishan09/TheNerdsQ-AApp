@@ -5,6 +5,8 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import "./Loginmaintest.css";
+import { useDispatch } from "react-redux";
+
 
 
 const Loginmain = ({ setToken }) => {
@@ -12,16 +14,30 @@ const Loginmain = ({ setToken }) => {
     const [ registerOpen, setRegisterOpen ] = useState(false);
     const api = "/api";
 
-    async function loginUser(credentials) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+    async function loginUser(email,password) {
         return fetch(`${ api }/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(credentials),
+        body: JSON.stringify({email,password}),
       })
-      .then((data)=> data.json())
+      .then((data)=> { 
+		  if (data.ok) {
+			  return data.json()
+		  }
+		 throw new Error("can't loggin")
+		})
       .then((data)=> {
+		dispatch({
+			type: "login",
+			payload: { email: data.email, userName: data.userName, userId: data.userId },
+		});
+		 navigate("/");
          console.log(data);
         return data;
         } );
@@ -39,7 +55,7 @@ const Loginmain = ({ setToken }) => {
       setRegisterOpen(true);
     };
 
-    const navigate = useNavigate();
+   
 
     const signup = async ({ username, email, password }) => {
         const result = await(await fetch(`${ api }/register`, {

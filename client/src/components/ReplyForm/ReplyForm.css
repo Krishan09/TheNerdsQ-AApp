@@ -24,39 +24,24 @@
 	text-align: justify;
 }
 
-.wrapper {
-  padding: 1rem;
-  background-color: Cornsilk;
-  border: 1px solid Cornsilk;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-} 
-.editor {
-  background-color: Cornsilk;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-.rdw-editor-toolbar {
-  background-color: cornsilk;
+.App-header {
+   background-color: #282c34;
+   min-height: 5vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   font-size: calc(10px + 2vmin);
+   color: orange;
+   margin-bottom: 5vh;
+   text-align: center;
+ }
+ 
+.ql-toolbar.ql-snow {
+	background-color: beige;
+
 }
 
-.toolbar button{
-  background-color: chocolate;
-  color: white;
-  padding: 1rem;
-}
-
-.toolbar span{
-  color: darkslategray;
-  background-color: cornsilk;
-}
-
-.rdw-link-modal-label {
-	color: darkslategray;
-}
-
-.rdw-link-modal-btn {
-	color: darkslategray;
-	background-color: deeppink;
+.ql-editor ql-blank {
+	background-color: red;
 }

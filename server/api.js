@@ -359,4 +359,66 @@ router.delete("/answerproxy/:id", async (req, res) => {
 	}
 });
 
+//Api endpoint for updating questions
+router.patch("/questions", async (req, res) => {
+    const title = req.body.title;
+    const content = req.body.content;
+    const id = req.body.id;
+    let questionUpdateQuery;
+    if (!isValid(id)) {
+        res.status(400).json({ "Server message": "Invalid id!" });
+    } else if (title && isValid(id)) {
+        questionUpdateQuery =
+            "UPDATE questions SET title=$1, content=$2 WHERE id=$3";
+        try {
+            await db.query(questionUpdateQuery, [title, content, id]);
+            res.status(200).send({
+                Success: "Your question including the title is successfully updated!",
+            });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    } else if (!title && isValid(id)) {
+        questionUpdateQuery = "UPDATE questions SET content=$1 WHERE id=$2";
+        try {
+            await db.query(questionUpdateQuery, [content, id]);
+            res.status(200).send({
+                Success: "Your question is successfully updated!",
+            });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
+});
+
+//Api endpoint for updating answers
+router.patch("/answers", async (req, res) => {
+    const title = req.body.title;
+    const content = req.body.content;
+    const id = req.body.id;
+    let questionUpdateQuery;
+    if (!isValid(id)) {
+        res.status(400).json({ "Server message": "Invalid id!" });
+    } else if (title && isValid(id)) {
+        questionUpdateQuery = "UPDATE answers SET title=$1, content=$2 WHERE id=$3";
+        try {
+            await db.query(questionUpdateQuery, [title, content, id]);
+            res.status(200).send({
+                Success: "Your answer including the title is successfully updated!",
+            });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    } else if (!title && isValid(id)) {
+        questionUpdateQuery = "UPDATE answers SET content=$1 WHERE id=$2";
+        try {
+            await db.query(questionUpdateQuery, [content, id]);
+            res.status(200).send({
+                Success: "Your answer is successfully updated!",
+            });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
+});
 export default router;

@@ -1,5 +1,6 @@
 .answersFormat {
-	border-left: 3px solid chocolate;
+	/* border-left: 3px solid chocolate; */
+	border-left: 3px solid sienna;
 	scrollbar-color: white;
     scrollbar-width: thin;
 	scrollbar-color: white;
@@ -9,18 +10,19 @@
 	background-color: AliceBlue;
 }
 .answersFormat::-webkit-scrollbar-button {
-	background-color: rgb(101, 197, 230);
+	background-color: beige;
 }
 
 .answersFormat::-webkit-scrollbar-thumb {
-	background-color:rgb(101, 197, 230);
+	background-color: beige;
 }
 
 .answer-link {
 	text-align: left;
 	font-size: 1.3rem;
 	font-weight: bold;
-	color: rgb(218, 74, 22);
+	/* color: rgb(218, 74, 22); */
+	color: Sienna;
 }
 
 .answer-link:hover {

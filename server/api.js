@@ -20,8 +20,6 @@ router.get("/", verifyToken, (req, res) => {
 	});
 });
 
-//const queryUsers = "SELECT * FROM users";
-
 router.get("/users1", (req, res) => {
 	db.query("SELECT * FROM users", (error, result) => {
 		if (error) {
@@ -334,7 +332,7 @@ router.delete("/question/:id", async (req, res) => {
 });
 
 //endpoint for delete answers
-router.delete("/answer/:id", async (req, res) => {
+router.delete("/answerproxy/:id", async (req, res) => {
 	const answerId = req.params.id;
 	const deleteById = `DELETE FROM answers WHERE id=${answerId}`;
 	const checkIfExists = `select exists(select 1 from answers where id=${answerId})`;

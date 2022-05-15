@@ -12,12 +12,12 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-button {
- background-color: cornsilk;
+ background-color: Brown;
 
 }
 
 html::-webkit-scrollbar-thumb {
- background-color: cornsilk;
+ background-color: Brown;
 
 } 
 
@@ -69,7 +69,8 @@ input {
 }
 
 h1, h2 {
-	color: orange;
+	/* color: orange; */
+	color: sandybrown;
 	padding: 0.5rem;
 
 }

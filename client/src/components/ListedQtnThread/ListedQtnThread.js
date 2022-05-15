@@ -54,7 +54,7 @@ const ListedQtnThread = ({ onPressQuestion }) => {
 							</button>
 							<div id={question.id} className="btn-wrapper">
 								<button
-									className="edit-btn btn btn-outline-dark"
+									className="edit-btn btn btn-outline-warning"
 									// onClick={() => {
 									// 	handleEdit(question.id);
 									// }}

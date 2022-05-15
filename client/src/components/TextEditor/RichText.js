@@ -1,43 +1,57 @@
 import React, { useState } from "react";
-import { EditorState } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-import { convertToHTML } from "draft-convert";
+import AnswersByIdThreads from "../AnswersById/AnswersByIdThread";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import DOMPurify from "dompurify";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import "./RichText.css";
-const RichText = () => {
-	const [editorState, setEditorState] = useState(() =>
-		EditorState.createEmpty()
-	);
-	const [convertedContent, setConvertedContent] = useState(null);
-	const handleEditorChange = (state) => {
-		setEditorState(state);
-		convertContentToHTML();
-	};
-	const convertContentToHTML = () => {
-		let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-		setConvertedContent(currentContentAsHTML);
-	};
+const RichText = ({onChange}) => {
 	const createMarkup = (html) => {
 		return {
 			__html: DOMPurify.sanitize(html),
 		};
 	};
+	clear
+		const [content, setContent] = useState("");
+		const updateContent = (value) => {
+			setContent(value);
+			onChange(value);
+		};
+
+  const codeFormats = [
+		"code-block",
+		"bold",
+		"italic",
+		"link",
+		"underline",
+		"image",
+		"header",
+		"strike",
+		"blockquote",
+		"list",
+		"bullet",
+		"indent",
+	];
+  const toolbar = [
+		[{ header: [1, 2, false] }],
+		["bold", "italic", "underline", "strike", "blockquote"],
+		[
+			{ list: "ordered" },
+			{ list: "bullet" },
+			{ indent: "-1" },
+			{ indent: "+1" },
+		],
+		["link", "image"],
+		["clean"],
+	];
+
+  const editorModule={ toolbar };
 	return (
-		<div className="App">
-			<header className="App-header">Your answer</header>
-			<Editor
-				editorState={editorState}
-				onEditorStateChange={handleEditorChange}
-				wrapperClassName="wrapper-class"
-				editorClassName="editor-class"
-				toolbarClassName="toolbar-class"
-			/>
-			<div
-				className="preview"
-				dangerouslySetInnerHTML={createMarkup(convertedContent)}
-			></div>
-		</div>
+		<ReactQuill
+			theme="snow"
+			value={content}
+			formats={codeFormats}
+			modules={editorModule}
+			onChange={updateContent}
+		/>
 	);
 };
 

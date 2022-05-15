@@ -10,9 +10,10 @@
 .askQuestionStyle input,
 .askQuestionStyle textarea{
 	max-width: 90%;
-    border: 1px solid #ccc;
-    
+    border: 1px solid #ccc;    
 }
+
+
 
 .cancelQtn-btn {
     background-color: #ccc;
@@ -131,15 +132,20 @@
     outline: none !important;
     font-size: 1rem;
 }
-
+.askQuestionStyle input::placeholder,
+.askQuestionStyle textarea::placeholder,
 .tag-input::placeholder {
     color: #ccc;
 }
 
+.askQuestionStyle:-ms-textarea-placeholder,
+.askQuestionStyle:-ms-input-placeholder,
 .tag-input:-ms-input-placeholder { 
  color: #ccc;
 }
 
+.askQuestionStyle::-ms-textarea-placeholder,
+.askQuestionStyle::-ms-input-placeholder,
 .tag-input::-ms-input-placeholder { 
     color: #ccc;
 }

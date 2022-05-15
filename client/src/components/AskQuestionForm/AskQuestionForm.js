@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import RichText from "../TextEditor/RichText";
 import "./AskQuestionForm.css";
 
 const api = "/api";
@@ -24,12 +25,14 @@ const AskQuestionForm = ({ show }) => {
 		} catch(err) {
 			console.error(err.message);
 		}
-
+		setTitle("");
+		setContent("");
 	};
 
 //Add a category
 	const addCategory = (e) => {
 		if (e.key === "Enter") {
+			e.preventDefault();
 			if (e.target.value.length > 0) {
 				setCategory([...category, e.target.value]);
 				e.target.value = "";
@@ -55,6 +58,7 @@ const AskQuestionForm = ({ show }) => {
 		setHide(!hide);
 		window.location.reload(true);
 	};
+
 	return (
 		<div className={show ? "show" : ""}>
 			<form
@@ -76,20 +80,23 @@ const AskQuestionForm = ({ show }) => {
 					id="title"
 					name="title"
 					placeholder="Which problem are you trying to solve?"
-					autoComplete="off"
 					onChange={(e) => setTitle(e.target.value)}
+					value={title}
+					autoComplete="off"
 					required
 				/>
 				<label htmlFor="expectedOutcome">Body</label>
-				<textarea
+				{/* <textarea
 					className="form-control"
 					type="text"
 					rows={5}
 					cols={5}
 					placeholder="Elaborate on your issue"
 					onChange={(e) => setContent(e.target.value)}
+					value={content}
 					required
-				/>
+				/> */}
+				<RichText onChange={setContent} />
 				<div className="categories">
 					<label htmlFor="expectedOutcome">Category</label>
 					<div className="tag-card">

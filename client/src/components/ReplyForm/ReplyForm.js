@@ -1,30 +1,49 @@
 import React, { useState } from "react";
 import AnswersByIdThreads from "../AnswersById/AnswersByIdThread";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import "./ReplyForm.css";
 import DOMPurify from "dompurify";
-import "./RichText.css";
+
 
 const api = "/api";
 const ReplyForm = ({ questionId }) => {
-	const createMarkup = (html) => {
-		return {
-			__html: DOMPurify.sanitize(html),
-		};
-	};
+	// const createMarkup = (html) => {
+	// 	return {
+	// 		__html: DOMPurify.sanitize(html),
+	// 	};
+	// };
 
-	const [content, setContent] = useState('');
+	const [content, setContent] = useState("");
 
-  const codeFormats=["code-block", "bold", "italic", "link", "underline"]
-  const toolbar=[ 
-	  ["bold","italic","underline" ],
-	  ["link"],
-	  ["code-block"],
-  ]
+  const codeFormats = [
+		"code-block",
+		"bold",
+		"italic",
+		"link",
+		"underline",
+		"image",
+		"header",
+		"strike",
+		"blockquote",
+		"list",
+		"bullet",
+		"indent",
+	];
+  const toolbar = [
+		[{ header: [1, 2, false] }],
+		["bold", "italic", "underline", "strike", "blockquote"],
+		[
+			{ list: "ordered" },
+			{ list: "bullet" },
+			{ indent: "-1" },
+			{ indent: "+1" },
+		],
+		["link", "image"],
+		["clean"],
+	];
 
-  const editorModule={toolbar}
-  
+  const editorModule={ toolbar };
 
 	const onSubmitReply = async (e) => {
 		e.preventDefault();
@@ -58,7 +77,7 @@ const ReplyForm = ({ questionId }) => {
 			>
 				<div className="App">
 					<header className="App-header">Your answer</header>
-					<ReactQuill theme="snow" value={content} formats={codeFormats} modules={editorModule} onChange={setContent}/>
+					<ReactQuill theme="snow" value={content} formats={codeFormats} modules={editorModule} onChange={ setContent } />
 
 				</div>
 				<button className="btn reply-btn">Reply</button>

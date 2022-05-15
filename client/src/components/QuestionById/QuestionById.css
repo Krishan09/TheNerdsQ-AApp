@@ -2,7 +2,9 @@
 	text-align: left;
 	font-size: large;
 	font-weight: bold;
-	color: rgb(218, 74, 22);
+	/* color: rgb(218, 74, 22); */
+	color: Sienna;
+	margin-bottom: 1rem;
 }
 
 .questionByIdStyle span{

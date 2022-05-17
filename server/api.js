@@ -358,5 +358,20 @@ router.delete("/answerproxy/:id", async (req, res) => {
 		});
 	}
 });
+//endpoint get username
+router.get("/username/:id/", function (req, res) {
+	const questionId = req.params.id;
+	const params = [questionId];
+	db
+	.query(
+			"SELECT username FROM users INNER JOIN questions ON users.user_id = question.id INNER JOIN questions ON bookings.customer_id = customers.id WHERE customers.id = $1",
+			params
+		)
+		.then((result) => res.json(result.rows))
+		.catch((error) => {
+			console.error(error);
+			res.status(500).json(error);
+		});
+});
 
 export default router;

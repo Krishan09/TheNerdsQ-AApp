@@ -1,43 +1,61 @@
 import React, { useState } from "react";
-import { EditorState } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-import { convertToHTML } from "draft-convert";
-import DOMPurify from "dompurify";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import "./RichText.css";
-const RichText = () => {
-	const [editorState, setEditorState] = useState(() =>
-		EditorState.createEmpty()
-	);
-	const [convertedContent, setConvertedContent] = useState(null);
-	const handleEditorChange = (state) => {
-		setEditorState(state);
-		convertContentToHTML();
-	};
-	const convertContentToHTML = () => {
-		let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-		setConvertedContent(currentContentAsHTML);
-	};
-	const createMarkup = (html) => {
-		return {
-			__html: DOMPurify.sanitize(html),
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
+const RichText = ({ onChange }) => {
+		const [tried_content, setTried_content] = useState("");
+		const [expected_content, setExpected_content] = useState("");
+		const updateContent = (value) => {
+			setTried_content(value);
+			setExpected_content(value);
+			onChange(value);
 		};
-	};
-	return (
-		<div className="App">
-			<header className="App-header">Your answer</header>
-			<Editor
-				editorState={editorState}
-				onEditorStateChange={handleEditorChange}
-				wrapperClassName="wrapper-class"
-				editorClassName="editor-class"
-				toolbarClassName="toolbar-class"
-			/>
-			<div
-				className="preview"
-				dangerouslySetInnerHTML={createMarkup(convertedContent)}
-			></div>
-		</div>
+
+		const codeFormats = [
+		"code-block",
+		"bold",
+		"italic",
+		"link",
+		"underline",
+		"image",
+		"header",
+		"strike",
+		"blockquote",
+		"list",
+		"bullet",
+		"indent",
+	];
+  const toolbar = [
+		[{ header: [1, 2, 3, 4, 5, 6, false] }],
+		["bold", "italic", "underline", "strike", "blockquote"],
+		[
+			{ list: "ordered" },
+			{ list: "bullet" },
+			{ indent: "-1" },
+			{ indent: "+1" },
+		],
+		["link", "image"],
+		["code-block"],
+		["clean"],
+	];
+
+  const editorModule={ toolbar };
+	return tried_content ? (
+		<ReactQuill
+			theme="snow"
+			value={tried_content}
+			formats={codeFormats}
+			modules={editorModule}
+			onChange={updateContent}
+		/>
+	) : (
+		<ReactQuill
+			theme="snow"
+			value={expected_content}
+			formats={codeFormats}
+			modules={editorModule}
+			onChange={updateContent}
+		/>
 	);
 };
 

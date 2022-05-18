@@ -8,12 +8,6 @@ import DOMPurify from "dompurify";
 
 const api = "/api";
 const ReplyForm = ({ questionId }) => {
-	// const createMarkup = (html) => {
-	// 	return {
-	// 		__html: DOMPurify.sanitize(html),
-	// 	};
-	// };
-
 	const [content, setContent] = useState("");
 
   const codeFormats = [
@@ -40,6 +34,7 @@ const ReplyForm = ({ questionId }) => {
 			{ indent: "+1" },
 		],
 		["link", "image"],
+		["code-block"],
 		["clean"],
 	];
 

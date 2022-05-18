@@ -19,7 +19,7 @@
 .listedQtnThreadFormat {
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  height: 85vh;
   overflow-y: auto;
   scrollbar-width: thin;
 

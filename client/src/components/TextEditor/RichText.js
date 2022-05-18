@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import DOMPurify from "dompurify";
 
 const RichText = ({ onChange }) => {
-	// const createMarkup = (html) => {
-	// 	return {
-	// 		__html: DOMPurify.sanitize(html),
-	// 	};
-	// };
-
-		const [content, setContent] = useState("");
+		const [tried_content, setTried_content] = useState("");
+		const [expected_content, setExpected_content] = useState("");
 		const updateContent = (value) => {
-			setContent(value);
+			setTried_content(value);
+			setExpected_content(value);
 			onChange(value);
 		};
 
@@ -31,7 +26,7 @@ const RichText = ({ onChange }) => {
 		"indent",
 	];
   const toolbar = [
-		[{ header: [1, 2, false] }],
+		[{ header: [1, 2, 3, 4, 5, 6, false] }],
 		["bold", "italic", "underline", "strike", "blockquote"],
 		[
 			{ list: "ordered" },
@@ -40,14 +35,23 @@ const RichText = ({ onChange }) => {
 			{ indent: "+1" },
 		],
 		["link", "image"],
+		["code-block"],
 		["clean"],
 	];
 
   const editorModule={ toolbar };
-	return (
+	return tried_content ? (
 		<ReactQuill
 			theme="snow"
-			value={content}
+			value={tried_content}
+			formats={codeFormats}
+			modules={editorModule}
+			onChange={updateContent}
+		/>
+	) : (
+		<ReactQuill
+			theme="snow"
+			value={expected_content}
 			formats={codeFormats}
 			modules={editorModule}
 			onChange={updateContent}

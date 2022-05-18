@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import RichText from "../TextEditor/RichText";
 import "./AskQuestionForm.css";
+import DOMPurify from "dompurify";
 
 const api = "/api";
-const AskQuestionForm = ({ show }) => {
-
+const AskQuestionForm = ({ show, setShow }) => {
 	const [title, setTitle] = useState("");
-	const [content, setContent] = useState("");
+	const [tried_content, setTried_content] = useState("");
+	const [expected_content, setExpected_content] = useState("");
 	const [category, setCategory] = useState([]);
 	const [hide, setHide] = useState("");
 
@@ -14,7 +15,12 @@ const AskQuestionForm = ({ show }) => {
 	const onSubmitQuestion = async(e) => {
 		e.preventDefault();
 		try {
-			const body = { category, title, content };
+			const body = {
+				category,
+				title,
+				tried_content: DOMPurify.sanitize(tried_content),
+				expected_content: DOMPurify.sanitize(expected_content),
+			};
 			await fetch(`${api}/question`, {
 				method: "post",
 				body: JSON.stringify(body),
@@ -25,7 +31,7 @@ const AskQuestionForm = ({ show }) => {
 		} catch(err) {
 			console.error(err.message);
 		}
-		setTitle("");
+		setShow(!show);
 	};
 
 //Add a category
@@ -73,6 +79,9 @@ const AskQuestionForm = ({ show }) => {
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<label htmlFor="title">Title</label>
+				<i>
+					Be specific and imagine you’re asking a question to another person
+				</i>
 				<input
 					className="form-control"
 					type="text"
@@ -84,20 +93,22 @@ const AskQuestionForm = ({ show }) => {
 					autoComplete="off"
 					required
 				/>
-				<label htmlFor="expectedOutcome">Body</label>
-				{/* <textarea
-					className="form-control"
-					type="text"
-					rows={5}
-					cols={5}
-					placeholder="Elaborate on your issue"
-					onChange={(e) => setContent(e.target.value)}
-					value={content}
-					required
-				/> */}
-				<RichText onChange={setContent} />
+				<label htmlFor="triedOutcome">What were you trying to do? What is happening?</label>
+				<i>
+					Include all the information someone would need to answer your question
+				</i>
+				<RichText onChange={setTried_content} />
+				<label htmlFor="expectedOutcome">What were you expecting? provide any link?</label>
+				<i>
+					Include all the information someone would need to answer your question
+				</i>
+				<RichText onChange={setExpected_content} />
 				<div className="categories">
 					<label htmlFor="expectedOutcome">Category</label>
+					<i>
+						Add up to 5 tags to describe what your question is about then press
+						enter
+					</i>
 					<div className="tag-card">
 						<div className="tag-container">
 							{category.map((tag, index) => {

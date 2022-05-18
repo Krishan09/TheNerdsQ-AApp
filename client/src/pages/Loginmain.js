@@ -30,7 +30,7 @@ const Loginmain = ({ setToken }) => {
 		if (data.ok) {
 				return data.json();
 			}
-			throw new Error("can't loggin");
+			throw new Error("can't logging");
 		})
       .then((data)=> {
 		dispatch({

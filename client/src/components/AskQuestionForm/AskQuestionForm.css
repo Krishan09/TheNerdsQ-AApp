@@ -2,15 +2,16 @@
     display: block;
     color: darkslategray;
 	max-width: 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bolder;
-    margin-top: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
 }
 
 .askQuestionStyle input,
-.askQuestionStyle textarea{
-	max-width: 90%;
-    border: 1px solid #ccc;    
+.askQuestionStyle textarea {
+	max-width: 70%;
+    border: 1px solid #ccc; 
 }
 
 
@@ -62,7 +63,7 @@
    text-align: center;
    background-color: cornsilk;
    min-width: 50%;
-   height: 95vh;
+   min-height: 90vh;
    margin: auto;
 }
 
@@ -126,7 +127,7 @@
 }
 
 .tag-input {
-    max-width: 50%;
+    max-width: 70%;
     border: none !important;
     flex: 1;
     outline: none !important;
@@ -151,7 +152,7 @@
 }
 
 .tag-card {
-    max-width: 90%;
+    min-width: 70%;
     display: inline-block;
     margin: auto;
     text-align: center;
@@ -160,7 +161,7 @@
 }
 
 .tag-container {
-    min-width: 60%;
+    min-width: 70%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -192,4 +193,25 @@
     font-size: 0.87rem;
 } 
 
+.ql-editor,
+.ql-toolbar,
+.ql-snow,
+.ql-container {
+    display: block;
+    min-width: 100%;
+}
 
+.ql-quill {
+    margin-bottom: 1.5rem;
+}
+
+.ql-snow .ql-editor pre.ql-syntax {
+    background-color: #23241f;
+    color: #f8f8f2;
+    overflow: visible;
+}
+
+.askQuestionStyle i {
+    color: darkolivegreen;
+    opacity: 0.5;
+}

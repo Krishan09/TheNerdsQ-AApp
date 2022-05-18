@@ -19,7 +19,7 @@ const Main = () => {
 
   return show === true ? (
 		<>
-			<AskQuestionForm show={show} />
+			<AskQuestionForm show={show} setShow={setShow} />
 		</>
 	) : (
 		<div className="main-container">

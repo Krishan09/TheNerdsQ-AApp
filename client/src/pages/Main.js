@@ -28,7 +28,7 @@ const Main = () => {
   </>
 	  ) : (
 		<>
-			<AskQuestionForm show={show} />
+			<AskQuestionForm show={show} setShow={setShow} />
 		</>
 	)) : (
 		<div className="main-container">

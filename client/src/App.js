@@ -8,8 +8,6 @@ import Loginmain from "./pages/Loginmain";
 
 
 const App = () => {
-	
-
 	return (
 		<React.StrictMode>
 			<Provider store={store}>

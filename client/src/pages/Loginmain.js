@@ -24,23 +24,22 @@ const Loginmain = ({ setToken }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({email,password}),
+        body: JSON.stringify({ email,password }),
       })
-      .then((data)=> { 
-		  if (data.ok) {
-			  return data.json()
-		  }
-		 throw new Error("can't loggin")
+      .then((data)=> {
+		if (data.ok) {
+				return data.json();
+			}
+			throw new Error("can't logging");
 		})
       .then((data)=> {
 		dispatch({
 			type: "login",
 			payload: { email: data.email, userName: data.userName, userId: data.userId },
 		});
-		 navigate("/");
-         console.log(data);
+		navigate("/");
         return data;
-        } );
+    } );
     }
 
 
@@ -54,8 +53,6 @@ const Loginmain = ({ setToken }) => {
       setLoginOpen(false);
       setRegisterOpen(true);
     };
-
-   
 
     const signup = async ({ username, email, password }) => {
         const result = await(await fetch(`${ api }/register`, {

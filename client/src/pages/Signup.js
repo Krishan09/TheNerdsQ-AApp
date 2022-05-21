@@ -36,6 +36,7 @@ const Signup = ({ onAdd }) => {
 						placeholder="Username"
 						className="login-input"
 						onChange={(e) => setUsername(e.target.value)}
+						value={username}
 						autoComplete="off"
 					/>
 				</div>
@@ -49,6 +50,7 @@ const Signup = ({ onAdd }) => {
 						placeholder="Email"
 						className="login-input"
 						onChange={(e) => setEmail(e.target.value)}
+						value={email}
 						autoComplete="off"
 					/>
 				</div>
@@ -62,6 +64,7 @@ const Signup = ({ onAdd }) => {
 						placeholder="Password"
 						className="login-input"
 						onChange={(e) => setPassword(e.target.value)}
+						value={password}
 						autoComplete="off"
 					/>
 				</div>

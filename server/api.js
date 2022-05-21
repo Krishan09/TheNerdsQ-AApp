@@ -65,7 +65,7 @@ router.post("/login", async (req, res) => {
 	try {
 		if (data) {
 			const valid = await compare(password, data.passwd);
-		console.log(valid)
+		console.log(valid);
 			if (valid) {
 				req.session.userId = 12;
 				res.json({
@@ -210,80 +210,31 @@ router.get("/answers/:id", async (req, res) => {
 	}
 });
 
-//Api endpoint for updating questions
-
-router.patch("/questions", async (req, res) => {
-	const title = req.body.title;
-	const content = req.body.content;
-	const id = req.body.id;
-	let questionUpdateQuery;
-	if (!isValid(id)) {
-		res.status(400).json({ "Server message": "Invalid id!" });
-	} else if (title && isValid(id)) {
-		questionUpdateQuery =
-			"UPDATE questions SET title=$1, content=$2 WHERE id=$3";
-		try {
-			await db.query(questionUpdateQuery, [title, content, id]);
-			res.status(200).send({
-				Success: "Your question including the title is successfully updated!",
-			});
-		} catch (error) {
-			res.status(500).send(error);
-		}
-	} else if (!title && isValid(id)) {
-		questionUpdateQuery = "UPDATE questions SET content=$1 WHERE id=$2";
-		try {
-			await db.query(questionUpdateQuery, [content, id]);
-			res.status(200).send({
-				Success: "Your question is successfully updated!",
-			});
-		} catch (error) {
-			res.status(500).send(error);
-		}
-	}
-});
-
-//Api endpoint for updating answers
-router.patch("/answers", async (req, res) => {
-	const title = req.body.title;
-	const content = req.body.content;
-	const id = req.body.id;
-	let questionUpdateQuery;
-	if (!isValid(id)) {
-		res.status(400).json({ "Server message": "Invalid id!" });
-	} else if (title && isValid(id)) {
-		questionUpdateQuery = "UPDATE answers SET title=$1, content=$2 WHERE id=$3";
-		try {
-			await db.query(questionUpdateQuery, [title, content, id]);
-			res.status(200).send({
-				Success: "Your answer including the title is successfully updated!",
-			});
-		} catch (error) {
-			res.status(500).send(error);
-		}
-	} else if (!title && isValid(id)) {
-		questionUpdateQuery = "UPDATE answers SET content=$1 WHERE id=$2";
-		try {
-			await db.query(questionUpdateQuery, [content, id]);
-			res.status(200).send({
-				Success: "Your answer is successfully updated!",
-			});
-		} catch (error) {
-			res.status(500).send(error);
-		}
-	}
-});
 
 // endpoint for post questions
 
+// router.post("/question", async (req, res) => {
+// 	const category = req.body.category;
+// 	const title = req.body.title;
+// 	const content = req.body.content;
+// 	const query =
+// 		"INSERT INTO questions (category, title, content) VALUES ($1,$2, $3)";
+// 	try {
+// 		await db.query(query, [category, title, content]);
+// 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
+// 	} catch (error) {
+// 		res.status(500).send(error);
+// 	}
+// });
 router.post("/question", async (req, res) => {
 	const category = req.body.category;
 	const title = req.body.title;
-	const content = req.body.content;
+	const tried_content = req.body.tried_content;
+	const expected_content = req.body.expected_content;
 	const query =
-		"INSERT INTO questions (category, title, content) VALUES ($1,$2, $3)";
+		"INSERT INTO questions (category, title, tried_content, expected_content) VALUES ($1, $2, $3, $4)";
 	try {
-		await db.query(query, [category, title, content]);
+		await db.query(query, [category, title, tried_content, expected_content]);
 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
 	} catch (error) {
 		
@@ -360,5 +311,82 @@ router.delete("/answerproxy/:id", async (req, res) => {
 		});
 	}
 });
+//endpoint get username
+router.get("/username/:id/", function (req, res) {
+	const questionId = req.params.id;
+	const params = [questionId];
+	db
+	.query(
+			"SELECT username FROM users INNER JOIN questions ON users.user_id = question.id INNER JOIN questions ON bookings.customer_id = customers.id WHERE customers.id = $1",
+			params
+		)
+		.then((result) => res.json(result.rows))
+		.catch((error) => {
+			console.error(error);
+			res.status(500).json(error);
+		});
+});
 
+//Api endpoint for updating questions
+router.patch("/questions", async (req, res) => {
+    const title = req.body.title;
+    const content = req.body.content;
+    const id = req.body.id;
+    let questionUpdateQuery;
+    if (!isValid(id)) {
+        res.status(400).json({ "Server message": "Invalid id!" });
+    } else if (title && isValid(id)) {
+        questionUpdateQuery =
+            "UPDATE questions SET title=$1, content=$2 WHERE id=$3";
+        try {
+            await db.query(questionUpdateQuery, [title, content, id]);
+            res.status(200).send({
+                Success: "Your question including the title is successfully updated!",
+            });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    } else if (!title && isValid(id)) {
+        questionUpdateQuery = "UPDATE questions SET content=$1 WHERE id=$2";
+        try {
+            await db.query(questionUpdateQuery, [content, id]);
+            res.status(200).send({
+                Success: "Your question is successfully updated!",
+            });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
+});
+
+//Api endpoint for updating answers
+router.patch("/answers", async (req, res) => {
+    const title = req.body.title;
+    const content = req.body.content;
+    const id = req.body.id;
+    let questionUpdateQuery;
+    if (!isValid(id)) {
+        res.status(400).json({ "Server message": "Invalid id!" });
+    } else if (title && isValid(id)) {
+        questionUpdateQuery = "UPDATE answers SET title=$1, content=$2 WHERE id=$3";
+        try {
+            await db.query(questionUpdateQuery, [title, content, id]);
+            res.status(200).send({
+                Success: "Your answer including the title is successfully updated!",
+            });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    } else if (!title && isValid(id)) {
+        questionUpdateQuery = "UPDATE answers SET content=$1 WHERE id=$2";
+        try {
+            await db.query(questionUpdateQuery, [content, id]);
+            res.status(200).send({
+                Success: "Your answer is successfully updated!",
+            });
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
+});
 export default router;

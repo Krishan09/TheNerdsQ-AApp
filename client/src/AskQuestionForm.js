@@ -41,6 +41,7 @@ postData("http://localhost:3100/api/form", { answer: 42 })
                 onChange={(e) => this.change(e)}
              />
             <button className="button1"  onClick={(e) => this.onSubmit(e)}>Ask Question </button>
+            <p>title, tried_content, expected_content, happening_content, link_example</p>
 
           </form>
         );

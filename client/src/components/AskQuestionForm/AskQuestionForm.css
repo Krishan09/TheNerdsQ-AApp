@@ -2,16 +2,16 @@
     display: block;
     color: darkslategray;
 	max-width: 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bolder;
-    margin-top: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
 }
 
 .askQuestionStyle input,
-.askQuestionStyle textarea{
-	max-width: 90%;
-    border: 1px solid #ccc;
-    
+.askQuestionStyle textarea {
+	max-width: 70%;
+    border: 1px solid #ccc; 
 }
 
 .cancelQtn-btn {
@@ -60,9 +60,10 @@
    box-shadow: 0 4px 8px 0 rgb(210, 105, 30, 0.5), 0 6px 20px 0 rgb(210, 105, 30, 0.5);
    text-align: center;
    background-color: cornsilk;
-   min-width: 50%;
-   height: 95vh;
+   min-width: 60%;
+   min-height: 90vh;
    margin: auto;
+  
 }
 
 .askQtn-banner h1{
@@ -92,10 +93,8 @@
 }
 
 .AskQtnCloseBtn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: none;
+   display: flex;
+   float: left;
 }
 
 .AskQtnCloseBtn span{	
@@ -117,7 +116,8 @@
     align-items: flex-start;
   
     background-color: #282c34;
-    min-height: 100vh;
+    min-height: 70vh;
+    overflow-y: scroll;
 }
 
 .hide {
@@ -125,27 +125,32 @@
 }
 
 .tag-input {
-    max-width: 50%;
+    max-width: 70%;
     border: none !important;
     flex: 1;
     outline: none !important;
     font-size: 1rem;
 }
-
+.askQuestionStyle input::placeholder,
+.askQuestionStyle textarea::placeholder,
 .tag-input::placeholder {
     color: #ccc;
 }
 
+.askQuestionStyle:-ms-textarea-placeholder,
+.askQuestionStyle:-ms-input-placeholder,
 .tag-input:-ms-input-placeholder { 
  color: #ccc;
 }
 
+.askQuestionStyle::-ms-textarea-placeholder,
+.askQuestionStyle::-ms-input-placeholder,
 .tag-input::-ms-input-placeholder { 
     color: #ccc;
 }
 
 .tag-card {
-    max-width: 90%;
+    min-width: 70%;
     display: inline-block;
     margin: auto;
     text-align: center;
@@ -154,7 +159,7 @@
 }
 
 .tag-container {
-    min-width: 60%;
+    min-width: 70%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -169,12 +174,12 @@
     display: flex;
     align-items: center;
     padding: 5px;
-    border: 2px solid rgb(218, 74, 22);
+    border: 2px solid darkslategray;
     border-radius: 5px;
     height: 25px;
     margin: 2px 5px 2px 0px;
-    background-color: cornsilk;
-    color:rgb(9, 9, 42);
+    background-color: darkslategray;
+    color: cornsilk;
     
 }
 
@@ -187,3 +192,30 @@
 } 
 
 
+.ql-editor,
+.ql-toolbar,
+.ql-snow,
+.ql-container {
+    max-width: 100%;   
+    overflow-wrap: break-word; 
+}
+
+.ql-quill {
+    margin-bottom: 1.5rem;
+}
+
+.ql-snow .ql-editor pre.ql-syntax {
+    color: #f8f8f2;
+    overflow: hidden;
+}
+
+.ql-editor {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+
+.askQuestionStyle i {
+    color: darkolivegreen;
+    opacity: 0.5;
+}

@@ -8,7 +8,7 @@
 
 
 html::-webkit-scrollbar {
- background-color: white;
+ background-color: #ccc;
 }
 
 html::-webkit-scrollbar-button {
@@ -80,7 +80,7 @@ h1, h2 {
 	font-size: 1.2rem;
 	padding-top: 0;
 }
-
+/* 
 .logout-button {
 	cursor: pointer;
 	width: 100px;
@@ -95,7 +95,7 @@ h1, h2 {
 .logout-button:hover {
 	background-color: lightgreen;
 	color: black;
-} 
+}  */
 
 .categoryBtn {
 	width: 300px;

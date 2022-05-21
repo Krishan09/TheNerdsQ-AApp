@@ -237,7 +237,7 @@ router.post("/question", async (req, res) => {
 		await db.query(query, [category, title, tried_content, expected_content]);
 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
 	} catch (error) {
-		
+		console.log(error);
 		res.status(500).send(error);
 	}
 });

@@ -6,22 +6,31 @@ import "./Home.css";
 import Footer from "./Footer";
 import { useState } from "react";
 import AskQuestionForm from "../components/AskQuestionForm/AskQuestionForm";
+import Notloggedin from "../components/AskQuestionForm/Notloggedin";
+import { useSelector } from "react-redux";
+
 
 
 const Main = () => {
   const [id, setId] = useState(null);
   const [show, setShow] = useState(false);
-
+  const { email } = useSelector((state) => state);
 
   const handleShow = () => {
-    setShow(!show);
+		setShow(!show);	  
+	 
   };
 
   return show === true ? (
+	  !email ? (
+  <>
+  <Notloggedin setShow={setShow}></Notloggedin>
+  </>
+	  ) : (
 		<>
 			<AskQuestionForm show={show} />
 		</>
-	) : (
+	)) : (
 		<div className="main-container">
 			<Navigation />
 			<button className="ask-btn btn" onClick={handleShow}>

@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { registerUsers } from "./data";
-import { getuserbyEmail } from "./data";
+import { registerUsers, getuserbyEmail, updateQuestion } from "./data";
 import jwt from "jsonwebtoken";
 import { hash, compare } from "bcryptjs";
 import db from "./db";
 import { object } from "prop-types";
+
 
 const router = Router();
 router.get("/", verifyToken, (req, res) => {
@@ -180,6 +180,7 @@ router.get("/questions/:id", async (req, res) => {
 				db.query(questionsById)
 					.then((result) => res.json(result.rows))
 					.catch((e) => console.error(e));
+				
 			}
 		});
 	}
@@ -285,6 +286,7 @@ router.post("/question", async (req, res) => {
 		await db.query(query, [category, title, content]);
 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
 	} catch (error) {
+		
 		res.status(500).send(error);
 	}
 });

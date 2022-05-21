@@ -21,9 +21,10 @@ const Navigation = () => {
 			<ul className="loginWrapper">
 				<li className="loginStyle">Logged as:{email}</li>
 				{email ? (
-					<button className="logout-button" onClick={logout}>
-						Logout
-					</button>
+					// <button className="logout-button" onClick={logout}>
+					// 	Logout
+					// </button>
+					<span></span>
 				
 				) : (
 					<li className="loginStyle">

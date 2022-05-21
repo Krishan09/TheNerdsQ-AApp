@@ -88,7 +88,7 @@ h1, h2 {
 	border-radius: 4px;
 	background-color: green;
 	color: white;
-	position: left;
+	/* position: left; */
 	font-size: 18px;
 }
 

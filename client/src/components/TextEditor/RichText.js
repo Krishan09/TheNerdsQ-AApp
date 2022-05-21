@@ -43,6 +43,8 @@ const RichText = ({ onChange }) => {
 	return tried_content ? (
 		<ReactQuill
 			theme="snow"
+			row={3}
+			column={5}
 			value={tried_content}
 			formats={codeFormats}
 			modules={editorModule}

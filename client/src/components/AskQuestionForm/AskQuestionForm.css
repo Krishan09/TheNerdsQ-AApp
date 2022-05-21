@@ -14,8 +14,6 @@
     border: 1px solid #ccc; 
 }
 
-
-
 .cancelQtn-btn {
     background-color: #ccc;
     border: none;
@@ -62,9 +60,10 @@
    box-shadow: 0 4px 8px 0 rgb(210, 105, 30, 0.5), 0 6px 20px 0 rgb(210, 105, 30, 0.5);
    text-align: center;
    background-color: cornsilk;
-   min-width: 50%;
+   min-width: 60%;
    min-height: 90vh;
    margin: auto;
+  
 }
 
 .askQtn-banner h1{
@@ -94,10 +93,8 @@
 }
 
 .AskQtnCloseBtn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: none;
+   display: flex;
+   float: left;
 }
 
 .AskQtnCloseBtn span{	
@@ -119,7 +116,8 @@
     align-items: flex-start;
   
     background-color: #282c34;
-    min-height: 100vh;
+    min-height: 70vh;
+    overflow-y: scroll;
 }
 
 .hide {
@@ -176,12 +174,12 @@
     display: flex;
     align-items: center;
     padding: 5px;
-    border: 2px solid rgb(218, 74, 22);
+    border: 2px solid darkslategray;
     border-radius: 5px;
     height: 25px;
     margin: 2px 5px 2px 0px;
-    background-color: cornsilk;
-    color:rgb(9, 9, 42);
+    background-color: darkslategray;
+    color: cornsilk;
     
 }
 
@@ -193,12 +191,13 @@
     font-size: 0.87rem;
 } 
 
+
 .ql-editor,
 .ql-toolbar,
 .ql-snow,
 .ql-container {
-    display: block;
-    min-width: 100%;
+    max-width: 100%;   
+    overflow-wrap: break-word; 
 }
 
 .ql-quill {
@@ -206,10 +205,15 @@
 }
 
 .ql-snow .ql-editor pre.ql-syntax {
-    background-color: #23241f;
     color: #f8f8f2;
-    overflow: visible;
+    overflow: hidden;
 }
+
+.ql-editor {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 
 .askQuestionStyle i {
     color: darkolivegreen;

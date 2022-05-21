@@ -42,6 +42,8 @@
 
 }
 
-.ql-editor ql-blank {
-	background-color: red;
+.ql-editor {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	word-break: break-all;
 }

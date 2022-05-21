@@ -80,17 +80,6 @@ h1, h2 {
 	font-size: 1.2rem;
 	padding-top: 0;
 }
-/* 
-.logout-button {
-	cursor: pointer;
-	width: 100px;
-	height: 30px;
-	border-radius: 4px;
-	background-color: green;
-	color: white;
-	/* position: left; */
-	font-size: 18px;
-}
 
 .logout-button:hover {
 	background-color: lightgreen;

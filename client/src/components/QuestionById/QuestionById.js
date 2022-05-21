@@ -15,11 +15,10 @@ const QuestionById = ({ questionId }) => {
 		})
 		.then((data) => setQuestion(data))
 		.then(()=> setViewMode(true));
-	}
+	};
 	useEffect(() => {
-		getQuestions()
+		getQuestions();
 
-		
 	}, [questionId]);
 
 	const [viewMode, setViewMode] = useState(true);

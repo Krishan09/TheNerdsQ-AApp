@@ -15,6 +15,12 @@ const Main = () => {
   const [id, setId] = useState(null);
   const [show, setShow] = useState(false);
   const { email } = useSelector((state) => state);
+  const [edit, setEdit] = useState(false);
+
+  const openQuestion = (questionId, editMode) => {
+	  setId (questionId);
+	  setEdit(editMode);
+  }
 
   const handleShow = () => {
 		setShow(!show);	  
@@ -42,9 +48,9 @@ const Main = () => {
 					<p className="top-p">Ask a code-related question</p>
 				</div>
 				<div className="questionsDiv">
-					{typeof id === "number" && <SelectedQtnThread id={id} />}
+					{typeof id === "number" && <SelectedQtnThread editMode={edit} id={id} />}
 					<ListedQtnThread
-						onPressQuestion={(questionId) => setId(questionId)}
+						onPressQuestion={openQuestion}
 						questionId={id}
 					/>
 				</div>

@@ -4,7 +4,7 @@ import QuestionById from "../../components/QuestionById/QuestionById";
 import "./SelectedQtnThread.css";
 
 
-const SelectedQtnThread = ({ id }) => {
+const SelectedQtnThread = ({ id,editMode }) => {
 	const [hide, setHide] = useState(false);
 
 	const handleHide = (e) => {
@@ -23,7 +23,7 @@ const SelectedQtnThread = ({ id }) => {
 				>
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<QuestionById questionId={id} />
+				<QuestionById  key={id} questionId={id} editMode={editMode}/>
 			</li>
 			<li>
 				<ReplyForm questionId={id} />

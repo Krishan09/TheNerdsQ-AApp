@@ -236,6 +236,7 @@ router.post("/question", async (req, res) => {
 		await db.query(query, [category, title, tried_content, expected_content]);
 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
 	} catch (error) {
+		console.log(error);
 		res.status(500).send(error);
 	}
 });
@@ -328,30 +329,33 @@ router.get("/username/:id/", function (req, res) {
 //Api endpoint for updating questions
 router.patch("/questions", async (req, res) => {
     const title = req.body.title;
-    const content = req.body.content;
+    const tried_content = req.body.tried_content;
+	const expected_content = req.body.expected_content;
     const id = req.body.id;
     let questionUpdateQuery;
     if (!isValid(id)) {
         res.status(400).json({ "Server message": "Invalid id!" });
     } else if (title && isValid(id)) {
         questionUpdateQuery =
-            "UPDATE questions SET title=$1, content=$2 WHERE id=$3";
+            "UPDATE questions SET title=$1, tried_content=$2, expected_content=$3 WHERE id=$4";
         try {
-            await db.query(questionUpdateQuery, [title, content, id]);
+            await db.query(questionUpdateQuery, [title, tried_content, expected_content, id]);
             res.status(200).send({
                 Success: "Your question including the title is successfully updated!",
             });
         } catch (error) {
+			console.log(error);
             res.status(500).send(error);
         }
     } else if (!title && isValid(id)) {
-        questionUpdateQuery = "UPDATE questions SET content=$1 WHERE id=$2";
+        questionUpdateQuery = "UPDATE questions SET tried_content=$1, expected_content=$2 WHERE id=$3";
         try {
-            await db.query(questionUpdateQuery, [content, id]);
+            await db.query(questionUpdateQuery, [tried_content, expected_content, id]);
             res.status(200).send({
                 Success: "Your question is successfully updated!",
             });
         } catch (error) {
+			console.log?(error):
             res.status(500).send(error);
         }
     }

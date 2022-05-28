@@ -21,15 +21,11 @@ const Navigation = () => {
 			<ul className="loginWrapper">
 				<li className="loginStyle">Logged as:{email}</li>
 				{email ? (
- 
-				
-
 					<span></span>
-
 				) : (
 					<li className="loginStyle">
 						<Link onClick={() => setLogName(!logName)} to="/Loginmain">
-							Login/Register
+							<button className="btn bg-light ml-3">Login/Register</button>
 						</Link>
 					</li>
 				)}

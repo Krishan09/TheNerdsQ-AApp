@@ -4,6 +4,7 @@
     flex: 1;
     outline: none !important;
     font-size: 1rem;
+
 }
 
 .tag-input::placeholder {
@@ -19,16 +20,17 @@
 }
 
 .tag-card {
-    max-width: 90%;
+    width: 50vw;
     display: inline-block;
     margin: auto;
     text-align: center;
     position: relative;
+
     
 }
 
 .tag-container {
-    min-width: 60%;
+    min-width: 70%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -48,9 +50,9 @@
     height: 25px;
     margin: 2px 5px 2px 0px;
     background-color: beige;
-    color:#282c34;
-    
+    color:#282c34;    
 }
+
 
 .tag span {
     margin-left: 5px;
@@ -59,4 +61,3 @@
     color:#282c34;
     font-size: 0.87rem;
 } 
-

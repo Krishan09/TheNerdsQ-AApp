@@ -33,7 +33,7 @@ export function Login({ loginUser}) {
 			<form className="box" onSubmit={handleSubmit}>
 				<div className="input-group">
 					<label htmlFor="email" className="login-label">
-						Username
+						Email
 					</label>
 					<input
 						value={email}

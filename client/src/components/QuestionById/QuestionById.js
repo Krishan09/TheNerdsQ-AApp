@@ -26,18 +26,17 @@ const QuestionById = ({ questionId }) => {
 	const [title, setTitle] = useState("");
     const saveQuestion = () => {
 		fetch(`${api}/questions`, {
-			headers: {
-				'Accept': 'application/json',
-			  'Content-Type': 'application/json'
-			},
-
 			method: "PATCH",
-			body: JSON.stringify({id:questionId ,title:title, content:content})
+			body: JSON.stringify({ id:questionId ,title:title, content:content }),
+			headers: {
+					"Accept": "application/json",
+					"Content-Type": "application/json",
+				},
 		})
-		.then(getQuestions)
+		.then(getQuestions);
 
 
-	}
+	};
 	const toggleMode = () => {
 		setContent(question[0].content);
 		setTitle(question[0].title);
@@ -78,33 +77,33 @@ const QuestionById = ({ questionId }) => {
 
 	return null;
 
-	const createMarkup = (html) => {
-		return {
-			__html: DOMPurify.sanitize(html),
-		};
-	};
+	// const createMarkup = (html) => {
+	// 	return {
+	// 		__html: DOMPurify.sanitize(html),
+	// 	};
+	// };
 
-	useEffect(() => {
-		fetch(`${api}/questions/${questionId}`)
-				.then((res) => {
-					if (res.ok) {
-						return res.json();
-					}
-				})
-				.then((data) => setQuestion(data));
-		}, [questionId]);
+	// useEffect(() => {
+	// 	fetch(`${api}/questions/${questionId}`)
+	// 			.then((res) => {
+	// 				if (res.ok) {
+	// 					return res.json();
+	// 				}
+	// 			})
+	// 			.then((data) => setQuestion(data));
+	// 	}, [questionId]);
 
-    return question ? (
-			<form className="questionByIdStyle">
-				<h3 className="hide-btn">{question[0].title}</h3>
-				<p
-					dangerouslySetInnerHTML={createMarkup(question[0].tried_content)}
-				></p>
-				<p
-					dangerouslySetInnerHTML={createMarkup(question[0].expected_content)}
-				></p>
-			</form>
-		) : null;
+    // return question ? (
+	// 		<form className="questionByIdStyle">
+	// 			<h3 className="hide-btn">{question[0].title}</h3>
+	// 			<p
+	// 				dangerouslySetInnerHTML={createMarkup(question[0].tried_content)}
+	// 			></p>
+	// 			<p
+	// 				dangerouslySetInnerHTML={createMarkup(question[0].expected_content)}
+	// 			></p>
+	// 		</form>
+	// 	) : null;
 
 };
 

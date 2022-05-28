@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RichText from "../TextEditor/RichText";
 import "./AskQuestionForm.css";
 import DOMPurify from "dompurify";
+import Tags from "../Tags/Tags";
 
 const api = "/api";
 const AskQuestionForm = ({ show, setShow }) => {
@@ -70,20 +71,23 @@ const AskQuestionForm = ({ show, setShow }) => {
 				className="askQuestionStyle form-group card"
 				onSubmit={onSubmitQuestion}
 			>
-				<button
+				{/* <button
 					type="button"
 					className="AskQtnCloseBtn close"
 					aria-label="Close"
 					onClick={handleHide}
 				>
 					<span aria-hidden="true">&times;</span>
-				</button>
+				</button> */}
 				<label htmlFor="title">Title</label>
 				<i>
 					Be specific and imagine you’re asking a question to another person
 				</i>
-				<input
+				<textarea
 					className="form-control"
+					maxLength={300}
+					rows="1"
+					cols="5"
 					type="text"
 					id="title"
 					name="title"
@@ -92,13 +96,17 @@ const AskQuestionForm = ({ show, setShow }) => {
 					value={title}
 					autoComplete="off"
 					required
-				/>
-				<label htmlFor="triedOutcome">What were you trying to do? What is happening?</label>
+				></textarea>
+				<label htmlFor="triedOutcome">
+					What were you trying to do? What is happening?
+				</label>
 				<i>
 					Include all the information someone would need to answer your question
 				</i>
 				<RichText onChange={setTried_content} />
-				<label htmlFor="expectedOutcome">What were you expecting? provide any link?</label>
+				<label htmlFor="expectedOutcome">
+					What were you expecting? provide any link?
+				</label>
 				<i>
 					Include all the information someone would need to answer your question
 				</i>
@@ -109,31 +117,7 @@ const AskQuestionForm = ({ show, setShow }) => {
 						Add up to 5 tags to describe what your question is about then press
 						enter
 					</i>
-					<div className="tag-card">
-						<div className="tag-container">
-							{category.map((tag, index) => {
-								return (
-									<div key={index} className="tag">
-										{tag}
-										<span
-											role="button"
-											tabIndex={0}
-											onClick={() => removeCategory(tag)}
-											aria-hidden="true"
-										>
-											x
-										</span>
-									</div>
-								);
-							})}
-							<input
-								type="text"
-								className="tag-input"
-								placeholder="HTML, CSS, Node, React, JavaScript, Postgresql"
-								onKeyDown={addCategory}
-							/>
-						</div>
-					</div>
+					<Tags addCategory={addCategory} removeCategory={removeCategory} category={category} setCategory={setCategory} />
 				</div>
 				<div className="btn-wrapper">
 					<button

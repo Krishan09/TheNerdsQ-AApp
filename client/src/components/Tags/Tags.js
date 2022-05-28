@@ -1,31 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Tag.css";
 
-const Tags = () => {
-	const [tags, setTags] = useState([]);
-	const addTag = (e) => {
-		if(e.key === "Enter") {
-			if(e.target.value.length > 0) {
-				setTags([...tags, e.target.value]);
-				e.target.value = "";
-			}
-		}
-	};
-	const removeTag = (removeTag) => {
-		const newTags = tags.filter((tag) => tag !== removeTag);
-		setTags(newTags);
-	};
+const Tags = ({ addCategory, removeCategory, category }) => {
     return (
 			<div className="tag-card">
 				<div className="tag-container">
-					{tags.map((tag, index) => {
+					{category.map((tag, index) => {
 						return (
 							<div key={index} className="tag">
 								{tag}
 								<span
 									role="button"
 									tabIndex={0}
-									onClick={() => removeTag(tag)}
+									onClick={() => removeCategory(tag)}
 									aria-hidden="true"
 								>
 									x
@@ -37,7 +24,7 @@ const Tags = () => {
 						type="text"
 						className="tag-input"
 						placeholder="HTML, CSS, Node, React, JavaScript, Postgresql"
-						onKeyDown={addTag}
+						onKeyDown={addCategory}
 					/>
 				</div>
 			</div>

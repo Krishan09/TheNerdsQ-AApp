@@ -1,17 +1,31 @@
+.askQuestionStyle {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   box-shadow: 0 4px 8px 0 rgb(210, 105, 30, 0.5), 0 6px 20px 0 rgb(210, 105, 30, 0.5);
+   text-align: center;
+   background-color: cornsilk;
+   max-width: 60%;
+   min-height: 96vh;
+   margin: 1rem auto 0 auto;  
+   padding: 0 1rem;
+}
+
 .askQuestionStyle label{
     display: block;
     color: darkslategray;
 	max-width: 100%;
-    font-size: 1rem;
-    font-weight: bolder;
-    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-weight: lighter;
+    margin-top: 3rem;
     margin-bottom: 0;
 }
 
-.askQuestionStyle input,
 .askQuestionStyle textarea {
-	max-width: 70%;
+	width: 50vw;
     border: 1px solid #ccc; 
+    resize: none;
 }
 
 .cancelQtn-btn {
@@ -53,19 +67,7 @@
     display:flex;
 }
 
-.askQuestionStyle {
-   display: flex;
-   align-items: center;
-   flex-wrap: wrap;
-   box-shadow: 0 4px 8px 0 rgb(210, 105, 30, 0.5), 0 6px 20px 0 rgb(210, 105, 30, 0.5);
-   text-align: center;
-   background-color: cornsilk;
-   min-width: 60%;
-   min-height: 90vh;
-   margin: auto;
-  
-}
-
+/* 
 .askQtn-banner h1{
     font-size: 1.2rem;
     color: black;
@@ -90,8 +92,8 @@
     flex-direction: column;
     justify-content: center;
     
-}
-
+} */
+/* 
 .AskQtnCloseBtn {
    display: flex;
    float: left;
@@ -101,22 +103,21 @@
 	font-weight: bolder;
 	font-size: x-large;
 	color: rgb(218, 74, 22);
-}
+} */
 
-.AskQtnCloseBtn:hover {
+/* .AskQtnCloseBtn:hover {
 	border: 1px solid rgb(218, 74, 22);;
 	padding: 0;
 	background-color: hsl(0, 59%, 41%, 0.3);
-}
+} */
 
 
 .show {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-  
+    align-items: flex-start;  
     background-color: #282c34;
-    min-height: 70vh;
+    min-height: 100vh;
     overflow-y: scroll;
 }
 
@@ -124,13 +125,6 @@
     display: none;
 }
 
-.tag-input {
-    max-width: 70%;
-    border: none !important;
-    flex: 1;
-    outline: none !important;
-    font-size: 1rem;
-}
 .askQuestionStyle input::placeholder,
 .askQuestionStyle textarea::placeholder,
 .tag-input::placeholder {
@@ -149,73 +143,43 @@
     color: #ccc;
 }
 
-.tag-card {
-    min-width: 70%;
-    display: inline-block;
-    margin: auto;
-    text-align: center;
-    position: relative;
-    
+
+.ql-toolbar { 
+    overflow-wrap: break-word; 
+    background-color: beige;
 }
 
-.tag-container {
-    min-width: 70%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content:flex-start;
-    min-height: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.ql-snow {
+    resize: none;
+    height: auto;
+    width: 50vw;
+
+}
+
+.ql-container {   
+    overflow-wrap: break-word; 
+    overflow-y: scroll;
     background-color: white;
 }
 
-.tag {
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    border: 2px solid darkslategray;
-    border-radius: 5px;
-    height: 25px;
-    margin: 2px 5px 2px 0px;
-    background-color: darkslategray;
-    color: cornsilk;
-    
-}
-
-.tag span {
-    margin-left: 5px;
-    cursor: pointer;
-    background-color: cornsilk;
-    color:rgb(9, 9, 42);
-    font-size: 0.87rem;
-} 
-
-
-.ql-editor,
-.ql-toolbar,
-.ql-snow,
-.ql-container {
-    max-width: 100%;   
-    overflow-wrap: break-word; 
-}
-
-.ql-quill {
-    margin-bottom: 1.5rem;
-}
-
-.ql-snow .ql-editor pre.ql-syntax {
-    color: #f8f8f2;
-    overflow: hidden;
-}
 
 .ql-editor {
     display: flex;
     flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+    overflow-x: hidden;
+	word-break: break-all;
+}
+
+.ql-editor p {
+    width: auto;
 }
 
 
 .askQuestionStyle i {
-    color: darkolivegreen;
-    opacity: 0.5;
+    color: maroon;
+    opacity: 0.4;
+    font-size: 0.8rem;
 }

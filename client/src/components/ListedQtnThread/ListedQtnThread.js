@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Question from "../Question/Question.js";
+import Question from "../Question/Question";
 import "./ListedQtnThread.css";
+
 
 const api = "/api";
 const ListedQtnThread = ({ onPressQuestion }) => {
@@ -23,21 +24,6 @@ const ListedQtnThread = ({ onPressQuestion }) => {
 			console.error(err.message);
 		}
 	};
-	// const handleEdit = async (id) => {
-	// 	try {
-	// 		const body = { content };
-	// 		await fetch(`${api}/question/${id}`, {
-	// 			method: "put",
-	// 			headers: {
-	// 				"Content-Type": "application/json",
-	// 			},
-	// 			body: JSON.stringify(body),
-	// 		});
-	// 		window.location = "/";
-	// 	} catch (err) {
-	// 		console.error(err.message);
-	// 	}
-	//};
 
     return questionsData?(
 			<div className="listedQtnThreadFormat">
@@ -53,14 +39,6 @@ const ListedQtnThread = ({ onPressQuestion }) => {
 								</span>
 							</button>
 							<div id={question.id} className="btn-wrapper">
-								<button
-									className="edit-btn btn btn-outline-warning"
-									// onClick={() => {
-									// 	handleEdit(question.id);
-									// }}
-								>
-									Edit
-								</button>
 								<button
 									onClick={() => {
 										handleDelete(question.id);

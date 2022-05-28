@@ -180,7 +180,6 @@ router.get("/questions/:id", async (req, res) => {
 				db.query(questionsById)
 					.then((result) => res.json(result.rows))
 					.catch((e) => console.error(e));
-				
 			}
 		});
 	}
@@ -237,7 +236,6 @@ router.post("/question", async (req, res) => {
 		await db.query(query, [category, title, tried_content, expected_content]);
 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
 	} catch (error) {
-		
 		res.status(500).send(error);
 	}
 });
@@ -285,7 +283,7 @@ router.delete("/question/:id", async (req, res) => {
 });
 
 //endpoint for delete answers
-router.delete("/answerproxy/:id", async (req, res) => {
+router.delete("/answer/:id", async (req, res) => {
 	const answerId = req.params.id;
 	const deleteById = `DELETE FROM answers WHERE id=${answerId}`;
 	const checkIfExists = `select exists(select 1 from answers where id=${answerId})`;

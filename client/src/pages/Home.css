@@ -69,7 +69,6 @@ input {
 }
 
 h1, h2 {
-	/* color: orange; */
 	color: sandybrown;
 	padding: 0.5rem;
 
@@ -91,10 +90,6 @@ h1, h2 {
 	height: 40px;
 	margin: 10px;
 }
-
-/* .mainCatbtn {
-	height: auto;
-} */
 
 form {
 	max-width: 600px;

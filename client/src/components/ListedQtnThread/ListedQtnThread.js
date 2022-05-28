@@ -46,7 +46,7 @@ const ListedQtnThread = ({ onPressQuestion }) => {
 						<div key={question.Id} className="tent">
 							<button
 								className="tentative"
-								onClick={() => onPressQuestion(question.id)}
+								onClick={() => onPressQuestion(question.id, false)}
 							>
 								<span>
 									<Question data={question} />
@@ -55,9 +55,7 @@ const ListedQtnThread = ({ onPressQuestion }) => {
 							<div id={question.id} className="btn-wrapper">
 								<button
 									className="edit-btn btn btn-outline-warning"
-									// onClick={() => {
-									// 	handleEdit(question.id);
-									// }}
+									 onClick={() => onPressQuestion(question.id, true)}
 								>
 									Edit
 								</button>

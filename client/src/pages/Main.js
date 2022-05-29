@@ -18,41 +18,40 @@ const Main = () => {
   const [edit, setEdit] = useState(false);
 
   const openQuestion = (questionId, editMode) => {
-	  setId (questionId);
-	  setEdit(editMode);
-  }
+	setId (questionId);
+	setEdit(editMode);
+  };
 
   const handleShow = () => {
-		setShow(!show);	  
-	 
+		setShow(!show);
   };
 
   return show === true ? (
-	  !email ? (
-  <>
-  <Notloggedin setShow={setShow}></Notloggedin>
-  </>
-	  ) : (
-		<>
-			<AskQuestionForm show={show} setShow={setShow} />
-		</>
-	)) : (
+		!email ? (
+			<>
+				<Notloggedin setShow={setShow}></Notloggedin>
+			</>
+		) : (
+			<>
+				<AskQuestionForm show={show} setShow={setShow} />
+			</>
+		)
+	) : (
 		<div className="main-container">
 			<Navigation />
 			<button className="ask-btn btn" onClick={handleShow}>
 				Ask Question
 			</button>
 			<main className="main" role="main">
-				<div className="top">
-					<h1>TheNerds Q & A APP</h1>
-					<p className="top-p">Ask a code-related question</p>
+				<div className="top text-center">
+					<h1 className="text-wrap">TheNerds Q & A APP</h1>
+					<p className="top-p text-wrap fs-6">Ask a code-related question</p>
 				</div>
 				<div className="questionsDiv">
-					{typeof id === "number" && <SelectedQtnThread editMode={edit} id={id} />}
-					<ListedQtnThread
-						onPressQuestion={openQuestion}
-						questionId={id}
-					/>
+					{typeof id === "number" && (
+						<SelectedQtnThread editMode={edit} id={id} />
+					)}
+					<ListedQtnThread onPressQuestion={openQuestion} questionId={id} />
 				</div>
 			</main>
 			<Footer />

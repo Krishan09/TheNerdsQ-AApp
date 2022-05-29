@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const RichText = ({ onChange }) => {
+const RichText = ({ onChange,expectedContent,triedContent }) => {
 		const [tried_content, setTried_content] = useState("");
 		const [expected_content, setExpected_content] = useState("");
+		const [expect_content, setExpectedContent] = useState(expectedContent);
+		const [try_content, setTriedContent] = useState(triedContent);
 		const updateContent = (value) => {
 			setTried_content(value);
 			setExpected_content(value);
+			setExpectedContent(value);
+			setTriedContent(value);
 			onChange(value);
 		};
 
@@ -50,10 +54,27 @@ const RichText = ({ onChange }) => {
 			modules={editorModule}
 			onChange={updateContent}
 		/>
-	) : (
+	) : expected_content ? (
 		<ReactQuill
 			theme="snow"
 			value={expected_content}
+			formats={codeFormats}
+			modules={editorModule}
+			onChange={updateContent}
+		/>
+	) : expect_content ? (
+		<ReactQuill
+			theme="snow"
+			value={expect_content}
+			formats={codeFormats}
+			modules={editorModule}
+			onChange={updateContent}
+		/>
+	) : (
+		<ReactQuill
+			className="mt-3"
+			theme="snow"
+			value={try_content}
 			formats={codeFormats}
 			modules={editorModule}
 			onChange={updateContent}

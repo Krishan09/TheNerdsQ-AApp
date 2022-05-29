@@ -49,7 +49,6 @@ const QuestionById = ({ questionId, editMode }) => {
 	};
 	const toggleMode = (data) => {
 		setQuestion(data);
-		console.log(data);
 		if (data) {
 			console.log(data);
 		setTriedContent(data[0].tried_content);
@@ -71,39 +70,30 @@ const QuestionById = ({ questionId, editMode }) => {
 						dangerouslySetInnerHTML={createMarkup(question[0].expected_content)}
 					></p>
 				</form>
-
-				// <form className="questionByIdStyle">
-				// 	<h3 className="hide-btn">{question[0].title}</h3>
-				// 	<p>{question[0].content}</p>
-				// 	<button type="button" onClick={toggleMode}>
-				// 		Edit
-				// 	</button>
-				// </form>
 			);
 		} else {
 			return (
 				<form>
 					{" "}
 					<input
+						className="form-control d-block mb-3"
 						type="text"
 						value={title}
 						onChange={(e) => setTitle(e.target.value)}
 					></input>
-					<textarea
-						type="text"
-						value={expectedContent}
-						onChange={(e) => setExpectedContent(e.target.value)}
-					></textarea>
-
-                   <textarea
-						type="text"
-						value={triedContent}
-						onChange={(e) => setTriedContent(e.target.value)}
-					></textarea>
+					<RichText
+						onChange={setExpectedContent}
+						expectedContent={expectedContent}
+					/>
+					<RichText onChange={setTriedContent} triedContent={triedContent} />
 					{/* <button type="button" onClick={toggleMode}>
 						Cancel
 					</button> */}
-					<button type="button" onClick={saveQuestion}>
+					<button
+						className="btn mt-3 mb-4 btn-outline-warning"
+						type="button"
+						onClick={saveQuestion}
+					>
 						saveQuestion
 					</button>
 				</form>
@@ -112,16 +102,6 @@ const QuestionById = ({ questionId, editMode }) => {
 	}
 
 	return null;
-
-	// useEffect(() => {
-	// 	fetch(`${api}/questions/${questionId}`)
-	// 			.then((res) => {
-	// 				if (res.ok) {
-	// 					return res.json();
-	// 				}
-	// 			})
-	// 			.then((data) => setQuestion(data));
-	// 	}, [questionId]);
 };
 
 export default QuestionById;

@@ -76,14 +76,14 @@ h1, h2 {
 
 .top-p {
 	color: lightgray;
-	font-size: 1.2rem;
+	/* font-size: 1.2rem; */
 	padding-top: 0;
 }
 
 .logout-button:hover {
 	background-color: lightgreen;
 	color: black;
-}  */
+}  
 
 .categoryBtn {
 	width: 300px;

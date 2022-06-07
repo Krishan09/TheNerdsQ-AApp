@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import DOMPurify from "dompurify";
+//expectedContent,triedContent
+const RichText = ({ onChange, expectedContent, triedContent }) => {
+	const [tried_content, setTried_content] = useState("");
+	const [expected_content, setExpected_content] = useState("");
+	const [expect_content, setExpectedContent] = useState(expectedContent);
+	const [try_content, setTriedContent] = useState(triedContent);
+	const updateContent = (value) => {
+		setTried_content(value);
+		setExpected_content(value);
+		setExpectedContent(value);
+		setTriedContent(value);
+		onChange(value);
+	};
 
-const RichText = ({ onChange }) => {
-		const [tried_content, setTried_content] = useState("");
-		const [expected_content, setExpected_content] = useState("");
-		const updateContent = (value) => {
-			setTried_content(value);
-			setExpected_content(value);
-			onChange(value);
-		};
-
-		const codeFormats = [
+	const codeFormats = [
 		"code-block",
 		"bold",
 		"italic",
@@ -25,7 +30,7 @@ const RichText = ({ onChange }) => {
 		"bullet",
 		"indent",
 	];
-  const toolbar = [
+	const toolbar = [
 		[{ header: [1, 2, 3, 4, 5, 6, false] }],
 		["bold", "italic", "underline", "strike", "blockquote"],
 		[
@@ -39,7 +44,7 @@ const RichText = ({ onChange }) => {
 		["clean"],
 	];
 
-  const editorModule={ toolbar };
+	const editorModule = { toolbar };
 	return tried_content ? (
 		<ReactQuill
 			theme="snow"
@@ -50,10 +55,27 @@ const RichText = ({ onChange }) => {
 			modules={editorModule}
 			onChange={updateContent}
 		/>
-	) : (
+	) : expected_content? (
 		<ReactQuill
 			theme="snow"
 			value={expected_content}
+			formats={codeFormats}
+			modules={editorModule}
+			onChange={updateContent}
+		/>
+	) : expect_content ? (
+		<ReactQuill
+			theme="snow"
+			value={expect_content}
+			formats={codeFormats}
+			modules={editorModule}
+			onChange={updateContent}
+		/>
+	) : (
+		<ReactQuill
+			className="mt-3"
+			theme="snow"
+			value={try_content}
 			formats={codeFormats}
 			modules={editorModule}
 			onChange={updateContent}

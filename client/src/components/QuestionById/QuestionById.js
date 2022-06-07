@@ -86,6 +86,7 @@ const QuestionById = ({ questionId, editMode }) => {
 						expectedContent={expectedContent}
 					/>
 					<RichText onChange={setTriedContent} triedContent={triedContent} />
+					{console.log(DOMPurify.sanitize(triedContent))};
 					{/* <button type="button" onClick={toggleMode}>
 						Cancel
 					</button> */}

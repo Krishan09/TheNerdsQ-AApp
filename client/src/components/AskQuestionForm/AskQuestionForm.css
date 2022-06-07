@@ -67,50 +67,6 @@
     display:flex;
 }
 
-/* 
-.askQtn-banner h1{
-    font-size: 1.2rem;
-    color: black;
-}
-
-.askQtn-banner li{
-    list-style: disc;
-    text-align: center;
-    
-}
-
-.askQtn-banner {
-    display: inline-block;
-    text-align: center;
-    border: 1px solid red;
-    margin: auto;
-    width: 80%;
-}
-
-.askQtn-banner ul{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-} */
-/* 
-.AskQtnCloseBtn {
-   display: flex;
-   float: left;
-}
-
-.AskQtnCloseBtn span{	
-	font-weight: bolder;
-	font-size: x-large;
-	color: rgb(218, 74, 22);
-} */
-
-/* .AskQtnCloseBtn:hover {
-	border: 1px solid rgb(218, 74, 22);;
-	padding: 0;
-	background-color: hsl(0, 59%, 41%, 0.3);
-} */
-
 
 .show {
     display: flex;
@@ -183,3 +139,16 @@
     opacity: 0.4;
     font-size: 0.8rem;
 }
+
+
+@media screen and (max-width: 820px) {
+        .askQuestionStyle {    
+    max-width: 96%;
+     box-shadow: none;
+    }
+        .show {
+    background-color: cadetblue;
+    }
+  
+}
+

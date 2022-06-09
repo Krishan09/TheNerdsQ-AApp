@@ -2,17 +2,12 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import DOMPurify from "dompurify";
-//expectedContent,triedContent
-const RichText = ({ onChange, expectedContent, triedContent }) => {
-	const [tried_content, setTried_content] = useState("");
-	const [expected_content, setExpected_content] = useState("");
-	const [expect_content, setExpectedContent] = useState(expectedContent);
-	const [try_content, setTriedContent] = useState(triedContent);
+
+const RichText = ({ onChange, defaultContent = "" }) => {
+	const [content, setContent] = useState(defaultContent);
 	const updateContent = (value) => {
-		setTried_content(value);
-		setExpected_content(value);
-		setExpectedContent(value);
-		setTriedContent(value);
+		console.log(value);
+		setContent(value);
 		onChange(value);
 	};
 
@@ -45,37 +40,12 @@ const RichText = ({ onChange, expectedContent, triedContent }) => {
 	];
 
 	const editorModule = { toolbar };
-	return tried_content ? (
+	return(
 		<ReactQuill
 			theme="snow"
 			row={3}
 			column={5}
-			value={tried_content}
-			formats={codeFormats}
-			modules={editorModule}
-			onChange={updateContent}
-		/>
-	) : expected_content? (
-		<ReactQuill
-			theme="snow"
-			value={expected_content}
-			formats={codeFormats}
-			modules={editorModule}
-			onChange={updateContent}
-		/>
-	) : expect_content ? (
-		<ReactQuill
-			theme="snow"
-			value={expect_content}
-			formats={codeFormats}
-			modules={editorModule}
-			onChange={updateContent}
-		/>
-	) : (
-		<ReactQuill
-			className="mt-3"
-			theme="snow"
-			value={try_content}
+			value={content}
 			formats={codeFormats}
 			modules={editorModule}
 			onChange={updateContent}

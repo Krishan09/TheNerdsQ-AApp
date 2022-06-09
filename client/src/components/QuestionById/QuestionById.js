@@ -83,9 +83,9 @@ const QuestionById = ({ questionId, editMode }) => {
 					></input>
 					<RichText
 						onChange={setExpectedContent}
-						expectedContent={expectedContent}
+						defaultContent={expectedContent}
 					/>
-					<RichText onChange={setTriedContent} triedContent={triedContent} />
+					<RichText onChange={setTriedContent} defaultContent={triedContent} />
 					{console.log(DOMPurify.sanitize(triedContent))};
 					{/* <button type="button" onClick={toggleMode}>
 						Cancel

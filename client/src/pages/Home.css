@@ -34,7 +34,7 @@ html::-webkit-scrollbar-thumb {
  
 .ask-btn {
 	position: fixed;
-	top: 1rem;
+	top: 1.2rem;
 	right: 1rem;
 	background-color: chocolate;
 	color: white;
@@ -76,7 +76,6 @@ h1, h2 {
 
 .top-p {
 	color: lightgray;
-	/* font-size: 1.2rem; */
 	padding-top: 0;
 }
 
@@ -157,7 +156,4 @@ form {
     width: 100%;
     height: 100vh;
     overflow-y: hidden;
-}
-@media screen and (max-width: 600px) {
-  
 }

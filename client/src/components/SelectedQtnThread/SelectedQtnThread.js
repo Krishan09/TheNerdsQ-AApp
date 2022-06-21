@@ -23,7 +23,7 @@ const SelectedQtnThread = ({ id,editMode }) => {
 				>
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<QuestionById  key={id} questionId={id} editMode={editMode} />
+				<QuestionById key={id} questionId={id} editMode={editMode} />
 			</li>
 			<li>
 				<ReplyForm questionId={id} />

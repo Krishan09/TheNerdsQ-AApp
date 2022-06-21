@@ -21,13 +21,11 @@ const QuestionById = ({ questionId, editMode }) => {
 				}
 			})
 			.then((data) => toggleMode(data));
-			// .then(() => toggleMode());
 	};
 	useEffect(() => {
 		getQuestions();
 	}, [questionId]);
 
-	//const [viewMode, setViewMode] = useState(true);
 	const [expectedContent, setExpectedContent] = useState("");
 	const [triedContent, setTriedContent] = useState("");
 	const [title, setTitle] = useState("");
@@ -86,10 +84,6 @@ const QuestionById = ({ questionId, editMode }) => {
 						defaultContent={expectedContent}
 					/>
 					<RichText onChange={setTriedContent} defaultContent={triedContent} />
-					{/* {console.log(DOMPurify.sanitize(triedContent))} */}
-					{/* <button type="button" onClick={toggleMode}>
-						Cancel
-					</button> */}
 					<button
 						className="btn mt-3 mb-4 btn-outline-warning"
 						type="button"

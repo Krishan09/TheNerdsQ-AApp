@@ -149,12 +149,12 @@ function verifyToken(req, res, next) {
 
 router.get("/questions", async (req, res) => {
 	const questionsQuery = "SELECT * FROM questions";
-	try {
+	// try {
 		const result = await db.query(questionsQuery);
 		res.json(result.rows);
-	} catch (error) {
-		res.status(500).send(error);
-	}
+	// } catch (error) {
+	// 	res.status(500).send(error);
+	// }
 });
 
 const isValid = (n) => {

@@ -7,6 +7,15 @@
 --   created_at TIMESTAMP
 -- );
 
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(100),
+  email VARCHAR(100),
+  passwd  VARCHAR(200)
+);
+
+
+
 CREATE TABLE questions (
   id SERIAL PRIMARY KEY,
   title VARCHAR(200),
@@ -31,12 +40,7 @@ CREATE TABLE answers (
 
 
 
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  username VARCHAR(100),
-  email VARCHAR(100),
-  passwd  VARCHAR(200)
-);
+
 
 
 

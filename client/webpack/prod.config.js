@@ -25,16 +25,16 @@ module.exports = merge(common, {
 		path: path.resolve(__dirname, "../../dist/static"),
 	},
 	plugins: [
-		new HtmlWebpackTagsPlugin({
-			scripts: [
-				{ packageName: "react", variableName: "React" },
-				{ packageName: "react-dom", variableName: "ReactDOM" },
-			].map(({ packageName, variableName }) => ({
-				attributes: { crossorigin: "" },
-				external: { packageName, variableName },
-				path: `https://unpkg.com/${packageName}@${devDependencies[packageName]}/umd/${packageName}.production.min.js`,
-			})),
-			usePublicPath: false,
-		}),
+		// new HtmlWebpackTagsPlugin({
+		// 	scripts: [
+		// 		{ packageName: "react", variableName: "React" },
+		// 		{ packageName: "react-dom", variableName: "ReactDOM" },
+		// 	].map(({ packageName, variableName }) => ({
+		// 		attributes: { crossorigin: "" },
+		// 		external: { packageName, variableName },
+		// 		path: `https://unpkg.com/${packageName}@${devDependencies[packageName]}/umd/${packageName}.production.min.js`,
+		// 	})),
+		// 	usePublicPath: false,
+		// }),
 	],
 });

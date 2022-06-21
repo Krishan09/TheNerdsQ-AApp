@@ -58,27 +58,12 @@ const AskQuestionForm = ({ show, setShow }) => {
 		window.location.reload(true);
 	};
 
-//hide the ask question form
-	const handleHide = (e) => {
-		e.preventDefault();
-		setHide(!hide);
-		window.location.reload(true);
-	};
-
 	return (
 		<div className={show ? "show" : ""}>
 			<form
 				className="askQuestionStyle form-group card"
 				onSubmit={onSubmitQuestion}
 			>
-				{/* <button
-					type="button"
-					className="AskQtnCloseBtn close"
-					aria-label="Close"
-					onClick={handleHide}
-				>
-					<span aria-hidden="true">&times;</span>
-				</button> */}
 				<label htmlFor="title">Title</label>
 				<i>
 					Be specific and imagine you’re asking a question to another person

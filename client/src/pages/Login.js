@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import store from "../store";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import "./Loginmaintest.css";
+import { useSelector } from "react-redux";
+import "./Loginmain.css";
 
-export function Login({ loginUser}) {
+export function Login({ loginUser }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordShown, setPasswordShown] = useState(false);
-	const dispatch = useDispatch();
 	const user = useSelector((state) => state.userName);
-
-	const navigate = useNavigate();
 
 	console.log(loginUser);
 

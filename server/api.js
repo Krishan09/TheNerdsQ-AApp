@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { hash, compare } from "bcryptjs";
 import db from "./db";
 import { object } from "prop-types";
+import JwtTokenCreator from "./jsonwebtoken";
 
 
 const router = Router();
@@ -67,12 +68,15 @@ router.post("/login", async (req, res) => {
 			const valid = await compare(password, data.passwd);
 		console.log(valid);
 			if (valid) {
+				const token = await JwtTokenCreator(data);
+				res.cookie("token_id", token);
 				req.session.userId = 12;
 				res.json({
 					msg: "Successfully logged in",
 					userName: data.userName,
 					email: data.email,
-					userId: req.session.userId,
+					userId: data.id,
+					// userId: req.session.userId,
 				});
 			} else {
 				res.status(400).json({

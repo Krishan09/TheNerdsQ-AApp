@@ -11,7 +11,7 @@ const createMarkup = (html) => {
 const handleDelete = async (id) => {
 	try {
 		await fetch(`${api}/answer/${id}`, { method: "DELETE" });
-		window.location.reload(true);
+		
 	} catch (err) {
 		console.error(err.message);
 	}
@@ -22,7 +22,7 @@ const handleDelete = async (id) => {
 
 
 
-function Answer({ data }) {
+function Answer({ data,getAnswers }) {
 	return (
 		<div className="subAnswersFormat overflow-auto">
 			{data.map((answer) => {
@@ -44,6 +44,7 @@ function Answer({ data }) {
 								className="color-delete btn btn-link"
 								onClick={() => {
 									handleDelete(answer.id);
+									getAnswers();
 								}}
 							>
 								Delete

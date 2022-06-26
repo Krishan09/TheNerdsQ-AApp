@@ -3,12 +3,9 @@ import AnswersByIdThreads from "../AnswersById/AnswersByIdThread";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./ReplyForm.css";
-import DOMPurify from "dompurify";
 
-
-const api = "/api";
-const ReplyForm = ({ questionId }) => {
-	const [content, setContent] = useState("");
+const ReplyForm = ({ questionId,content,setContent,onSubmitReply,answers,getAnswers }) => {
+	
 
   const codeFormats = [
 		"code-block",
@@ -40,29 +37,12 @@ const ReplyForm = ({ questionId }) => {
 
   const editorModule={ toolbar };
 
-	const onSubmitReply = async (e) => {
-		e.preventDefault();
-		try {
-			const body = {
-				question_id: questionId,
-				answer_content: DOMPurify.sanitize(content),
-			};
-			await fetch(`${api}/answer`, {
-				method: "post",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(body),
-			});
-		} catch (err) {
-			console.error(err.message);
-		}
-	};
+	
 
 	return (
 		<div>
 			<>
-				<AnswersByIdThreads questionId={questionId} />
+				<AnswersByIdThreads questionId={questionId} answers={answers} getAnswers={getAnswers}/>
 			</>
 			<form
 				action=""

@@ -38,10 +38,7 @@ const Main = () => {
 		)
 	) : (
 		<div className="main-container">
-			<Navigation />
-			<button className="ask-btn btn" onClick={handleShow}>
-				Ask Question
-			</button>
+			<Navigation handleShow={handleShow} />
 			<main className="main" role="main">
 				<div className="top text-center">
 					<h1 className="text-wrap">TheNerds Q & A APP</h1>

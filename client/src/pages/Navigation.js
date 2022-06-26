@@ -4,24 +4,29 @@ import "./Home.css";
 import LogoNerds from "./LogoNerds.png";
 import { useSelector } from "react-redux";
 
-const Navigation = () => {
+const Navigation = ({ handleShow }) => {
 	const [logName, setLogName] = useState(false);
 
-  const { email } = useSelector((state) => state);
+	const { userName } = useSelector((state) => state);
 
 	// const logout = () => {
 	// 	localStorage.removeItem("token");
 	// 	window.location.reload();
 	// };
 
-
 	return (
 		<div className="navigation">
 			<img className="logo" src={LogoNerds} alt="Logo" />
 			<ul className="loginWrapper">
-				<li className="loginStyle">Logged as:{email}</li>
-				{email ? (
-					<span></span>
+				{userName ? (
+					<>
+						<li className="loginStyle">Logged as:{userName}</li>
+						<li className="loginStyle">
+							<button className="ask-btn btn" onClick={handleShow}>
+								Ask Question
+							</button>
+						</li>
+					</>
 				) : (
 					<li className="loginStyle">
 						<Link onClick={() => setLogName(!logName)} to="/Loginmain">

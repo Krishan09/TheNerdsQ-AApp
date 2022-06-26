@@ -12,7 +12,7 @@ export function Login({ loginUser }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		loginUser(email,password);
+		loginUser(email, password);
 		console.log(user);
 		setEmail("");
 		setPassword("");

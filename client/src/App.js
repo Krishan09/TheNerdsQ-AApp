@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./store";
 import About from "./pages/About";
 import Main from "./pages/Main";
 import Loginmain from "./pages/Loginmain";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { authenticateUser } from "./auth";
+
 
 
 const App = () => {
+	const dispatch = useDispatch();
+	const { userId } = useSelector((state) => state);
+
+	useEffect(() => {
+		if(!userId){
+			authenticateUser(dispatch);
+		}
+	},[userId, dispatch]);
+
 	return (
-		<React.StrictMode>
-			<Provider store={store}>
 				<Routes>
 					<Route path="/" element={<Main />} />
 					<Route
@@ -19,8 +28,6 @@ const App = () => {
 					/>
 					<Route path="/about/this/site" element={<About />} />
 				</Routes>
-			</Provider>
-		</React.StrictMode>
 	);
 };
 export default App;

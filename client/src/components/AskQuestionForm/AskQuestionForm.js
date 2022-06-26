@@ -3,6 +3,7 @@ import RichText from "../TextEditor/RichText";
 import "./AskQuestionForm.css";
 import DOMPurify from "dompurify";
 import Tags from "../Tags/Tags";
+import { useSelector } from "react-redux";
 
 const api = "/api";
 const AskQuestionForm = ({ show, setShow }) => {
@@ -11,6 +12,7 @@ const AskQuestionForm = ({ show, setShow }) => {
 	const [expected_content, setExpected_content] = useState("");
 	const [category, setCategory] = useState([]);
 	const [hide, setHide] = useState("");
+	const { userId } = useSelector((state) => state);
 
 //Post a question
 	const onSubmitQuestion = async(e) => {
@@ -21,6 +23,7 @@ const AskQuestionForm = ({ show, setShow }) => {
 				title,
 				tried_content: DOMPurify.sanitize(tried_content),
 				expected_content: DOMPurify.sanitize(expected_content),
+				userId,
 			};
 			await fetch(`${api}/question`, {
 				method: "post",

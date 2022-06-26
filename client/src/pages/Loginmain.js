@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import "./Loginmain.css";
 import { useDispatch } from "react-redux";
+import { authenticateUser } from "../auth";
 
 
 
@@ -33,10 +34,7 @@ const Loginmain = ({ setToken }) => {
 			throw new Error("can't logging");
 		})
       .then((data)=> {
-		dispatch({
-			type: "login",
-			payload: { email: data.email, userName: data.userName, userId: data.userId },
-		});
+		authenticateUser(dispatch);
 		navigate("/");
         return data;
     } );

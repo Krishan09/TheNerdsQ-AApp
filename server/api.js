@@ -234,10 +234,12 @@ router.post("/question", async (req, res) => {
 	const title = req.body.title;
 	const tried_content = req.body.tried_content;
 	const expected_content = req.body.expected_content;
+	const user_id = req.body.userId;
+	const created_at = new Date();
 	const query =
-		"INSERT INTO questions (category, title, tried_content, expected_content) VALUES ($1, $2, $3, $4)";
+		"INSERT INTO questions (category, title, tried_content, expected_content, user_id, created_at) VALUES ($1, $2, $3, $4, $5, $6)";
 	try {
-		await db.query(query, [category, title, tried_content, expected_content]);
+		await db.query(query, [category, title, tried_content, expected_content, user_id, created_at]);
 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
 	} catch (error) {
 		console.log(error);

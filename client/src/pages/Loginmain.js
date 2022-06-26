@@ -66,12 +66,11 @@ const Loginmain = ({ setToken }) => {
 				password,
 			}),
 		})).json();
-
-    if(!result.error) {
-			console.log(result);
-			navigate("/Loginmain");
+	if(result.msg === "User created") {
+			alert("SUCCESS: You have successfully registered, please log in");
+			showLoginBox();
 		} else {
-			console.log(result.error);
+			alert("ERROR: " + result.msg);
 		}
     };
     return (
@@ -103,9 +102,9 @@ const Loginmain = ({ setToken }) => {
 					<div className="box-container">
 						{loginOpen ? (
 							<Login setToken={setToken} loginUser={loginUser} />
-						) : registerOpen ? (
+						):(
 							<Signup onAdd={signup} />
-						) : null}
+						)}
 					</div>
 				</div>
 				<Footer />

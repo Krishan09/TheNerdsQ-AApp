@@ -4,17 +4,13 @@ import "./AnswersByIdThread.css";
 
 
 const api = "/api";
-const AnswersByIdThreads = ({ questionId }) => {
-	const [answers, setAnswers] = useState([]);
+const AnswersByIdThreads = ({ questionId,answers,getAnswers }) => {
+
+	
 	const [display, setDisplay] = useState(false);
 
 
-	useEffect(() => {
-		fetch(`${api}/answers/${questionId}`)
-			.then((res) => res.json())
-			.then((data) => setAnswers(data))
-			.catch((err) => console.error(err));
-	}, [questionId]);
+	
 
 	const handleDisplay = () => {
 		setDisplay(!display);
@@ -25,7 +21,7 @@ const AnswersByIdThreads = ({ questionId }) => {
 				Answer(s)
 			</button>
 			<div className={display? "display": "answersFormat"}>
-				<Answer key={questionId} data={answers} display={display} />
+				<Answer key={questionId} data={answers} display={display} getAnswers={getAnswers} />
 			</div>
 		</div>
 	);

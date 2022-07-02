@@ -10,8 +10,8 @@ export async function registerUsers(email, username, password) {
 }
 
  export async function updateQuestion(id, title, content) {
-    const query = "UPDATE questions set title = $1 ,content = $2 WHERE id = $3" 
-    await db.query(query, [title, content, id])
+    const query = "UPDATE questions set title = $1 ,content = $2 WHERE id = $3";
+    await db.query(query, [title, content, id]);
  }
 
 export async function getuserbyEmail(email) {

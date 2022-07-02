@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from "react";
+import * as dayjs from "dayjs";
+import * as updateLocale from "dayjs/plugin/updateLocale";
+import * as relativeTime from "dayjs/plugin/relativeTime";
 import "./Question.css";
+dayjs.extend(relativeTime);
+dayjs.extend(updateLocale);
 
+
+dayjs.updateLocale("en", {
+	relativeTime: {
+		...dayjs.en.relativeTime,
+		s: "%d seconds",
+	},
+});
 const api = "/api";
 function Question({ data }) {
 	const [answers, setAnswers] = useState({});
@@ -20,13 +32,14 @@ function Question({ data }) {
 			.then((data) => setAnswers(data))
 			.catch((err) => console.error(err));
 	}, [data.id]);
+
     return (
 			<>
 				{data.title !== "Question title" && (
 					<div className="questionStyle card m-3">
 						<h4 className="card-title">{data.title}</h4>
 						<div className="subQtnStyle card-text">
-							<h5>{data.created_at}</h5>
+							<p>{dayjs(data.created_at).subtract(20, "s").fromNow()}</p>
 							<h6>
 								{answers.length === 0
 									? `${answers.length} Answer`

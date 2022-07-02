@@ -5,6 +5,8 @@ import { hash, compare } from "bcryptjs";
 import db from "./db";
 import { object } from "prop-types";
 import JwtTokenCreator from "./jsonwebtoken";
+import dayjs from "dayjs";
+
 
 
 const router = Router();
@@ -229,6 +231,7 @@ router.get("/answers/:id", async (req, res) => {
 // 		res.status(500).send(error);
 // 	}
 // });
+
 router.post("/question", async (req, res) => {
 	const category = req.body.category;
 	const title = req.body.title;

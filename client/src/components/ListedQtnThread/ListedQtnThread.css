@@ -50,6 +50,10 @@
   background-color: white;
 }
 
+.hide {
+    display: none;
+}
+
 .btn-wrapper {
   display: flex;
   justify-content: flex-end;

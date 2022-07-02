@@ -23,6 +23,7 @@ const handleDelete = async (id) => {
 
 
 function Answer({ data }) {
+	console.log(data);
 	return (
 		<div className="subAnswersFormat overflow-auto">
 			{data.map((answer) => {
@@ -31,7 +32,6 @@ function Answer({ data }) {
 						<div dangerouslySetInnerHTML={createMarkup(answer.content)}></div>
 						<div className="btn-wrapper">
 							<button
-						
 						//Added edit button on click handler
 								className="color-edit btn btn-link"
 								onClick={() => {

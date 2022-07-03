@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Question.css";
+import DOMPurify from "dompurify";
+import dayjs from "dayjs";
+import arrowRight from "../../pages/arrow-right.png";
+import * as updateLocale from "dayjs/plugin/updateLocale";
+import * as relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
+dayjs.extend(updateLocale);
+
 
 const api = "/api";
 function Question({ data }) {
@@ -14,6 +22,12 @@ function Question({ data }) {
 			.split(" ")
 	);
 
+	const createMarkup = (html) => {
+		return {
+			__html: DOMPurify.sanitize(html),
+		};
+	};
+
 	useEffect(() => {
 	fetch(`${api}/answers/${data.id}`)
 			.then((res) => res.json())
@@ -24,9 +38,17 @@ function Question({ data }) {
 			<>
 				{data.title !== "Question title" && (
 					<div className="questionStyle card m-3">
-						<h4 className="card-title">{data.title}</h4>
-						<div className="subQtnStyle card-text">
-							<h5>{data.created_at}</h5>
+						<div className="question-section-1">
+							<h3 className="card-title">{data.title}</h3>
+							<h4>I have tried:</h4>
+							<p dangerouslySetInnerHTML={createMarkup(data.tried_content)}></p>
+							<h4>I expected to:</h4>
+							<p
+								dangerouslySetInnerHTML={createMarkup(data.expected_content)}
+							></p>
+							<h5>{dayjs(data.created_at).fromNow()}</h5>
+						</div>
+						<div className="question-section-2">
 							<h6>
 								{answers.length === 0
 									? `${answers.length} Answer`
@@ -36,15 +58,18 @@ function Question({ data }) {
 											answers.length < 10
 												? "0" + answers.length + " " + "Answers"
 												: answers.length + " " + "Answers"
-									}`}
+									  }`}
 							</h6>
-							{category.join("").slice(1, -1).length === 0
-								? ""
-								: category.map((x, index) => (
-										<span className="categoryStyle" key={index}>
-											{x}
-										</span>
-								))}
+							<img src={arrowRight} alt="arrowRight" width="40px" />
+							<div className="subQtnStyle card-text">
+								{category.join("").slice(1, -1).length === 0
+									? ""
+									: category.map((x, index) => (
+											<span className="categoryStyle" key={index}>
+												{x}
+											</span>
+									  ))}
+							</div>
 						</div>
 					</div>
 				)}

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Question from "../Question/Question";
 import "./ListedQtnThread.css";
+import { useSelector } from "react-redux";
 
 
 const api = "/api";
 const ListedQtnThread = ({ onPressQuestion }) => {
 	const[questionsData, setQuestionData] = useState(null);
+	const { userId } = useSelector((state) => state);
 	useEffect(() => {
 		fetch(`${api}/questions`)
 			.then((res) => {
@@ -38,7 +40,7 @@ const ListedQtnThread = ({ onPressQuestion }) => {
 									<Question data={question} />
 								</span>
 							</button>
-							<div id={question.id} className="btn-wrapper">
+							{userId === question.user_id && <div id={question.id} className="btn-wrapper">
 								<button
 									className="edit-btn btn btn-outline-warning"
 								onClick={() => onPressQuestion(question.id, true)}
@@ -53,7 +55,7 @@ const ListedQtnThread = ({ onPressQuestion }) => {
 								>
 									Delete
 								</button>
-							</div>
+							</div>}
 						</div>
 					);
 				})}

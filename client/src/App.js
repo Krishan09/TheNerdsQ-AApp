@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Main from "./pages/Main";
+import AskQuestion from "./components/AskQuestionForm/AskQuestionForm";
 import Loginmain from "./pages/Loginmain";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -20,14 +21,12 @@ const App = () => {
 	},[userId, dispatch]);
 
 	return (
-				<Routes>
-					<Route path="/" element={<Main />} />
-					<Route
-						path="/Loginmain"
-						element={<Loginmain />}
-					/>
-					<Route path="/about/this/site" element={<About />} />
-				</Routes>
+		<Routes>
+			<Route path="/" element={<Main />} />
+			<Route path="/Loginmain" element={<Loginmain />} />
+			<Route path="/ask-question" element={<AskQuestion />} />
+			<Route path="/about/this/site" element={<About />} />
+		</Routes>
 	);
 };
 export default App;

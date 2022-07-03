@@ -17,18 +17,23 @@ const Navigation = ({ handleShow }) => {
 	return (
 		<div className="navigation">
 			<img className="logo" src={LogoNerds} alt="Logo" />
-			<ul className="loginWrapper">
+			<ul className="navigation-list">
+				<li className="navigation-list-item">
+					<Link to="/">
+						Home
+					</Link>
+				</li>
 				{userName ? (
 					<>
-						<li className="loginStyle">Logged in as:{userName}</li>
-						<li className="loginStyle">
-							<button className="ask-btn btn" onClick={handleShow}>
+						<li className="navigation-list-item">
+							<Link className="ask-btn btn" to="/ask-question">
 								Ask Question
-							</button>
+							</Link>
 						</li>
+						<li className="navigation-list-item">Logged in as:{userName}</li>
 					</>
 				) : (
-					<li className="loginStyle">
+					<li className="navigation-list-item">
 						<Link onClick={() => setLogName(!logName)} to="/Loginmain">
 							<button className="btn bg-light ml-3">Login/Register</button>
 						</Link>

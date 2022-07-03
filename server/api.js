@@ -250,11 +250,30 @@ router.post("/question", async (req, res) => {
 //endpoint for post answers
 
 router.post("/answer", async (req, res) => {
-	const questionId = req.body.question_id;
-	const content = req.body.answer_content;
-	const query = "INSERT INTO answers (content, question_id) VALUES ($1,$2)";
+	const { question_id, answer_content, userId, responder } = req.body;
+	const createdAt = new Date();
+
 	try {
-		await db.query(query, [content, questionId]);
+		if(userId) {
+			const query =
+				"INSERT INTO answers (content, question_id, responder, user_id, created_at) VALUES ($1,$2,$3,$4,$5)";
+			await db.query(query, [
+				answer_content,
+				question_id,
+				responder,
+				userId,
+				createdAt,
+			]);
+		} else {
+			const query =
+				"INSERT INTO answers (content, question_id, responder, created_at) VALUES ($1,$2,$3,$4)";
+			await db.query(query, [
+				answer_content,
+				question_id,
+				responder,
+				createdAt,
+			]);
+		}
 		res.status(201).send({ Success: "Your Answer is Successfully Posted!" });
 	} catch (error) {
 		res.status(500).send(error);

@@ -33,6 +33,7 @@ CREATE TABLE answers (
   user_id INT REFERENCES users (id),
   category VARCHAR(200),
   title VARCHAR(200),
+  responder VARCHAR(200),
   content TEXT NOT NULL,
   created_at TIMESTAMP,
   question_id INT REFERENCES questions (id) ON DELETE CASCADE

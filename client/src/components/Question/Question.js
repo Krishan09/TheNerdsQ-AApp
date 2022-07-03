@@ -46,7 +46,7 @@ function Question({ data }) {
 							<p
 								dangerouslySetInnerHTML={createMarkup(data.expected_content)}
 							></p>
-							<h5>{dayjs(data.created_at).fromNow()}</h5>
+							<h5>created: {dayjs(data.created_at).fromNow()}</h5>
 						</div>
 						<div className="question-section-2">
 							<h6>
@@ -58,7 +58,7 @@ function Question({ data }) {
 											answers.length < 10
 												? "0" + answers.length + " " + "Answers"
 												: answers.length + " " + "Answers"
-									  }`}
+									}`}
 							</h6>
 							<img src={arrowRight} alt="arrowRight" width="40px" />
 							<div className="subQtnStyle card-text">
@@ -68,7 +68,7 @@ function Question({ data }) {
 											<span className="categoryStyle" key={index}>
 												{x}
 											</span>
-									  ))}
+									))}
 							</div>
 						</div>
 					</div>

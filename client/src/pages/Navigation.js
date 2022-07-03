@@ -20,7 +20,7 @@ const Navigation = ({ handleShow }) => {
 			<ul className="loginWrapper">
 				{userName ? (
 					<>
-						<li className="loginStyle">Logged as:{userName}</li>
+						<li className="loginStyle">Logged in as:{userName}</li>
 						<li className="loginStyle">
 							<button className="ask-btn btn" onClick={handleShow}>
 								Ask Question

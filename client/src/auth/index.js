@@ -8,6 +8,10 @@ export const getToken = async () => {
     }
     return null;
 };
+export const logout = async () => {
+	 await Cookies.remove("token_id");
+	 window.location.reload();
+};
 
 export const getUser = async () => {
     const token = await getToken();

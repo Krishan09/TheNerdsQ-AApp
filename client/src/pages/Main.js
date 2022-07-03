@@ -1,12 +1,8 @@
 import React from "react";
-import Navigation from "./Navigation";
 import SelectedQtnThread from "../components/SelectedQtnThread/SelectedQtnThread";
 import ListedQtnThread from "../components/ListedQtnThread/ListedQtnThread";
 import "./Home.css";
-import Footer from "./Footer";
 import { useState } from "react";
-import AskQuestionForm from "../components/AskQuestionForm/AskQuestionForm";
-import Notloggedin from "../components/AskQuestionForm/Notloggedin";
 import { useSelector } from "react-redux";
 
 
@@ -25,20 +21,8 @@ const Main = () => {
   const handleShow = () => {
 		setShow(!show);
   };
-
-  return show === true ? (
-		!email ? (
-			<>
-				<Notloggedin setShow={setShow}></Notloggedin>
-			</>
-		) : (
-			<>
-				<AskQuestionForm show={show} setShow={setShow} />
-			</>
-		)
-	) : (
-		<div className="main-container">
-			<Navigation handleShow={handleShow} />
+  return (
+		
 			<main className="main" role="main">
 				<div className="top text-center">
 					<h1 className="text-wrap">TheNerds Q & A APP</h1>
@@ -51,8 +35,35 @@ const Main = () => {
 					<ListedQtnThread onPressQuestion={openQuestion} questionId={id} />
 				</div>
 			</main>
-			<Footer />
-		</div>
+			
 	);
+//   return show === true ? (
+// 		!email ? (
+// 			<>
+// 				<Notloggedin setShow={setShow}></Notloggedin>
+// 			</>
+// 		) : (
+// 			<>
+// 				<AskQuestionForm show={show} setShow={setShow} />
+// 			</>
+// 		)
+// 	) : (
+// 		<div className="main-container">
+// 			<Navigation handleShow={handleShow} />
+// 			<main className="main" role="main">
+// 				<div className="top text-center">
+// 					<h1 className="text-wrap">TheNerds Q & A APP</h1>
+// 					<p className="top-p text-wrap fs-6">Ask a code-related question</p>
+// 				</div>
+// 				<div className="questionsDiv">
+// 					{typeof id === "number" && (
+// 						<SelectedQtnThread editMode={edit} id={id} />
+// 					)}
+// 					<ListedQtnThread onPressQuestion={openQuestion} questionId={id} />
+// 				</div>
+// 			</main>
+// 			<Footer />
+// 		</div>
+// 	);
 };
 export default Main;

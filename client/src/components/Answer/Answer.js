@@ -30,7 +30,7 @@ function Answer({ data,getAnswers }) {
 					<div key={answer.id} className="card mb-3 p-3 answer-wrapper">
 						<div dangerouslySetInnerHTML={createMarkup(answer.content)}></div>
 						<div className="btn-wrapper">
-							<button
+							{/* <button
 						
 						//Added edit button on click handler
 								className="color-edit btn btn-link"
@@ -39,7 +39,7 @@ function Answer({ data,getAnswers }) {
 								}}
 							>
 								Edit
-							</button>
+							</button> */}
 							<button
 								className="color-delete btn btn-link"
 								onClick={() => {

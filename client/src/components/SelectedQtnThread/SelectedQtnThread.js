@@ -3,12 +3,14 @@ import ReplyForm from "../../components/ReplyForm/ReplyForm";
 import QuestionById from "../../components/QuestionById/QuestionById";
 import "./SelectedQtnThread.css";
 import DOMPurify from "dompurify";
+import { useSelector } from "react-redux";
 
 const api = "/api";
 
 const SelectedQtnThread = ({ id, editMode }) => {
 	const [question, setQuestion] = useState(null);
 	const [answers, setAnswers] = useState([]);
+	const { userId, userName } = useSelector((state) => state);
 	const [editQuestionValues, setEditQuestionValues] = useState({
 		title: "",
 		triedContent: "",
@@ -75,18 +77,26 @@ const SelectedQtnThread = ({ id, editMode }) => {
 			const body = {
 				question_id: id,
 				answer_content: DOMPurify.sanitize(content),
+				responder: userName? userName: "Guest",
 			};
-			await fetch(`${api}/answer`, {
+			if(userId) {
+				body.userId = userId;
+			}
+			const result = await fetch(`${api}/answer`, {
 				method: "post",
 				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(body),
-			}).then((res)=>{
-				getAnswers()});
-			
+			});
+			if(result.ok) {
+				getAnswers();
+				setContent("");
+			}else{
+				alert("Error: something went wrong, please try again later." );
+			}
 		} catch (err) {
-			console.error(err.message);
+			alert("Error: something went wrong, please try again later.");
 		}
 	};
 	// end of reply form methods

@@ -36,9 +36,6 @@ const ReplyForm = ({ questionId,content,setContent,onSubmitReply,answers,getAnsw
 	];
 
   const editorModule={ toolbar };
-
-	
-
 	return (
 		<div>
 			<>

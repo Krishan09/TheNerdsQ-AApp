@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import LogoNerds from "./LogoNerds.png";
 import { useSelector } from "react-redux";
+import { logoutUser } from "../auth/index";
 
-const Navigation = ({ handleShow }) => {
+const Navigation = () => {
 	const [logName, setLogName] = useState(false);
 
 	const { userName } = useSelector((state) => state);
@@ -19,9 +20,7 @@ const Navigation = ({ handleShow }) => {
 			<img className="logo" src={LogoNerds} alt="Logo" />
 			<ul className="navigation-list">
 				<li className="navigation-list-item">
-					<Link to="/">
-						Home
-					</Link>
+					<Link to="/">Home</Link>
 				</li>
 				{userName ? (
 					<>
@@ -31,6 +30,9 @@ const Navigation = ({ handleShow }) => {
 							</Link>
 						</li>
 						<li className="navigation-list-item">Logged in as:{userName}</li>
+						<li>
+							<button className="btn navigation-list-item" onClick={logoutUser}>Logout</button>
+						</li>
 					</>
 				) : (
 					<li className="navigation-list-item">

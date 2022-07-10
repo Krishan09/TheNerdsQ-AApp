@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Question.css";
 import DOMPurify from "dompurify";
-import dayjs from "dayjs";
 import arrowRight from "../../pages/arrow-right.png";
+import dayjs from "dayjs";
 import * as updateLocale from "dayjs/plugin/updateLocale";
 import * as relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);

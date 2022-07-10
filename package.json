@@ -72,6 +72,7 @@
 		"bcryptjs": "^2.4.3",
 		"cookie-session": "^2.0.0",
 		"cors": "^2.8.5",
+		"dayjs": "^1.11.3",
 		"dompurify": "^2.3.6",
 		"dotenv": "^16.0.0",
 		"draft-convert": "^2.1.12",

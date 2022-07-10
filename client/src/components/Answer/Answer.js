@@ -36,11 +36,11 @@ function Answer({ data, getAnswers }) {
 				return (
 					<div key={answer.id} className="card mb-3 p-3 answer-wrapper">
 						<div className="answer-section-1">
+							<h6>{answer.responder}:</h6>
 							<p dangerouslySetInnerHTML={createMarkup(answer.content)}></p>
 							<span>Responded: {dayjs(answer.created_at).fromNow()}</span>
 						</div>
 						<div className="answer-section-2">
-							<h6>{answer.responder}</h6>
 							{/* <button
 						//Added edit button on click handler
 								className="color-edit btn btn-link"
@@ -51,7 +51,7 @@ function Answer({ data, getAnswers }) {
 								Edit
 							</button> */}
 							<button
-								className="color-delete btn btn-link"
+								className="color-delete btn btn-link p-0"
 								onClick={() => {
 									handleDelete(answer.id);
 									getAnswers();

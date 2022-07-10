@@ -28,7 +28,7 @@ const SelectedQtnThread = ({ id, editMode }) => {
 	};
 
 	const getQuestions = () => {
-		console.log("here")
+		console.log("here");
 		fetch(`${api}/questions/${id}`)
 			.then((res) => {
 				if (res.ok) {

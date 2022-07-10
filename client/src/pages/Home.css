@@ -77,7 +77,7 @@ label, input {
 }
 
 label {
-	color: white;
+	color: slategray;
 	float: left;
 	font-size: 25px;
 }

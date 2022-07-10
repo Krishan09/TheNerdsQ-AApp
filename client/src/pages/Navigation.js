@@ -10,10 +10,6 @@ const Navigation = () => {
 
 	const { userName } = useSelector((state) => state);
 
-	// const logout = () => {
-	// 	localStorage.removeItem("token");
-	// 	window.location.reload();
-	// };
 
 	return (
 		<div className="navigation">
@@ -25,13 +21,20 @@ const Navigation = () => {
 				{userName ? (
 					<>
 						<li className="navigation-list-item">
+							You are logged in as: {userName}
+						</li>
+						<li className="navigation-list-item">
 							<Link className="ask-btn btn" to="/ask-question">
 								Ask Question
 							</Link>
 						</li>
-						<li className="navigation-list-item">Logged in as:{userName}</li>
 						<li>
-							<button className="btn navigation-list-item" onClick={logoutUser}>Logout</button>
+							<button
+								className="ask-btn btn navigation-list-item"
+								onClick={logoutUser}
+							>
+								Logout
+							</button>
 						</li>
 					</>
 				) : (

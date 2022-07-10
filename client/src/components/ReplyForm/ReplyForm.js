@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import AnswersByIdThreads from "../AnswersById/AnswersByIdThread";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./ReplyForm.css";
 
 const ReplyForm = ({ questionId,content,setContent,onSubmitReply,answers,getAnswers }) => {
-	
 
   const codeFormats = [
 		"code-block",
@@ -39,7 +38,7 @@ const ReplyForm = ({ questionId,content,setContent,onSubmitReply,answers,getAnsw
 	return (
 		<div>
 			<>
-				<AnswersByIdThreads questionId={questionId} answers={answers} getAnswers={getAnswers}/>
+				<AnswersByIdThreads questionId={questionId} answers={answers} getAnswers={getAnswers} />
 			</>
 			<form
 				action=""

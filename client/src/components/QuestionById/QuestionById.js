@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./QuestionById.css";
 import DOMPurify from "dompurify";
 import RichText from "../TextEditor/RichText";
@@ -32,17 +32,25 @@ const QuestionById = ({ question, editMode,editQuestionValues,onSetEditQuestionV
 			return (
 				<form>
 					{" "}
+					<label htmlFor="title">Title: </label>
 					<input
 						className="form-control d-block mb-3"
 						type="text"
 						value={editQuestionValues.title}
-						onChange={(e) =>onSetEditQuestionValues("title",e.target.value)}
+						onChange={(e) => onSetEditQuestionValues("title", e.target.value)}
 					></input>
+					<label htmlFor="expectedOutcome"> I expected to: </label>
 					<RichText
-						onChange={(value) =>onSetEditQuestionValues("expectedContent",value)}
+						onChange={(value) =>
+							onSetEditQuestionValues("expectedContent", value)
+						}
 						defaultContent={editQuestionValues.expectedContent}
 					/>
-					<RichText onChange={(value) =>onSetEditQuestionValues("triedContent",value)} defaultContent={editQuestionValues.triedContent} />
+					<label htmlFor="triedOutcome"> I have tried: </label>
+					<RichText
+						onChange={(value) => onSetEditQuestionValues("triedContent", value)}
+						defaultContent={editQuestionValues.triedContent}
+					/>
 					<button
 						className="btn mt-3 mb-4 btn-outline-warning"
 						type="button"

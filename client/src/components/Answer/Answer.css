@@ -31,8 +31,6 @@
 
 .answer-section-2 {
   display: flex;
-  flex-direction: column;
   align-items: flex-end;
-  justify-content: space-between;
 }
 

@@ -73,7 +73,6 @@ const Loginmain = ({ setToken }) => {
     };
     return (
 			<main className="upmain">
-				<Navigation />
 				<div className="root-container">
 					<div className="box-controller">
 						<div

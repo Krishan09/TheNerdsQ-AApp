@@ -36,3 +36,11 @@
    margin-bottom: 5vh;
    text-align: center;
  }
+
+ .ql-toolbar.ql-snow {
+	width: fit-content;
+ }
+
+ .ql-container.ql-snow {
+	width: auto;
+ }

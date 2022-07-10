@@ -40,22 +40,24 @@ const ListedQtnThread = ({ onPressQuestion }) => {
 									<Question data={question} />
 								</span>
 							</button>
-							{userId === question.user_id && <div id={question.id} className="btn-wrapper">
-								<button
-									className="edit-btn btn btn-outline-warning"
-								onClick={() => onPressQuestion(question.id, true)}
-								>
-									Edit
-								</button>
-								<button
-									onClick={() => {
-										handleDelete(question.id);
-									}}
-									className="delete-btn btn btn-outline-danger"
-								>
-									Delete
-								</button>
-							</div>}
+							{userId === question.user_id && (
+								<div id={question.id} className="btn-wrapper">
+									<button
+										className="edit-btn btn btn-outline-warning"
+										onClick={() => onPressQuestion(question.id, true)}
+									>
+										Edit
+									</button>
+									<button
+										onClick={() => {
+											handleDelete(question.id);
+										}}
+										className="delete-btn btn btn-outline-danger"
+									>
+										Delete
+									</button>
+								</div>
+							)}
 						</div>
 					);
 				})}

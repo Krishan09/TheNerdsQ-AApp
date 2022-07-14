@@ -23,13 +23,7 @@ const handleDelete = async (id) => {
 	}
 };
 
-//const handleEdit = async (id)
-
-
-
-
 function Answer({ data, getAnswers }) {
-	console.log(data);
 	return (
 		<div className="subAnswersFormat overflow-auto">
 			{data.map((answer) => {
@@ -41,15 +35,6 @@ function Answer({ data, getAnswers }) {
 							<span>Responded: {dayjs(answer.created_at).fromNow()}</span>
 						</div>
 						<div className="answer-section-2">
-							{/* <button
-						//Added edit button on click handler
-								className="color-edit btn btn-link"
-								onClick={() => {
-									handleEdit(answer.id);
-								}}
-							>
-								Edit
-							</button> */}
 							<button
 								className="color-delete btn btn-link p-0"
 								onClick={() => {

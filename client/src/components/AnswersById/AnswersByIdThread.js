@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Answer from "../Answer/Answer";
 import "./AnswersByIdThread.css";
 
 
-const api = "/api";
 const AnswersByIdThreads = ({ questionId,answers,getAnswers }) => {
-
-	
 	const [display, setDisplay] = useState(false);
-
-
-	
 
 	const handleDisplay = () => {
 		setDisplay(!display);

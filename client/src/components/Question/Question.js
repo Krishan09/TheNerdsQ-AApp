@@ -3,6 +3,7 @@ import "./Question.css";
 import DOMPurify from "dompurify";
 import arrowRight from "../../pages/arrow-right.png";
 import dayjs from "dayjs";
+import { useSelector } from "react-redux";
 import * as updateLocale from "dayjs/plugin/updateLocale";
 import * as relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
@@ -12,6 +13,7 @@ dayjs.extend(updateLocale);
 const api = "/api";
 function Question({ data }) {
 	const [answers, setAnswers] = useState({});
+	const { userName } = useSelector((state) => state);
 	const [category, setCategory] = useState(
 		[data.category]
 			.toString()
@@ -21,7 +23,6 @@ function Question({ data }) {
 			.join(" ")
 			.split(" ")
 	);
-
 	const createMarkup = (html) => {
 		return {
 			__html: DOMPurify.sanitize(html),
@@ -46,7 +47,7 @@ function Question({ data }) {
 							<p
 								dangerouslySetInnerHTML={createMarkup(data.expected_content)}
 							></p>
-							<h5>created: {dayjs(data.created_at).fromNow()}</h5>
+							<h5>Created: {dayjs(data.created_at).fromNow()} by {userName}</h5>
 						</div>
 						<div className="question-section-2">
 							<h6>

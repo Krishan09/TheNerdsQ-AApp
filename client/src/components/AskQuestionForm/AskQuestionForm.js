@@ -35,7 +35,6 @@ const AskQuestionForm = ({ show, setShow }) => {
 		} catch(err) {
 			console.error(err.message);
 		}
-		setShow(!show);
 	};
 
 //Add a category

@@ -38,7 +38,7 @@
  }
 
  .ql-toolbar.ql-snow {
-	width: fit-content;
+	width: inherit;
  }
 
  .ql-container.ql-snow {

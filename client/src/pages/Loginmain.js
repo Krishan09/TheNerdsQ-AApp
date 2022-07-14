@@ -104,7 +104,6 @@ const Loginmain = ({ setToken }) => {
 						)}
 					</div>
 				</div>
-				<Footer />
 			</main>
 		);
 };

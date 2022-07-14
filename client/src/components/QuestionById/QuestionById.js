@@ -1,67 +1,70 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./QuestionById.css";
 import DOMPurify from "dompurify";
-import RichText from "../TextEditor/RichText";
+import { useSelector } from "react-redux";
 
 
 
+const api = "/api";
 
-const QuestionById = ({ question, editMode,editQuestionValues,onSetEditQuestionValues,saveQuestion }) => {
+const QuestionById = ({ question, questionId }) => {
+const { userId } = useSelector((state) => state);
 
-	const createMarkup = (html) => {
+const createMarkup = (html) => {
 		return {
 			__html: DOMPurify.sanitize(html),
 		};
 	};
 
+	const handleDelete = async (id) => {
+		try {
+			await fetch(`${api}/question/${id}`, { method: "DELETE" });
+			window.location.replace("/");
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
 
 	if (question) {
-		if (!editMode) {
 			return (
-				<form className="questionByIdStyle">
-					<h3 className="hide-btn">{question[0].title}</h3>
-					<p
-						dangerouslySetInnerHTML={createMarkup(question[0].tried_content)}
-					></p>
-					<p
-						dangerouslySetInnerHTML={createMarkup(question[0].expected_content)}
-					></p>
-				</form>
-			);
-		} else {
-			return (
-				<form>
-					{" "}
-					<label htmlFor="title">Title: </label>
-					<input
-						className="form-control d-block mb-3"
-						type="text"
-						value={editQuestionValues.title}
-						onChange={(e) => onSetEditQuestionValues("title", e.target.value)}
-					></input>
-					<label htmlFor="expectedOutcome"> I expected to: </label>
-					<RichText
-						onChange={(value) =>
-							onSetEditQuestionValues("expectedContent", value)
-						}
-						defaultContent={editQuestionValues.expectedContent}
-					/>
-					<label htmlFor="triedOutcome"> I have tried: </label>
-					<RichText
-						onChange={(value) => onSetEditQuestionValues("triedContent", value)}
-						defaultContent={editQuestionValues.triedContent}
-					/>
-					<button
-						className="btn mt-3 mb-4 btn-outline-warning"
-						type="button"
-						onClick={saveQuestion}
-					>
-						saveQuestion
-					</button>
-				</form>
+				<>
+					<div className="questionByIdStyle">
+						<h3>{question[0].title}</h3>
+						<h4>I have tried to: </h4>
+						<p
+							dangerouslySetInnerHTML={createMarkup(question[0].tried_content)}
+						></p>
+						<h4>I expected to: </h4>
+						<p
+							dangerouslySetInnerHTML={createMarkup(
+								question[0].expected_content
+							)}
+						></p>
+					</div>
+					<div>
+						{userId === question[0].user_id && (
+							<div className="btn-wrapper">
+								<Link
+									className="edit-btn btn btn-outline-warning"
+									to={`/question/edit/${questionId}`}
+								>
+									Edit
+								</Link>
+								<button
+									onClick={() => {
+										handleDelete(questionId);
+									}}
+									className="delete-btn btn btn-outline-danger"
+								>
+									Delete
+								</button>
+							</div>
+						)}
+					</div>
+				</>
 			);
 		}
-	}
 
 	return null;
 };

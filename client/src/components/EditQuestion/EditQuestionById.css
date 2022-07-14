@@ -1,0 +1,11 @@
+.quill {
+	margin-bottom: 1rem;
+}
+
+label {
+	display: block;
+}
+
+input {
+	margin-left: 0;
+}

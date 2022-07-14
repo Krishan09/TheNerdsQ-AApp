@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Question from "../Question/Question";
 import "./ListedQtnThread.css";
 import { useSelector } from "react-redux";
 
 
 const api = "/api";
-const ListedQtnThread = ({ onPressQuestion }) => {
+const ListedQtnThread = () => {
 	const[questionsData, setQuestionData] = useState(null);
 	const { userId } = useSelector((state) => state);
 	useEffect(() => {
@@ -31,23 +32,20 @@ const ListedQtnThread = ({ onPressQuestion }) => {
 			<div className="listedQtnThreadFormat">
 				{questionsData.map((question) => {
 					return (
-						<div key={question.Id} className="tent">
-							<button
-								className="tentative"
-								onClick={() => onPressQuestion(question.id, false)}
-							>
+						<div key={question.id} className="tent">
+							<Link className="tentative" to={`/question/${question.id}`}>
 								<span>
 									<Question data={question} />
 								</span>
-							</button>
+							</Link>
 							{userId === question.user_id && (
 								<div id={question.id} className="btn-wrapper">
-									<button
+									<Link
 										className="edit-btn btn btn-outline-warning"
-										onClick={() => onPressQuestion(question.id, true)}
+										to={`/question/edit/${question.id}`}
 									>
 										Edit
-									</button>
+									</Link>
 									<button
 										onClick={() => {
 											handleDelete(question.id);

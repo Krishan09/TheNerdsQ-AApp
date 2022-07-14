@@ -4,31 +4,21 @@ import QuestionById from "../../components/QuestionById/QuestionById";
 import "./SelectedQtnThread.css";
 import DOMPurify from "dompurify";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const api = "/api";
 
-const SelectedQtnThread = ({ id, editMode }) => {
-	const [question, setQuestion] = useState(null);
+const SelectedQtnThread = () => {
+	const { id } = useParams();
+	const [question, setQuestion] = useState("");
 	const [answers, setAnswers] = useState([]);
 	const { userId, userName } = useSelector((state) => state);
-	const [editQuestionValues, setEditQuestionValues] = useState({
-		title: "",
-		triedContent: "",
-		expectedContent: "",
-	});
+
 	const toggleMode = (data) => {
 		setQuestion(data);
-		if (data) {
-			setEditQuestionValues({
-				title: data[0].title,
-				triedContent: data[0].tried_content,
-				expectedContent: data[0].expected_content,
-			});
-		}
 	};
 
 	const getQuestions = () => {
-		console.log("here");
 		fetch(`${api}/questions/${id}`)
 			.then((res) => {
 				if (res.ok) {
@@ -37,6 +27,7 @@ const SelectedQtnThread = ({ id, editMode }) => {
 			})
 			.then((data) => toggleMode(data));
 	};
+
 	const getAnswers=() => {
 		fetch(`${api}/answers/${id}`)
 			.then((res) => res.json())
@@ -49,25 +40,6 @@ const SelectedQtnThread = ({ id, editMode }) => {
 		getAnswers();
 	}, [id]);
 
-	const onSetEditQuestionValues = (name, value) => {
-		setEditQuestionValues({ ...editQuestionValues, [name]: value });
-	};
-	const saveQuestion = () => {
-		fetch(`${api}/questions`, {
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-
-			method: "PATCH",
-			body: JSON.stringify({
-				id,
-				title: editQuestionValues.title,
-				tried_content: editQuestionValues.triedContent,
-				expected_content: editQuestionValues.expectedContent,
-			}),
-		}).then(getQuestions);
-	};
 
 	// Start of reply form methods
 	const [content, setContent] = useState("");
@@ -100,33 +72,10 @@ const SelectedQtnThread = ({ id, editMode }) => {
 		}
 	};
 	// end of reply form methods
-	const [hide, setHide] = useState(false);
-
-	const handleHide = (e) => {
-		e.preventDefault();
-		setHide(!hide);
-		window.location.reload(true);
-	};
 	return (
-		<ul className={hide ? "hide" : "selectedQtnContain"}>
+		<ul className="selectedQtnContain">
 			<li>
-				<button
-					type="button"
-					className="close"
-					aria-label="Close"
-					onClick={handleHide}
-				>
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<QuestionById
-					key={id}
-					questionId={id}
-					editMode={editMode}
-					question={question}
-					saveQuestion={saveQuestion}
-					onSetEditQuestionValues={onSetEditQuestionValues}
-					editQuestionValues={editQuestionValues}
-				/>
+				<QuestionById key={id} questionId={id} question={question} />
 			</li>
 			<li>
 				<ReplyForm

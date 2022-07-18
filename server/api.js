@@ -151,14 +151,26 @@ function verifyToken(req, res, next) {
 	}
 }
 
+// CREATE TABLE users (
+//   id SERIAL PRIMARY KEY,
+//   username VARCHAR(100),
+//   email VARCHAR(100),
+//   passwd  VARCHAR(200)
+// );
+// CREATE TABLE questions (
+//   id SERIAL PRIMARY KEY,
+//   title VARCHAR(200),
+//   tried_content TEXT NOT NULL,
+//   expected_content TEXT NOT NULL,
+//   category VARCHAR(200),
+//   user_id INT REFERENCES users,
+//   created_at TIMESTAMP
+// );
+
 router.get("/questions", async (req, res) => {
-	const questionsQuery = "SELECT * FROM questions";
-	// try {
+	const questionsQuery = "SELECT questions.id, questions.title, questions.tried_content, questions.expected_content, questions.category, questions.user_id, questions.created_at, users.username FROM questions INNER JOIN users ON questions.user_id=users.id;";
 		const result = await db.query(questionsQuery);
 		res.json(result.rows);
-	// } catch (error) {
-	// 	res.status(500).send(error);
-	// }
 });
 
 const isValid = (n) => {

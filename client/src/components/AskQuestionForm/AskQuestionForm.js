@@ -6,12 +6,11 @@ import Tags from "../Tags/Tags";
 import { useSelector } from "react-redux";
 
 const api = "/api";
-const AskQuestionForm = ({ show, setShow }) => {
+const AskQuestionForm = () => {
 	const [title, setTitle] = useState("");
 	const [tried_content, setTried_content] = useState("");
 	const [expected_content, setExpected_content] = useState("");
 	const [category, setCategory] = useState([]);
-	const [hide, setHide] = useState("");
 	const { userId } = useSelector((state) => state);
 
 //Post a question
@@ -25,15 +24,19 @@ const AskQuestionForm = ({ show, setShow }) => {
 				expected_content: DOMPurify.sanitize(expected_content),
 				userId,
 			};
-			await fetch(`${api}/question`, {
+			const response = await fetch(`${api}/question`, {
 				method: "post",
 				body: JSON.stringify(body),
 				headers: {
 					"Content-Type": "application/json",
 				},
 			});
+			if(response.ok) {
+				alert("Your question has been submitted successfully");
+				window.location.reload(true);
+			}
 		} catch(err) {
-			console.error(err.message);
+			alert("Error, something went wrong, we couldn't submit your question");
 		}
 	};
 
@@ -56,16 +59,12 @@ const AskQuestionForm = ({ show, setShow }) => {
 //Cancel a submit question
 	const cancelSubmit = (e) => {
 		e.preventDefault();
-		setHide(!hide);
-		window.location.reload(true);
+		window.location.replace("/");
 	};
 
 	return (
-		<div className={show ? "show" : ""}>
-			<form
-				className="askQuestionStyle form-group card"
-				onSubmit={onSubmitQuestion}
-			>
+		<form className="askQuestionStyle form-group" onSubmit={onSubmitQuestion}>
+			<div className="form-group">
 				<label htmlFor="title">Title</label>
 				<i>
 					Be specific and imagine you’re asking a question to another person
@@ -84,42 +83,54 @@ const AskQuestionForm = ({ show, setShow }) => {
 					autoComplete="off"
 					required
 				></textarea>
+			</div>
+			<div className="form-group">
 				<label htmlFor="triedOutcome">
 					What were you trying to do? What is happening?
 				</label>
 				<i>
 					Include all the information someone would need to answer your question
 				</i>
-				<RichText onChange={setTried_content} />
+				<RichText onChange={setTried_content} value={tried_content} />
+			</div>
+			<div className="form-group">
 				<label htmlFor="expectedOutcome">
 					What were you expecting? provide any link?
 				</label>
 				<i>
 					Include all the information someone would need to answer your question
 				</i>
-				<RichText onChange={setExpected_content} />
-				<div className="categories">
-					<label htmlFor="expectedOutcome">Category</label>
-					<i>
-						Add up to 5 tags to describe what your question is about then press
-						enter
-					</i>
-					<Tags addCategory={addCategory} removeCategory={removeCategory} category={category} setCategory={setCategory} />
-				</div>
-				<div className="btn-wrapper">
-					<button
-						type="button"
-						className="btn cancelQtn-btn"
-						onClick={cancelSubmit}
-					>
-						Cancel
-					</button>
-					<button type="submit" className="btn askQtn-btn">
-						Ask question
-					</button>
-				</div>
-			</form>
-		</div>
+				<RichText
+					onChange={setExpected_content}
+					value={expected_content}
+				/>
+			</div>
+			<div className="form-group">
+				<label htmlFor="expectedOutcome">Category</label>
+				<i>
+					Add up to 5 tags to describe what your question is about then press
+					enter
+				</i>
+				<Tags
+					addCategory={addCategory}
+					removeCategory={removeCategory}
+					category={category}
+					setCategory={setCategory}
+				/>
+			</div>
+			<div className="form-group btn-wrapper">
+				<button
+					type="button"
+					className="btn cancelQtn-btn"
+					onClick={cancelSubmit}
+				>
+					Cancel
+				</button>
+				<button type="submit" className="btn askQtn-btn">
+					Ask question
+				</button>
+			</div>
+		</form>
 	);
 };
 

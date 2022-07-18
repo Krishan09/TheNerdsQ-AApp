@@ -8,8 +8,6 @@
 
 .container {
 	margin-top: 40px;
-	margin-right: 15px;
-	margin-left: 15px;
 	grid-area: content;
 	min-height: calc(100vh - 140px);
 }

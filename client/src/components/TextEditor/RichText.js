@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import DOMPurify from "dompurify";
 
 const RichText = ({ onChange, defaultContent = "" }) => {
 	const [content, setContent] = useState(defaultContent);
 	const updateContent = (value) => {
-		console.log(value);
 		setContent(value);
 		onChange(value);
 	};

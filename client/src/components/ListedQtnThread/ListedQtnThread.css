@@ -19,7 +19,6 @@
 .listedQtnThreadFormat {
   display: flex;
   flex-direction: column;
-  height: 85vh;
   overflow-y: auto;
   scrollbar-width: thin;
 
@@ -64,7 +63,6 @@
   margin-right: 1rem;
   margin-bottom: 1rem;
   padding: 0.3rem;
-  color: Gold;
 }
 
 .delete-btn {

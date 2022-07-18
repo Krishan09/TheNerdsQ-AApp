@@ -47,7 +47,7 @@ function Question({ data }) {
 							<p
 								dangerouslySetInnerHTML={createMarkup(data.expected_content)}
 							></p>
-							<h5>Created: {dayjs(data.created_at).fromNow()} by {userName}</h5>
+							<span>Created: {dayjs(data.created_at).fromNow()} by {data.username}</span>
 						</div>
 						<div className="question-section-2">
 							<h6>

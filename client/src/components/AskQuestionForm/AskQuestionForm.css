@@ -1,29 +1,19 @@
-.askQuestionStyle {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-wrap: wrap;
-   box-shadow: 0 4px 8px 0 rgb(210, 105, 30, 0.5), 0 6px 20px 0 rgb(210, 105, 30, 0.5);
-   text-align: center;
-   background-color: white;
-   max-width: 60%;
-   min-height: 96vh;
-   margin: 1rem auto 0 auto;  
-   padding: 0 1rem;
-}
+ .askQuestionStyle {
+    max-width: 100%;
+    min-height: 80vh; 
+    margin-top: 7rem;
+} 
 
 .askQuestionStyle label{
     display: block;
-    color: darkslategray;
+    color: black;
 	max-width: 100%;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: lighter;
-    margin-top: 3rem;
-    margin-bottom: 0;
+    margin-top: 1rem;
 }
 
 .askQuestionStyle textarea {
-	width: 50vw;
     border: 1px solid #ccc; 
     resize: none;
 }
@@ -68,14 +58,6 @@
 }
 
 
-.show {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;  
-    background-color: #282c34;
-    min-height: 100vh;
-    overflow-y: scroll;
-}
 
 .hide {
     display: none;
@@ -138,17 +120,5 @@
     color: maroon;
     opacity: 0.4;
     font-size: 0.8rem;
-}
-
-
-@media screen and (max-width: 820px) {
-        .askQuestionStyle {    
-    max-width: 96%;
-     box-shadow: none;
-    }
-        .show {
-    background-color: cadetblue;
-    }
-  
 }
 

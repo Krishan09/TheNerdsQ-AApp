@@ -1,50 +1,49 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Home.css";
+import "./Navigation.css";
 import LogoNerds from "./LogoNerds.png";
 import { useSelector } from "react-redux";
 import { logoutUser } from "../auth/index";
+import HambugerImg from "./Hamburger_icon.png";
+
 
 const Navigation = () => {
-	const [logName, setLogName] = useState(false);
-
 	const { userName } = useSelector((state) => state);
-
+	const [open, setOpen] = useState(false);
 
 	return (
-		<div className="navigation">
-			<img className="logo" src={LogoNerds} alt="Logo" />
-			<ul className="navigation-list">
-				<li className="navigation-list-item">
-					<Link to="/">Home</Link>
-				</li>
-				{userName ? (
-					<>
-						<li className="navigation-list-item">
-							You are logged in as: {userName}
-						</li>
-						<li className="navigation-list-item">
-							<Link className="ask-btn btn" to="/ask-question">
-								Ask Question
-							</Link>
-						</li>
-						<li>
-							<button
-								className="ask-btn btn navigation-list-item"
-								onClick={logoutUser}
-							>
-								Logout
-							</button>
-						</li>
-					</>
-				) : (
-					<li className="navigation-list-item">
-						<Link onClick={() => setLogName(!logName)} to="/Loginmain">
-							<button className="btn bg-light ml-3">Login/Register</button>
-						</Link>
-					</li>
-				)}
-			</ul>
+		<div className={open ? "topnav responsive" : "topnav"} id="myTopnav">
+			<a href="/" className="active nav-logo">
+				<img className="logo" src={LogoNerds} alt="Logo" />
+			</a>
+			<a href="/" className="topnav-item">
+				Home
+			</a>
+			{userName && (
+				<a className="topnav-item" href="/ask-question">
+					Ask question
+				</a>
+			)}
+			{!userName && (
+				<a className="topnav-item" href="/Loginmain">
+					Login/Register
+				</a>
+			)}
+			{userName && (
+				<a className="topnav-item" href="#about">
+					You are logged in as: {userName}
+				</a>
+			)}
+			{userName && (
+				<a className="topnav-item">
+					<span style={{ color: "red" }} onClick={logoutUser}>
+						Logout
+					</span>
+				</a>
+			)}
+			<span className="topnav-item icon" onClick={() => setOpen(!open)}>
+				<img src={HambugerImg} alt="Hambuger" width="30px" height="30px" />
+			</span>
 		</div>
 	);
 };

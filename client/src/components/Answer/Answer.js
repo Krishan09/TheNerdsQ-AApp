@@ -24,6 +24,7 @@ const handleDelete = async (id) => {
 };
 
 function Answer({ data, getAnswers }) {
+
 	return (
 		<div className="subAnswersFormat overflow-auto">
 			{data.map((answer) => {

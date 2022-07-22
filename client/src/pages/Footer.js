@@ -4,10 +4,10 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div className="footer">
-        <p>&copy; CYF 2022 The Nerds Team</p>
-    </div>
-  );
+		<div className="footer">
+			<p>All right reserved by CodeYourFuture &copy;2022</p>
+		</div>
+	);
 };
 
 export default Footer;

@@ -6,3 +6,11 @@
     color: orange;
     line-height: 50px;
 }
+
+
+@media screen and (max-width: 600px) {
+    .footer p{
+    font-size: 0.8rem;
+}
+  
+}

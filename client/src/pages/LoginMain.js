@@ -4,13 +4,13 @@ import Signup from "./Signup";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
-import "./Loginmain.css";
+import "./loginMain.css";
 import { useDispatch } from "react-redux";
 import { authenticateUser } from "../auth";
 
 
 
-const Loginmain = ({ setToken }) => {
+const loginMain = ({ setToken }) => {
     const [ loginOpen, setLoginOpen ] = useState(true);
     const [ registerOpen, setRegisterOpen ] = useState(false);
     const api = "/api";
@@ -107,4 +107,4 @@ const Loginmain = ({ setToken }) => {
 			</main>
 		);
 };
-export default Loginmain;
+export default loginMain;

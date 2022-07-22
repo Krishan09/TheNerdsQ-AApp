@@ -1,7 +1,6 @@
  .askQuestionStyle {
     max-width: 100%;
-    min-height: 80vh; 
-    margin-top: 7rem;
+    min-height: 80vh;
 } 
 
 .askQuestionStyle label{
@@ -102,9 +101,7 @@
 
 
 .ql-editor {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+    display: block;
     align-items: center;
     width: auto;
     overflow-x: hidden;

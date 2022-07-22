@@ -3,7 +3,6 @@ import "./Question.css";
 import DOMPurify from "dompurify";
 import arrowRight from "../../pages/arrow-right.png";
 import dayjs from "dayjs";
-import { useSelector } from "react-redux";
 import * as updateLocale from "dayjs/plugin/updateLocale";
 import * as relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
@@ -13,7 +12,6 @@ dayjs.extend(updateLocale);
 const api = "/api";
 function Question({ data }) {
 	const [answers, setAnswers] = useState({});
-	const { userName } = useSelector((state) => state);
 	const [category, setCategory] = useState(
 		[data.category]
 			.toString()
@@ -47,7 +45,9 @@ function Question({ data }) {
 							<p
 								dangerouslySetInnerHTML={createMarkup(data.expected_content)}
 							></p>
-							<span>Created: {dayjs(data.created_at).fromNow()} by {data.username}</span>
+							<span>
+								Created: {dayjs(data.created_at).fromNow()} by {data.username}
+							</span>
 						</div>
 						<div className="question-section-2">
 							<h6>
@@ -61,7 +61,12 @@ function Question({ data }) {
 												: answers.length + " " + "Answers"
 									}`}
 							</h6>
-							<img src={arrowRight} alt="arrowRight" width="40px" />
+							<img
+								className="arrowRight"
+								src={arrowRight}
+								alt="arrowRight"
+								width="40px"
+							/>
 							<div className="subQtnStyle card-text">
 								{category.join("").slice(1, -1).length === 0
 									? ""

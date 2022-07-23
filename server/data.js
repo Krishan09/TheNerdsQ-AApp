@@ -14,7 +14,7 @@ export async function registerUsers(email, username, password) {
     await db.query(query, [title, content, id])
  }
 
-export async function getuserbyEmail(email) {
+export async function getUsersByEmail(email) {
 	const query = "SELECT * FROM users WHERE email= $1";
 	const result = await db.query(query, [email]);
 	if (result.rows.length == 0) {

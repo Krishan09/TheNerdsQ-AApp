@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import "./Loginmain.css";
+import "./loginMain.css";
 
 export function Login({ loginUser }) {
 	const [email, setEmail] = useState("");

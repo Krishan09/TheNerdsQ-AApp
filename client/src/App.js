@@ -4,7 +4,7 @@ import About from "./pages/About";
 import Main from "./pages/Main";
 import AskQuestion from "./components/AskQuestionForm/AskQuestionForm";
 import SelectedQtnThread from "./components/SelectedQtnThread/SelectedQtnThread";
-import Loginmain from "./pages/Loginmain";
+import LoginMain from "./pages/LoginMain";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { authenticateUser } from "./auth";
@@ -27,7 +27,7 @@ const App = () => {
 			<Route path="/" element={<Main />} />
 			<Route path="/question/:id" element={<SelectedQtnThread />} />
 			<Route path="/question/edit/:id" element={<EditQuestionById />} />
-			<Route path="/Loginmain" element={<Loginmain />} />
+			<Route path="/loginMain" element={<LoginMain />} />
 			<Route path="/ask-question" element={<AskQuestion />} />
 			<Route path="/about/this/site" element={<About />} />
 		</Routes>

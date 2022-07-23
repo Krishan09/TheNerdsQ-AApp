@@ -12,7 +12,7 @@ const AnswersByIdThreads = ({ questionId,answers,getAnswers }) => {
 	return (
 		<div>
 			<button type="button" className="answer-link btn btn-link" onClick={handleDisplay}>
-				Answer(s)
+				{answers.length} Answer(s)
 			</button>
 			<div className={display? "display": "answersFormat"}>
 				<Answer key={questionId} data={answers} display={display} getAnswers={getAnswers} />

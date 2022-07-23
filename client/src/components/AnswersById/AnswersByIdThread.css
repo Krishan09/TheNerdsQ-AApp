@@ -1,5 +1,4 @@
 .answersFormat {
-	/* border-left: 3px solid chocolate; */
 	border-left: 3px solid sienna;
 	scrollbar-color: white;
     scrollbar-width: thin;
@@ -21,7 +20,6 @@
 	text-align: left;
 	font-size: 1.3rem;
 	font-weight: bold;
-	/* color: rgb(218, 74, 22); */
 	color: Sienna;
 }
 

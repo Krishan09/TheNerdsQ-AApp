@@ -29,8 +29,16 @@
   justify-content: space-between;
 }
 
+.answer-section-1 span,
+.answer-section-1 h6{
+  color: darkolivegreen;
+}
+
+
 .answer-section-2 {
   display: flex;
+  flex-direction: column;
   align-items: flex-end;
+  justify-content: space-between;
 }
 

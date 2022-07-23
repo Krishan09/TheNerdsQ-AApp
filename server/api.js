@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { registerUsers, getuserbyEmail, updateQuestion } from "./data";
+import { registerUsers, getUsersByEmail } from "./data";
 import jwt from "jsonwebtoken";
 import { hash, compare } from "bcryptjs";
 import db from "./db";
-import { object } from "prop-types";
 import JwtTokenCreator from "./jsonwebtoken";
 
 
@@ -11,22 +10,12 @@ const router = Router();
 router.get("/", verifyToken, (req, res) => {
 	jwt.verify(req.token, "secretkey", (err, authData) => {
 		if (err) {
-			res.sendStatus(403); //or can be used res.status(403).json({ msg: "Invalid token" });
+			res.sendStatus(403);
 		} else {
 			res.json({
 				msg: "Hello, world!",
 				authData,
 			});
-		}
-	});
-});
-
-router.get("/users1", (req, res) => {
-	db.query("SELECT * FROM users", (error, result) => {
-		if (error) {
-			res.status(500).send(error);
-		} else {
-			res.send(result.rows);
 		}
 	});
 });
@@ -41,7 +30,7 @@ router.post("/register", async (req, res) => {
 		if (!username || !email || !password) {
 			res.status(400).json({ msg: "Please fill all fields" });
 		} else {
-			const user = await getuserbyEmail(email);
+			const user = await getUsersByEmail(email);
 			if (user) {
 				res.status(400).json({ msg: "email already registered" });
 				//throw new Error("email already registered");
@@ -59,7 +48,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
 	const { email, password } = req.body;
-	const data = await getuserbyEmail(email);
+	const data = await getUsersByEmail(email);
 	console.log(email,password);
 	console.log(data);
 
@@ -93,44 +82,6 @@ router.post("/login", async (req, res) => {
 	}
 });
 
-// only for use with the acces and refresh token version
-// let refreshTokens = [];
-
-// router.post("/token", async (req, res) => {
-// 	const refreshToken = req.header("x-auth-token");
-
-// 	if (!refreshToken) {
-// 		res.status(401).json({ msg: "Token not found" });
-// 	}
-// 	if (!refreshToken.includes(refreshToken)) {
-// 		res.status(403).json({ msg: "Invalid refresh Token" });
-// 	}
-
-// 	try {
-// 		const user = await jwt.verify(refreshToken, "refreshsecretkey");
-// 		const { data } = user;
-// 		const token = await jwt.sign(
-// 			{ data: { username: data.username, email: data.email } },
-// 			"secretkey",
-// 			{ expiresIn: "20s" }
-// 		);
-// 		res.json({ token });
-// 	} catch (error) {
-// 		res.status(403).json({ msg: "Invalid token" });
-// 	}
-// });
-
-router.post("/logout", (req, res) => {
-	const refreshToken = req.header("x-auth-token");
-
-	refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
-	res.sendStatus(204);
-});
-
-// Token format
-// Authorization: Bearer <access_token>
-
-//One way to authenticate token
 //verify token
 function verifyToken(req, res, next) {
 	//get authentication header value
@@ -151,22 +102,7 @@ function verifyToken(req, res, next) {
 	}
 }
 
-// CREATE TABLE users (
-//   id SERIAL PRIMARY KEY,
-//   username VARCHAR(100),
-//   email VARCHAR(100),
-//   passwd  VARCHAR(200)
-// );
-// CREATE TABLE questions (
-//   id SERIAL PRIMARY KEY,
-//   title VARCHAR(200),
-//   tried_content TEXT NOT NULL,
-//   expected_content TEXT NOT NULL,
-//   category VARCHAR(200),
-//   user_id INT REFERENCES users,
-//   created_at TIMESTAMP
-// );
-
+//get all questions
 router.get("/questions", async (req, res) => {
 	const questionsQuery = "SELECT questions.id, questions.title, questions.tried_content, questions.expected_content, questions.category, questions.user_id, questions.created_at, users.username FROM questions INNER JOIN users ON questions.user_id=users.id;";
 		const result = await db.query(questionsQuery);
@@ -177,7 +113,7 @@ const isValid = (n) => {
 	return !isNaN(n) && n >= 0;
 };
 
-//getting questions by id //
+//get question by id
 router.get("/questions/:id", async (req, res) => {
 	const questionsId = req.params.id;
 	const questionsById = `SELECT * FROM questions WHERE id=${questionsId}`;
@@ -201,7 +137,7 @@ router.get("/questions/:id", async (req, res) => {
 	}
 });
 
-//getting answers by Question id //
+//get answers by Question id
 router.get("/answers/:id", async (req, res) => {
 	const questionId = req.params.id;
 	const answersByQId = `SELECT * FROM answers WHERE question_id=${questionId}`;
@@ -228,19 +164,6 @@ router.get("/answers/:id", async (req, res) => {
 
 // endpoint for post questions
 
-// router.post("/question", async (req, res) => {
-// 	const category = req.body.category;
-// 	const title = req.body.title;
-// 	const content = req.body.content;
-// 	const query =
-// 		"INSERT INTO questions (category, title, content) VALUES ($1,$2, $3)";
-// 	try {
-// 		await db.query(query, [category, title, content]);
-// 		res.status(201).send({ Success: "Your Question is Successfully Posted!" });
-// 	} catch (error) {
-// 		res.status(500).send(error);
-// 	}
-// });
 router.post("/question", async (req, res) => {
 	const category = req.body.category;
 	const title = req.body.title;
@@ -293,6 +216,7 @@ router.post("/answer", async (req, res) => {
 });
 
 // endpoint delete questions
+
 router.delete("/question/:id", async (req, res) => {
 	const questionId = req.params.id;
 	const deleteById = `DELETE FROM questions WHERE id=${questionId}`;
@@ -347,6 +271,7 @@ router.delete("/answer/:id", async (req, res) => {
 		});
 	}
 });
+
 //endpoint get username
 router.get("/username/:id/", function (req, res) {
 	const questionId = req.params.id;

@@ -32,8 +32,8 @@ const ListedQtnThread = () => {
 			<div className="listedQtnThreadFormat">
 				{questionsData.map((question) => {
 					return (
-						<div key={question.id} className="tent">
-							<Link className="tentative" to={`/question/${question.id}`}>
+						<div key={question.id} className="question-container">
+							<Link className="question-box" to={`/question/${question.id}`}>
 								<span>
 									<Question data={question} />
 								</span>

@@ -19,7 +19,6 @@
 .listedQtnThreadFormat {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   scrollbar-width: thin;
 
 }
@@ -38,17 +37,17 @@
 
 }
 
-.tentative {
+.question-box {
   text-decoration: none;
   color: black;
   background-color: white;
 }
-.tentative:hover {
+.question-box:hover {
     color: black;
     text-decoration: none;
 }
 
-.tent {
+.question-container {
   display: flex;
   flex-direction: column;
   background-color: white;

@@ -27,6 +27,7 @@
   border-radius: 4px;
   padding: 0.2rem;
   background-color: BurlyWood;
+  word-break:normal;
 }
 
 .questionStyle{

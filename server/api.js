@@ -20,16 +20,6 @@ router.get("/", verifyToken, (req, res) => {
 	});
 });
 
-// router.get("/users1", (req, res) => {
-// 	db.query("SELECT * FROM users", (error, result) => {
-// 		if (error) {
-// 			res.status(500).send(error);
-// 		} else {
-// 			res.send(result.rows);
-// 		}
-// 	});
-// });
-
 router.get("/users", (req, res) => {
 	res.status(200).json(users);
 });

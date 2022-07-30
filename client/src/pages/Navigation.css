@@ -29,17 +29,13 @@
   color: red;
 }
 
-.fufuf:hover {
+.fufuf:hover, .fufuf:active {
   background-color: rgba(255, 0, 0, 0.232);
   color: #ccc;
 }
 
 .topNav-item span:hover {
   color: #ccc;
-}
-.topNav-item .active {
-  background-color: #04AA6D;
-  color: white;
 }
 
 .topNav .icon {
@@ -79,4 +75,25 @@
     display: block;
     text-align: left;
   }
+}
+
+.search-icon {
+  display: none;
+}
+
+.search-input {
+  max-width: auto;
+  background-color: sandybrown;
+  overflow: hidden;
+  
+}
+
+.search-input:active {
+  background-color: beige;  
+}
+.search-div input::placeholder {
+  color: darkslategray;
+}
+.search-div {
+  max-width: 100%;
 }

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Answer.css";
+import redLike from "../../pages/red_like.png";
 import DOMPurify from "dompurify";
+import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import * as updateLocale from "dayjs/plugin/updateLocale";
 import * as relativeTime from "dayjs/plugin/relativeTime";
@@ -24,6 +26,24 @@ const handleDelete = async (id) => {
 };
 
 function Answer({ data, getAnswers }) {
+	const { userName } = useSelector((state) => state);
+	const [counter, setCounter] = useState(0);
+	// const handleCount = () => {
+	// 	setCounter((count) => count + 1);
+	// };
+	const handleCount = () => {
+		setCounter((prevCount) => {
+			const newCount = Number(prevCount) + 1;
+			localStorage.setItem("count", newCount);
+			return newCount;
+		});
+	};
+	useEffect(() => {
+		const initialValue = localStorage.getItem("count");
+		if (initialValue) {
+			setCounter(initialValue);
+		}
+	}, []);
 
 	return (
 		<div className="subAnswersFormat overflow-auto">
@@ -36,15 +56,22 @@ function Answer({ data, getAnswers }) {
 							<span>Responded: {dayjs(answer.created_at).fromNow()}</span>
 						</div>
 						<div className="answer-section-2">
-							<button
-								className="color-delete btn btn-link p-0"
-								onClick={() => {
-									handleDelete(answer.id);
-									getAnswers();
-								}}
-							>
-								Delete
+							<button onClick={handleCount}>
+								<img src={redLike} alt="like" width="40px" />
 							</button>
+							<span>{counter} like(s)</span>
+							{(userName === answer.responder ||
+								answer.responder === "Guest") && (
+								<button
+									className="color-delete btn btn-link p-0"
+									onClick={() => {
+										handleDelete(answer.id);
+										getAnswers();
+									}}
+								>
+									Delete
+								</button>
+							)}
 						</div>
 					</div>
 				);

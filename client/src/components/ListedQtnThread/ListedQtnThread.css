@@ -70,5 +70,16 @@
   margin-bottom: 1rem;
 }
 
+@media screen and (max-width: 600px) {
+	p, pre.ql-syntax {
+		width: 100%;
+		overflow: visible;
+	}
+
+  img {
+    width: 100%;
+  }
+  
+}
 
 

@@ -42,3 +42,35 @@
   justify-content: space-between;
 }
 
+.answer-section-2 button {
+  border: none;
+}
+
+.answer-section-2 button img {
+  display: block;
+}
+
+.answer-section-2 span{
+  display: block;
+  color:brown;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+
+  .answer-wrapper{
+    flex-direction: column;
+    padding: 0.5rem;
+  }  
+
+  .answer-wrapper p{
+    width: 100%;
+  } 
+  .answer-section-2 {
+    flex-direction: row;    
+  }
+  .answer-section-2 img{
+    width: 35px;    
+  }
+  
+}

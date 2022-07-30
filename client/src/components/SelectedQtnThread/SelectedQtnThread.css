@@ -36,5 +36,7 @@
 		float: none;
 		width: 80%;
 	}
-  
+	.main-title-box {
+		width:100%;
+	}
 }

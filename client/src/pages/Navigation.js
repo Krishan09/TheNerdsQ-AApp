@@ -40,18 +40,6 @@ const Navigation = () => {
 			<a href="/" className="topNav-item">
 				Home
 			</a>
-			<div className="search-div input-group rounded">
-				<input
-					type="search"
-					className="search-input form-control rounded mt-0"
-					placeholder="Search"
-					aria-label="Search"
-					aria-describedby="search-addon"
-				/>
-				<span className="search-icon input-group-text border-0" id="search-addon">
-					<i className="fas fa-search"></i>
-				</span>
-			</div>
 			<span
 				className="topNav-item icon"
 				onClick={() => setOpen(!open)}

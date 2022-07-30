@@ -17,10 +17,7 @@ const Navigation = () => {
 			</a>
 			{userName && (
 				<a href="/" className="topNav-item tent fufuf">
-					<span
-						onClick={logoutUser}
-						aria-hidden="true"
-					>
+					<span onClick={logoutUser} aria-hidden="true">
 						Logout
 					</span>
 				</a>

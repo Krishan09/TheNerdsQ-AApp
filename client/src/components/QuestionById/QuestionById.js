@@ -30,13 +30,13 @@ const createMarkup = (html) => {
 			return (
 				<>
 					<div className="questionByIdStyle">
-						<h2>Question: </h2>
-						<h3>{question[0].title}</h3>
-						<h5>I have tried to: </h5>
+						<h4>Question: </h4>
+						<h5>{question[0].title}</h5>
+						<h6>I have tried to: </h6>
 						<p
 							dangerouslySetInnerHTML={createMarkup(question[0].tried_content)}
 						></p>
-						<h5>I expected to: </h5>
+						<h6>I expected to: </h6>
 						<p
 							dangerouslySetInnerHTML={createMarkup(
 								question[0].expected_content

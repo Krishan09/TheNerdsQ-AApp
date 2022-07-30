@@ -21,33 +21,16 @@ app.use(express.json());
 app.use(configuredHelmet());
 app.use(morgan("dev"));
 
-// app.use((_, res, next) => {
-// 	res.setHeader("Access-Control-Allow-Origin", "*");
-// 	res.setHeader(
-// 	  "Access-Control-Allow-Methods",
-// 	  "GET, POST, DELETE, PUT, PATCH"
-// 	);
-// 	res.setHeader("Access-Control-Allow-Headers", "application/json");
-// 	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-// 	res.header(
-// 	  "Access-Control-Allow-Headers",
-// 	  "Access-Control-Allow-Methods",
-// 	  "Access-Control-Allow-Origin",
-// 	  "Origin, X-Requested-With, Content-Type, Accept"
-// 	);
-// 	next();
-//   });
 
+app.use(
+	cookieSession({
+		name: "session",
+		keys: ["james bond"],
 
-
-
-app.use(cookieSession({
-  name: 'session',
-  keys: ["james bond"],
-
-  // Cookie Options
-  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
-}));
+		// Cookie Options
+		maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+	})
+);
 
 
 

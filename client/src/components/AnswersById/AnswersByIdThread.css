@@ -34,3 +34,29 @@
 	display: none;
 }
 
+@media screen and (max-width: 600px) {
+	p .ql-syntax {
+		width: 100%;
+		overflow: visible;
+		word-break: break-word;
+	}
+
+	p {
+		width: 100%;
+	}
+
+	.search-input {
+		max-width: auto;
+		background-color: sandybrown;
+		overflow: hidden;
+	}
+	
+	.search-div input::placeholder {
+		color: #ddd;
+	}
+
+	.search-div {
+		display: block;
+		 max-width: 100%;
+	}  
+}
